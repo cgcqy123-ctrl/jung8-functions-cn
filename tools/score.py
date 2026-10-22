@@ -26,6 +26,10 @@ JUNG_OF = {"Te": ("ET", "外倾思维型"), "Ti": ("IT", "内倾思维型"),
            "Fe": ("EF", "外倾情感型"), "Fi": ("IF", "内倾情感型"),
            "Se": ("ES", "外倾感觉型"), "Si": ("IS", "内倾感觉型"),
            "Ne": ("EN", "外倾直觉型"), "Ni": ("IN", "内倾直觉型")}
+# 第三/劣势功能：与给定功能**同类**（判断对判断、知觉对知觉）、**功能对立**
+# （思维↔情感、感觉↔直觉）、**态度相反**的那一个。注意这不是"同功能换态度"。
+MAP = {"Te": "Fi", "Ti": "Fe", "Fe": "Ti", "Fi": "Te",
+       "Se": "Ni", "Si": "Ne", "Ne": "Si", "Ni": "Se"}
 
 PAIRS = {
     "P01": ("Se", "Si"), "P02": ("Se", "Ne"), "P03": ("Se", "Ni"),
@@ -151,8 +155,8 @@ def score(answers: dict, items: list[dict]) -> dict:
     other_cat = list(JUDGING) if dom in PERCEIVING else list(PERCEIVING)
     cand = [f for f in other_cat if ATT[f] != ATT[dom]]
     aux = sorted(cand, key=lambda f: (-S[f], FUNCS.index(f)))[0]
-    tert = OPP[aux]
-    inf = OPP[dom]
+    tert = MAP[aux]
+    inf = MAP[dom]
 
     ei = ATT[dom]
     if dom in PERCEIVING:
@@ -240,6 +244,7 @@ def selftest() -> int:
             answers[it["id"]] = 2 if d > 0 else (-2 if d < 0 else 1)
         r = score(answers, items)
         ok = (r["code"] == target and r["jung_code"] == JUNG_OF[st[0]][0]
+              and r["stack"] == st  # 第三/劣势必须与标准功能栈一致
               and abs(r["sum_check"]) < 1e-9)
         fail += 0 if ok else 1
         print(f"{target:<6}{r['code']:<8}{r['dominant']:<4}{r['auxiliary']:<4}"

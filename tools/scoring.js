@@ -3,6 +3,8 @@ var J8 = (function () {
   var FUNCS = ["Se", "Si", "Ne", "Ni", "Te", "Ti", "Fe", "Fi"];
   var ATT = { Se: "E", Si: "I", Ne: "E", Ni: "I", Te: "E", Ti: "I", Fe: "E", Fi: "I" };
   var OPP = { Se: "Si", Si: "Se", Ne: "Ni", Ni: "Ne", Te: "Ti", Ti: "Te", Fe: "Fi", Fi: "Fe" };
+  // 第三/劣势：同类（判断↔判断、知觉↔知觉）、功能对立（思维↔情感、感觉↔直觉）、态度相反
+  var MAP = { Te: "Fi", Ti: "Fe", Fe: "Ti", Fi: "Te", Se: "Ni", Si: "Ne", Ne: "Si", Ni: "Se" };
   var FN_CN = { Se: "外倾感觉", Si: "内倾感觉", Ne: "外倾直觉", Ni: "内倾直觉",
                 Te: "外倾思维", Ti: "内倾思维", Fe: "外倾情感", Fi: "内倾情感" };
   var JUNG_OF = { Te: ["ET", "外倾思维型"], Ti: ["IT", "内倾思维型"],
@@ -99,7 +101,7 @@ var J8 = (function () {
       return (otherIsPerc ? isPerc : !isPerc) && ATT[f] !== ATT[dom];
     }).sort(function (a, b) { return (S[b] - S[a]) || (FUNCS.indexOf(a) - FUNCS.indexOf(b)); });
     var aux = cand[0];
-    var tert = OPP[aux], inf = OPP[dom];
+    var tert = MAP[aux], inf = MAP[dom];
 
     var ei = ATT[dom], sn, tf;
     if (PERC[dom]) {
