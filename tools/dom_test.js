@@ -5,7 +5,7 @@ const vm = require("vm");
 const path = require("path");
 
 const BASE = path.resolve(__dirname, "..");
-const file = path.join(BASE, "荣格八维人格测验·中国情境版.html");
+const file = path.join(BASE, "index.html");
 const html = fs.readFileSync(file, "utf8");
 const scripts = [...html.matchAll(/<script>\n([\s\S]*?)\n<\/script>/g)].map((m) => m[1]);
 if (scripts.length !== 2) throw new Error("script 块数量异常：" + scripts.length);
@@ -97,6 +97,17 @@ function run(mode) {
   ok(res.indexOf("荣格归属") > 0, `${mode}：含荣格归属`);
   ok(res.indexOf("压力下的样子") > 0, `${mode}：含压力段落`);
   ok(res.indexOf("undefined") < 0 && res.indexOf("NaN") < 0, `${mode}：结果里没有 undefined / NaN`);
+  // 交给 AI 分析的提示词
+  const promptText = String(get("aiPrompt").value || "");
+  ok(promptText.length > 1200, `${mode}：AI 提示词长度 ${promptText.length}`);
+  ok(promptText.indexOf("【我的结果】") > 0, `${mode}：提示词含结果段`);
+  ok(promptText.indexOf("功能栈") > 0 && promptText.indexOf("劣势功能") > 0,
+    `${mode}：提示词含功能栈与劣势分析要求`);
+  ok(/[EI][SN][TF][JP]/.test(promptText), `${mode}：提示词含四字母`);
+  ok(promptText.indexOf("不要编造") > 0, `${mode}：提示词含反编造约束`);
+  ok(typeof get("copyPromptBtn").onclick === "function", `${mode}：复制提示词按钮已绑定`);
+  ok(typeof get("downloadPromptBtn").onclick === "function", `${mode}：下载按钮已绑定`);
+  ok(res.indexOf("把结果交给 AI 分析") > 0, `${mode}：结果页有 AI 分析区块`);
   // 重新开始按钮可用
   ok(typeof get("againBtn").onclick === "function", `${mode}：重新开始按钮已绑定`);
   get("againBtn").onclick();

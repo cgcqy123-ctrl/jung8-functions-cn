@@ -122,6 +122,9 @@ button{font:inherit;color:inherit;cursor:pointer}
 .actions button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
 details{background:#faf8f3;border:1px solid #ece7dd;border-radius:10px;padding:10px 14px;margin-top:12px}
 details summary{cursor:pointer;font-size:13px;color:var(--muted)}
+.promptBox{width:100%;min-height:240px;margin-top:10px;padding:12px 13px;border:1px solid #ece7dd;
+  border-radius:9px;background:#fff;color:var(--ink);resize:vertical;
+  font:12.5px/1.65 ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",Menlo,monospace}
 .detailTable{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:10px}
 .detailTable td,.detailTable th{border-bottom:1px solid #ece7dd;padding:5px 6px;text-align:left}
 .detailTable th{color:var(--muted);font-weight:600}
@@ -459,11 +462,87 @@ var SAVE = "j8cn-v1";
     return i >= 0 ? names[i] : null;
   }
 
+  function summaryText(r, st) {
+    return ["荣格八维人格测验（中国情境版）结果",
+      r.code + "｜" + r.cn_name + "｜荣格归属：" + r.jung_name,
+      "功能栈：" + st.join("-") + "（主导 " + r.dominant + "，辅助 " + r.auxiliary + "）",
+      "置信度：" + r.confidence + "（gap " + r.gap + "，一致性 " + r.consistency + "）",
+      "八维：" + r.P_order.map(function (f) { return f + " " + r.P[f].toFixed(0); }).join("　"),
+      "", "本测验为自我认识工具，非医学诊断。"].join("\n");
+  }
+
+  function copyText(text, btn) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { flash(btn, "已复制"); },
+        function () { fallbackCopy(text); flash(btn, "已复制"); });
+    } else { fallbackCopy(text); flash(btn, "已复制"); }
+  }
+
+  function downloadText(name, text) {
+    try {
+      var blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement("a");
+      a.href = url;
+      a.download = name;
+      document.body.appendChild(a);
+      if (a.click) { a.click(); }
+      document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    } catch (e) { fallbackCopy(text); }
+  }
+
+  function buildAiPrompt(r) {
+    var t = DATA.types[r.code] || {};
+    var mode = state.mode === "quick" ? "快速版（28 题）" : "完整版（56 题）";
+    var d = new Date();
+    var p2 = function (n) { return ("0" + n).slice(-2); };
+    var stamp = d.getFullYear() + "-" + p2(d.getMonth() + 1) + "-" + p2(d.getDate()) + " " + p2(d.getHours()) + ":" + p2(d.getMinutes());
+    var scores = r.P_order.map(function (f) { return f + " " + r.P[f].toFixed(0); }).join(" / ");
+    var top3 = r.top3.map(function (kv) { return kv[0] + " " + kv[1].toFixed(2); }).join("，");
+    var L = [];
+    L.push("你是熟悉荣格分析心理学（《心理类型》，1921）的类型学分析者。下面是我做一份中文自测的完整结果，请据此和我一起分析。");
+    L.push("");
+    L.push("【我的结果】");
+    L.push("四字母：" + r.code + "（" + (t.cn_name || r.cn_name) + "）");
+    L.push("荣格类型：" + r.jung_name + "（" + r.dominant + " 主导）");
+    L.push("功能栈：" + r.stack[0] + " 主导 · " + r.stack[1] + " 辅助 · " + r.stack[2] + " 第三 · " + r.stack[3] + " 劣势");
+    L.push("置信度：" + r.confidence + "（分差 " + r.gap + "，奇偶一致性 " + r.consistency + "）");
+    L.push("八维相对强度（0–100，是在我自己的八个功能里排位，不是能力分）：" + scores);
+    L.push("候选类型前三：" + top3);
+    L.push("作答版本：" + mode + "；作答时间：" + stamp);
+    L.push("");
+    L.push("【这组分数怎么来的（供你判断可信度，不用复述给我）】");
+    L.push("56 题 = 8 个功能两两配对（28 对）× 双向各一题，每个功能出现 14 次、7 次在 A 位。");
+    L.push("每题在两种反应里二选一、再选强度，记 +2 / +1 / −1 / −2，加给 A 选项对应的功能、从 B 选项对应的功能里减掉；八维相加恒为 0，所以只有相对排序有意义。");
+    L.push("判定：八维最高者为主导 → 在「另一类功能 × 相反态度」的两个候选里取辅助 → 第三 = 与辅助同类、态度同主导，劣势 = 与主导同类、态度相反；四字母只做换算层。");
+    L.push("注意：J/P 不是荣格的概念，是迈尔斯的操作化补充（看对外展示的那个功能属判断还是知觉）；所以 J ≠ 计划性强，P ≠ 散漫。");
+    L.push("八维各自的含义（供参照）：Se 接住当下具体信息并即时反应 / Si 拿过去具体经验与身体记忆来比对 / Ne 由一个点发散出多种可能 / Ni 从材料里收敛出趋势与本质 / Te 把外部世界组织成目标、步骤与标准 / Ti 在内部拆概念、验一致性 / Fe 调节人际气氛、求共识与得体 / Fi 校准什么对自己是真的、重要的、不能改的。");
+    L.push("");
+    L.push("【请按这个顺序分析，用小标题分段】");
+    L.push("1. 先用功能栈复核：这组分数和「" + r.code + "」是否自洽？有没有更贴合的解释？列出 1–2 个候选类型并说明理由。");
+    L.push("2. 指出这组分数里最值得注意的一处张力（例如某个功能的分数高于它在这套结构里的位置），说明它在日常里可能怎么表现。");
+    L.push("3. 分别就「职场」「家庭与亲戚」「亲密关系」三个场景，各给我 3 条具体描述和 1 条可操作建议。");
+    L.push("4. 分析我的劣势功能（" + r.inferior + "）被触发时会怎么失控，以及在它爆发前可以靠什么信号识别。");
+    L.push("5. 给出未来 6–12 个月的两件具体行动，要能被验证，不要「多与人沟通」这类空话。");
+    L.push("6. 最后反问我 3 个能帮我进一步确认或修正这个结果的问题。");
+    L.push("");
+    L.push("【约束】");
+    L.push("不要做医学或心理诊断；不要给「你就是这种人」的判决式断言；不要编造统计数据、研究结论或名人案例。");
+    L.push("信息不足的地方请直接说「这里需要更多信息」，不要替我补。");
+    L.push("用中文回答，口语化、具体，少堆术语；术语第一次出现时用一句话解释。");
+    L.push("另外，这类自测容易受「我希望自己是什么样」影响，请对明显偏高的分数保留一点怀疑，并告诉我你怀疑哪一项。");
+    L.push("");
+    L.push("（如果我还上传了《荣格八维人格测验·中国情境版》文档，请以其中第四章计分、第五章八种荣格类型、第六章十六型画像为主要依据。）");
+    return L.join("\n");
+  }
+
   function showResult() {
     var r = J8.computeResult(state.answers, state.items);
     var t = DATA.types[r.code] || {};
     var j = DATA.jung[r.jung_code] || {};
     var st = r.stack;
+    var aiPrompt = buildAiPrompt(r);
     var html = [];
 
     html.push('<div class="rhead">');
@@ -549,6 +628,18 @@ var SAVE = "j8cn-v1";
       html.push('</div>');
     }
 
+    html.push('<div class="sect"><h3>把结果交给 AI 分析</h3>' +
+      '<p style="font-size:13.5px;color:var(--muted)">下面这段提示词已经把结果、计分口径、理论边界和要它回答的问题都写好了，复制后黏到你常用的 AI 里就能用。' +
+      '如果那个 AI 支持上传文件，把《荣格八维人格测验-中国情境版.docx》一起传上去，让它按文档第四、五、六章来分析。</p>' +
+      '<div class="actions" style="margin:12px 0 0">' +
+      '<button class="primary" id="copyPromptBtn">复制 AI 分析提示词</button>' +
+      '<button id="downloadPromptBtn">下载为 .txt</button>' +
+      '</div>' +
+      '<details><summary>展开查看提示词全文（可直接改）</summary>' +
+      '<textarea class="promptBox" id="aiPrompt" spellcheck="false"></textarea>' +
+      '<p style="font-size:11.5px;color:var(--faint);margin:8px 0 0">提示词里只有这次的结果数据，没有姓名。发到哪里、发给谁，由你决定。</p>' +
+      '</details></div>');
+
     html.push('<div class="actions">' +
       '<button class="primary" id="againBtn">重新做一次</button>' +
       '<button id="printBtn">打印 / 存为 PDF</button>' +
@@ -562,18 +653,12 @@ var SAVE = "j8cn-v1";
     view("result");
     $("againBtn").onclick = function () { clearSave(); start(state.mode, {}, 0); };
     $("printBtn").onclick = function () { window.print(); };
-    $("copyBtn").onclick = function () {
-      var lines = ["荣格八维人格测验（中国情境版）结果",
-        r.code + "｜" + r.cn_name + "｜荣格归属：" + r.jung_name,
-        "功能栈：" + st.join("-") + "（主导 " + r.dominant + "，辅助 " + r.auxiliary + "）",
-        "置信度：" + r.confidence + "（gap " + r.gap + "，一致性 " + r.consistency + "）",
-        "八维：" + r.P_order.map(function (f) { return f + " " + r.P[f].toFixed(0); }).join("　"),
-        "", "本测验为自我认识工具，非医学诊断。"];
-      var text = lines.join("\n");
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(function () { flash($("copyBtn"), "已复制"); },
-          function () { fallbackCopy(text); });
-      } else { fallbackCopy(text); }
+    $("copyBtn").onclick = function () { copyText(summaryText(r, st), $("copyBtn")); };
+    $("aiPrompt").value = aiPrompt;
+    $("copyPromptBtn").onclick = function () { copyText($("aiPrompt").value, $("copyPromptBtn")); };
+    $("downloadPromptBtn").onclick = function () {
+      downloadText("荣格八维结果-AI分析提示.txt", $("aiPrompt").value);
+      flash($("downloadPromptBtn"), "已下载");
     };
   }
 

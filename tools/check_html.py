@@ -9,7 +9,7 @@ import re
 import sys
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-HTML = os.path.join(BASE, "荣格八维人格测验·中国情境版.html")
+HTML = os.path.join(BASE, "index.html")
 TMP = os.path.join(BASE, "tools", ".tmp_app.js")
 
 

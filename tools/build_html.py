@@ -10,7 +10,7 @@ import os
 import sys
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-OUT = os.path.join(BASE, "荣格八维人格测验·中国情境版.html")
+OUT = os.path.join(BASE, "index.html")
 
 TYPE_FIELDS = ["cn_name", "jung_type", "oneliner", "core", "work", "family", "love",
                "strength", "blindspot", "stress", "growth", "mistype"]

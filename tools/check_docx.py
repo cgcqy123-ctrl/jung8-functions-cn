@@ -6,7 +6,7 @@ import sys
 from docx import Document
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DOCX = os.path.join(BASE, "荣格八维人格测验·中国情境版.docx")
+DOCX = os.path.join(BASE, "荣格八维人格测验-中国情境版.docx")
 CODES = ["INTJ", "INTP", "ENTJ", "ENTP", "INFJ", "INFP", "ENFJ", "ENFP",
          "ISTJ", "ISFJ", "ESTJ", "ESFJ", "ISTP", "ISFP", "ESTP", "ESFP"]
 JUNG = ["外倾思维型", "内倾思维型", "外倾情感型", "内倾情感型",
