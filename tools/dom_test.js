@@ -105,6 +105,9 @@ function run(mode) {
     `${mode}：提示词含功能栈与劣势分析要求`);
   ok(/[EI][SN][TF][JP]/.test(promptText), `${mode}：提示词含四字母`);
   ok(promptText.indexOf("不要编造") > 0, `${mode}：提示词含反编造约束`);
+  ok(promptText.indexOf("核对提示") > 0, `${mode}：提示词含「功能栈 vs 表 6-1」核对提示`);
+  ok(promptText.indexOf("自测版本") > 0, `${mode}：提示词带版本号`);
+  ok(res.indexOf("自测版本") > 0, `${mode}：结果页带版本戳`);
   ok(typeof get("copyPromptBtn").onclick === "function", `${mode}：复制提示词按钮已绑定`);
   ok(typeof get("downloadPromptBtn").onclick === "function", `${mode}：下载按钮已绑定`);
   ok(res.indexOf("把结果交给 AI 分析") > 0, `${mode}：结果页有 AI 分析区块`);

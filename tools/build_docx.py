@@ -377,7 +377,7 @@ def build_cover(doc, n_items=56):
          indent=False, size=11, align=WD_ALIGN_PARAGRAPH.CENTER, after=60)
     for _ in range(6):
         para(doc, "", indent=False, after=0)
-    para(doc, "2026 年 10 月　第 1.2 版", indent=False, size=10,
+    para(doc, "2026 年 10 月　第 1.3 版", indent=False, size=10,
          align=WD_ALIGN_PARAGRAPH.CENTER, after=6, color=GRAY)
     para(doc, "本测验是自我认识工具，不是医学诊断，也不应作为招聘、筛选或评价他人的依据。",
          indent=False, size=9, align=WD_ALIGN_PARAGRAPH.CENTER, color=GRAY)
