@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>荣格八维人格测验·中国情境版</title>
+<style>
+:root{
+  --ink:#1d2024; --muted:#6d7178; --faint:#9aa0a6; --line:#e2ddd3;
+  --bg:#f5f2ec; --card:#fffdf8; --accent:#2f5d50; --accent-soft:#e6efe9;
+  --warn:#a24b2b; --warn-soft:#f7e8e1;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  line-height:1.75;-webkit-font-smoothing:antialiased}
+#app{max-width:780px;margin:0 auto;padding:30px 20px 80px}
+.view.hidden{display:none}
+h1,h2,h3{font-weight:700;line-height:1.35;margin:0}
+p{margin:0 0 12px}
+button{font:inherit;color:inherit;cursor:pointer}
+.hidden{display:none !important}
+
+/* ---------- intro ---------- */
+.hero{padding:24px 4px 10px;border-bottom:1px solid var(--line);margin-bottom:26px}
+.eyebrow{font-size:12px;letter-spacing:.12em;color:var(--muted);margin-bottom:10px}
+.hero h1{font-size:34px;letter-spacing:.02em}
+.hero .sub{font-size:17px;color:var(--accent);letter-spacing:.28em;margin:6px 0 14px}
+.lede{font-size:14px;color:var(--muted);margin:0}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px 24px;
+  box-shadow:0 1px 0 rgba(0,0,0,.02)}
+.panel h2{font-size:15px;letter-spacing:.06em;color:var(--muted);margin-bottom:12px}
+.panel ul{margin:0 0 20px;padding-left:1.2em;font-size:14.5px}
+.panel li{margin-bottom:6px}
+.modes{display:grid;gap:12px}
+.mode{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:16px 18px;text-align:left;
+  transition:.15s}
+.mode:hover{border-color:var(--accent);background:var(--accent-soft)}
+.mode b{font-size:16px}
+.mode span{color:var(--muted);font-size:13px;margin-left:auto}
+.mode em{font-style:normal;font-size:11px;background:var(--accent);color:#fff;
+  padding:2px 7px;border-radius:20px;letter-spacing:.05em}
+.resume{font-size:13.5px;color:var(--muted);margin-top:16px}
+.link{background:none;border:0;padding:0;color:var(--accent);text-decoration:underline}
+.disclaimer{font-size:12px;color:var(--faint);margin-top:24px;line-height:1.6}
+
+/* ---------- test ---------- */
+.topbar{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:14px;
+  padding:12px 0 14px;background:linear-gradient(var(--bg) 70%,rgba(245,242,236,0))}
+.ghost{background:none;border:1px solid var(--line);border-radius:8px;padding:5px 11px;
+  font-size:12.5px;color:var(--muted);background:#fff}
+.ghost:disabled{opacity:.35;cursor:default}
+.progress{flex:1;height:5px;background:#e7e2d8;border-radius:4px;overflow:hidden}
+.progress i{display:block;height:100%;width:0;background:var(--accent);border-radius:4px;
+  transition:width .25s ease}
+.counter{font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums;min-width:52px;text-align:right}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:26px 24px 20px;margin-top:8px}
+.qno{font-size:12px;letter-spacing:.1em;color:var(--faint);margin-bottom:10px}
+.scenario{font-size:19px;line-height:1.72;margin:0 0 20px;font-weight:600}
+.optcards{display:grid;gap:10px;margin-bottom:18px}
+.optcard{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:10px;
+  background:#faf8f3;border:1px solid #ece7dd;transition:.15s}
+.optcard .tag{flex:none;width:22px;height:22px;border-radius:50%;background:var(--accent);
+  color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center;margin-top:3px}
+.optcard p{margin:0;font-size:15px}
+.optcard.onA{border-color:var(--accent);background:var(--accent-soft)}
+.optcard.onB{border-color:var(--warn);background:var(--warn-soft)}
+.optcard.onB .tag{background:var(--warn)}
+.scale{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.scale button{display:flex;align-items:center;gap:9px;border:1.5px solid var(--line);
+  background:#fff;border-radius:10px;padding:12px 14px;font-size:14px;transition:.12s}
+.scale button b{flex:none;width:20px;height:20px;border-radius:5px;background:#f0ece2;
+  font-size:11.5px;font-weight:600;display:flex;align-items:center;justify-content:center;color:var(--muted)}
+.scale button:hover{border-color:var(--accent);background:var(--accent-soft)}
+.scale button.selA{border-color:var(--accent);background:var(--accent);color:#fff}
+.scale button.selB{border-color:var(--warn);background:var(--warn);color:#fff}
+.scale button.selA b,.scale button.selB b{background:rgba(255,255,255,.25);color:#fff}
+.hint{font-size:11.5px;color:var(--faint);margin:14px 0 0;text-align:center}
+
+/* ---------- result ---------- */
+.rhead{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 24px;margin-bottom:18px}
+.rhead .code{font-size:44px;letter-spacing:.05em;line-height:1;font-weight:800}
+.rhead .name{font-size:20px;font-weight:700;margin:8px 0 4px}
+.rhead .jung{font-size:13.5px;color:var(--muted)}
+.badge{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:20px;margin-left:8px;
+  vertical-align:middle;background:var(--accent-soft);color:var(--accent)}
+.badge.low{background:var(--warn-soft);color:var(--warn)}
+.sect{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:18px}
+.sect h3{font-size:14px;letter-spacing:.08em;color:var(--muted);margin-bottom:14px}
+.stackline{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:6px}
+.stackline div{background:#faf8f3;border:1px solid #ece7dd;border-radius:10px;padding:10px 12px}
+.stackline small{display:block;font-size:11px;color:var(--faint);letter-spacing:.08em}
+.stackline b{font-size:17px}
+.stackline span{display:block;font-size:11.5px;color:var(--muted)}
+.bars{margin-top:6px}
+.barrow{display:grid;grid-template-columns:44px 1fr 42px;grid-template-areas:"n b v" "c b v";
+  align-items:center;column-gap:8px;margin-bottom:9px}
+.barrow .bn{grid-area:n;font-weight:700;font-size:13px}
+.barrow .bc{grid-area:c;font-size:10.5px;color:var(--faint)}
+.barrow .bar{grid-area:b;height:9px;background:#eee9df;border-radius:5px;overflow:hidden}
+.barrow .bar i{display:block;height:100%;border-radius:5px;background:var(--accent)}
+.barrow .bv{grid-area:v;text-align:right;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.barrow.role-dom .bar i{background:var(--accent)}
+.barrow.role-aux .bar i{background:#4d7d6d}
+.barrow.role-ter .bar i{background:#9db3a8}
+.barrow.role-inf .bar i{background:var(--warn)}
+.rolebadge{font-size:10px;padding:1px 6px;border-radius:20px;margin-left:6px;
+  background:var(--accent-soft);color:var(--accent);vertical-align:1px}
+.role-inf .rolebadge{background:var(--warn-soft);color:var(--warn)}
+.fits{display:flex;gap:8px;flex-wrap:wrap}
+.fit{background:#faf8f3;border:1px solid #ece7dd;border-radius:9px;padding:7px 12px;font-size:13px}
+.fit b{font-variant-numeric:tabular-nums}
+.fit.cur{border-color:var(--accent);background:var(--accent-soft)}
+.profile p{margin-bottom:12px}
+.profile p b.lbl{color:var(--accent)}
+.dots{font-size:8px;letter-spacing:.35em;color:var(--faint);text-align:right;margin:6px 0 2px}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 8px}
+.actions button{border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:10px 16px;font-size:13.5px}
+.actions button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+details{background:#faf8f3;border:1px solid #ece7dd;border-radius:10px;padding:10px 14px;margin-top:12px}
+details summary{cursor:pointer;font-size:13px;color:var(--muted)}
+.detailTable{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:10px}
+.detailTable td,.detailTable th{border-bottom:1px solid #ece7dd;padding:5px 6px;text-align:left}
+.detailTable th{color:var(--muted);font-weight:600}
+.detailTable td:last-child,.detailTable th:last-child{text-align:right;font-variant-numeric:tabular-nums}
+
+@media (max-width:520px){
+  #app{padding:18px 14px 60px}
+  .hero h1{font-size:27px}
+  .scenario{font-size:17px}
+  .scale{grid-template-columns:1fr}
+  .stackline{grid-template-columns:1fr 1fr}
+  .rhead .code{font-size:36px}
+}
+@media print{
+  body{background:#fff}
+  #app{max-width:none;padding:0}
+  .actions,.topbar,.hint,.mode,.link,.resume{display:none !important}
+  .sect,.rhead{border:1px solid #ccc;break-inside:avoid}
+  details{display:none}
+  .view.hidden{display:none !important}
+}
+</style>
+</head>
+<body>
+<div id="app">
+
+  <section id="intro" class="view">
+    <div class="hero">
+      <p class="eyebrow">基于荣格《心理类型》（1921）· 八维认知功能</p>
+      <h1>荣格八维人格测验</h1>
+      <p class="sub">中国情境版</p>
+      <p class="lede">56 个中国生活场景 · 8 种认知功能 · 先定主导，再定辅助</p>
+    </div>
+    <div class="panel">
+      <h2>开始之前</h2>
+      <ul>
+        <li>每题一个具体情境，两种反应都正常，<b>没有对错</b>。</li>
+        <li>想"<b>上次遇到类似的事，我实际怎么做的</b>"，不想"我应该怎么做"。</li>
+        <li>凭第一反应，每题别超过十秒；两边都像就选更常发生的那个。</li>
+        <li>进度会自动存在本机浏览器里，可以分两次做完。</li>
+      </ul>
+      <div class="modes">
+        <button class="mode" data-mode="full"><b>完整版</b><span>56 题 · 约 20 分钟</span><em>推荐</em></button>
+        <button class="mode" data-mode="quick"><b>快速版</b><span>28 题 · 约 8 分钟</span></button>
+      </div>
+      <p class="resume hidden" id="resumeBox"></p>
+    </div>
+    <p class="disclaimer">本测验是自我认识工具，不是医学诊断，也不应作为招聘、筛选或评价他人的依据。
+      结果的可信度取决于你是否按真实反应作答。</p>
+  </section>
+
+  <section id="test" class="view hidden">
+    <div class="topbar">
+      <button id="backBtn" class="ghost">← 上一题</button>
+      <div class="progress"><i id="pbar"></i></div>
+      <span id="counter" class="counter"></span>
+    </div>
+    <div class="qcard">
+      <p class="qno" id="qno"></p>
+      <p class="scenario" id="scenario"></p>
+      <div class="optcards">
+        <div class="optcard" id="cardA"><span class="tag">A</span><p id="textA"></p></div>
+        <div class="optcard" id="cardB"><span class="tag">B</span><p id="textB"></p></div>
+      </div>
+      <div class="scale" id="scale">
+        <button data-v="2"><b>1</b>强烈偏向 A</button>
+        <button data-v="1"><b>2</b>略偏向 A</button>
+        <button data-v="-1"><b>3</b>略偏向 B</button>
+        <button data-v="-2"><b>4</b>强烈偏向 B</button>
+      </div>
+      <p class="hint">键盘 1–4 也能选；← 返回上一题</p>
+    </div>
+  </section>
+
+  <section id="result" class="view hidden"></section>
+</div>
+
+<script>
+/*__SCORING__*/
+</script>
+<script>
+"use strict";
+var DATA = /*__DATA__*/;
+var SAVE = "j8cn-v1";
+
+(function () {
+  var state = { mode: null, answers: {}, idx: 0, items: [] };
+  var $ = function (id) { return document.getElementById(id); };
+
+  function itemsFor(mode) {
+    return mode === "quick"
+      ? DATA.items.filter(function (it) { return /a$/.test(it.id); })
+      : DATA.items.slice();
+  }
+  function view(name) {
+    ["intro", "test", "result"].forEach(function (v) {
+      $(v).classList.toggle("hidden", v !== name);
+    });
+    window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
+  }
+  function save() {
+    try {
+      localStorage.setItem(SAVE, JSON.stringify({
+        mode: state.mode, answers: state.answers, idx: state.idx
+      }));
+    } catch (e) { /* 隐私模式忽略 */ }
+  }
+  function clearSave() { try { localStorage.removeItem(SAVE); } catch (e) {} }
+
+  /* ---------------- 作答 ---------------- */
+  function start(mode, answers, idx) {
+    state.mode = mode;
+    state.items = itemsFor(mode);
+    state.answers = answers || {};
+    state.idx = Math.min(idx || 0, state.items.length);
+    if (state.idx >= state.items.length) state.idx = 0;
+    view("test");
+    render();
+  }
+
+  function render() {
+    var it = state.items[state.idx];
+    if (!it) { showResult(); return; }
+    $("qno").textContent = "第 " + (state.idx + 1) + " / " + state.items.length + " 题";
+    $("scenario").textContent = it.scenario;
+    $("textA").textContent = it.options.A.text;
+    $("textB").textContent = it.options.B.text;
+    $("counter").textContent = (state.idx + 1) + "/" + state.items.length;
+    var done = Object.keys(state.answers).filter(function (k) {
+      return state.items.some(function (x) { return x.id === k; });
+    }).length;
+    $("pbar").style.width = Math.round(done / state.items.length * 100) + "%";
+    $("backBtn").disabled = state.idx === 0;
+    paint();
+  }
+
+  function paint() {
+    var v = state.answers[state.items[state.idx].id];
+    var btns = $("scale").querySelectorAll("button");
+    for (var i = 0; i < btns.length; i++) {
+      var bv = Number(btns[i].getAttribute("data-v"));
+      btns[i].className = (v === bv) ? (bv > 0 ? "selA" : "selB") : "";
+    }
+    $("cardA").className = "optcard" + (v === 2 || v === 1 ? " onA" : "");
+    $("cardB").className = "optcard" + (v === -1 || v === -2 ? " onB" : "");
+  }
+
+  function choose(v) {
+    state.answers[state.items[state.idx].id] = v;
+    save();
+    paint();
+    setTimeout(function () {
+      state.idx++;
+      save();
+      if (state.idx >= state.items.length) showResult(); else render();
+    }, 150);
+  }
+
+  function back() {
+    if (state.idx === 0) return;
+    state.idx--;
+    save();
+    render();
+  }
+
+  /* ---------------- 结果 ---------------- */
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+  }
+  function roleOf(fn, st) {
+    var names = ["主导", "辅助", "第三", "劣势"];
+    var i = st.indexOf(fn);
+    return i >= 0 ? names[i] : null;
+  }
+
+  function showResult() {
+    var r = J8.computeResult(state.answers, state.items);
+    var t = DATA.types[r.code] || {};
+    var j = DATA.jung[r.jung_code] || {};
+    var st = r.stack;
+    var html = [];
+
+    html.push('<div class="rhead">');
+    html.push('<div class="code">' + r.code + '</div>');
+    html.push('<div class="name">' + esc(t.cn_name || r.cn_name) +
+      '<span class="badge' + (r.confidence === "低" ? " low" : "") + '">置信度 ' + r.confidence + '</span></div>');
+    html.push('<div class="jung">荣格归属：' + esc(r.jung_name) + '（主导 ' + r.dominant + '）</div>');
+    if (t.oneliner) html.push('<p style="margin-top:12px;font-size:15px">' + esc(t.oneliner) + '</p>');
+    html.push('</div>');
+
+    html.push('<div class="sect"><h3>你的功能栈</h3><div class="stackline">');
+    for (var i = 0; i < st.length; i++) {
+      html.push('<div><small>' + ["主导", "辅助", "第三", "劣势"][i] + '</small><b>' + st[i] +
+        '</b><span>' + esc(J8.FN_CN[st[i]]) + '</span></div>');
+    }
+    html.push('</div>');
+    if (t.core) html.push('<p style="margin-top:14px">' + esc(t.core) + '</p>');
+    html.push('</div>');
+
+    html.push('<div class="sect"><h3>八维相对强度</h3><div class="bars">');
+    var roles = { "主导": "dom", "辅助": "aux", "第三": "ter", "劣势": "inf" };
+    r.P_order.forEach(function (f) {
+      var role = roleOf(f, st);
+      html.push('<div class="barrow' + (role ? " role-" + roles[role] : "") + '">' +
+        '<span class="bn">' + f + '</span>' +
+        '<span class="bc">' + esc(J8.FN_CN[f]) + '</span>' +
+        '<span class="bar"><i style="width:' + Math.max(2, Math.min(100, r.P[f])) + '%"></i></span>' +
+        '<span class="bv">' + r.P[f].toFixed(0) + '</span></div>' +
+        (role ? '<div style="margin:-6px 0 6px 52px"><span class="rolebadge">' + role + '</span></div>' : ''));
+    });
+    html.push('</div><p style="font-size:11.5px;color:var(--faint);margin-top:10px">' +
+      '0–100 是你在自己八维中的相对位置，不是能力分，也不能跨人比较。</p>');
+
+    html.push('<details><summary>计分明细与一致性</summary>');
+    html.push('<table class="detailTable"><tr><th>功能</th><th>总分 S</th><th>展示分 P</th></tr>');
+    J8.FUNCS.forEach(function (f) {
+      html.push('<tr><td>' + f + '　' + esc(J8.FN_CN[f]) + '</td><td>' + r.S[f] +
+        '</td><td>' + r.P[f].toFixed(1) + '</td></tr>');
+    });
+    html.push('</table>');
+    html.push('<p style="font-size:12px;color:var(--muted);margin-top:10px">分差 gap = ' + r.gap +
+      '；奇偶一致性 r = ' + r.consistency + '；作答 ' + r.answered + ' / ' + r.total + ' 题。</p>');
+    html.push('</details></div>');
+
+    html.push('<div class="sect"><h3>候选类型</h3><div class="fits">');
+    r.top3.forEach(function (kv) {
+      html.push('<span class="fit' + (kv[0] === r.code ? " cur" : "") + '">' + kv[0] +
+        ' <b>' + (kv[1] >= 0 ? "+" : "") + kv[1].toFixed(2) + '</b></span>');
+    });
+    html.push('</div>');
+    if (r.mismatch) {
+      html.push('<p style="font-size:13px;margin-top:12px;color:var(--warn)">主判与吻合度排序不一致：' +
+        '说明你的答案在两种方式之间有拉扯。建议隔一周重做一次，或用另一个版本（完整版／快速版）对照。</p>');
+    } else {
+      html.push('<p style="font-size:13px;margin-top:12px;color:var(--muted)">主判与吻合度排序一致。' +
+        '分差越大、一致性越高，结果越可信。</p>');
+    }
+    html.push('</div>');
+
+    var secs = [
+      ["work", "职场", t.work], ["family", "家庭与亲戚", t.family], ["love", "亲密关系", t.love]
+    ];
+    html.push('<div class="sect profile"><h3>' + r.code + ' · ' + esc(t.cn_name || "") + '</h3>');
+    secs.forEach(function (s) {
+      if (s[2]) html.push('<p><b class="lbl">' + s[1] + '。</b>' + esc(s[2]) + '</p>');
+    });
+    if (t.strength && t.strength.length) {
+      html.push('<p><b class="lbl">优势。</b>' + t.strength.map(esc).join('；') + '。</p>');
+    }
+    if (t.blindspot && t.blindspot.length) {
+      html.push('<p><b class="lbl">盲区。</b>' + t.blindspot.map(esc).join('；') + '。</p>');
+    }
+    if (t.stress) html.push('<p><b class="lbl">压力下的样子。</b>' + esc(t.stress) + '</p>');
+    if (t.growth) html.push('<p><b class="lbl">可以怎么长。</b>' + esc(t.growth) + '</p>');
+    if (t.mistype) html.push('<p><b class="lbl">容易和谁混。</b>' + esc(t.mistype) + '</p>');
+    html.push('</div>');
+
+    if (j.essence) {
+      html.push('<div class="sect profile"><h3>你所属的荣格类型：' + esc(r.jung_name) + '</h3>');
+      html.push('<p>' + esc(j.essence) + '</p>');
+      if (j.everyday) html.push('<p><b class="lbl">日常里的样子。</b>' + esc(j.everyday) + '</p>');
+      if (j.blind) html.push('<p><b class="lbl">盲区与压力。</b>' + esc(j.blind) + '</p>');
+      html.push('</div>');
+    }
+
+    html.push('<div class="actions">' +
+      '<button class="primary" id="againBtn">重新做一次</button>' +
+      '<button id="printBtn">打印 / 存为 PDF</button>' +
+      '<button id="copyBtn">复制结果摘要</button>' +
+      '</div>');
+    html.push('<p class="disclaimer">本测验是自我认识工具，不是医学诊断，也不应作为招聘、筛选或评价他人的依据。' +
+      '类型是假设，不是结论；真正值钱的是你的劣势功能。' +
+      '详细理论与十六型画像见同名 Word 文档。</p>');
+
+    $("result").innerHTML = html.join("");
+    view("result");
+    $("againBtn").onclick = function () { clearSave(); start(state.mode, {}, 0); };
+    $("printBtn").onclick = function () { window.print(); };
+    $("copyBtn").onclick = function () {
+      var lines = ["荣格八维人格测验（中国情境版）结果",
+        r.code + "｜" + r.cn_name + "｜荣格归属：" + r.jung_name,
+        "功能栈：" + st.join("-") + "（主导 " + r.dominant + "，辅助 " + r.auxiliary + "）",
+        "置信度：" + r.confidence + "（gap " + r.gap + "，一致性 " + r.consistency + "）",
+        "八维：" + r.P_order.map(function (f) { return f + " " + r.P[f].toFixed(0); }).join("　"),
+        "", "本测验为自我认识工具，非医学诊断。"];
+      var text = lines.join("\n");
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () { flash($("copyBtn"), "已复制"); },
+          function () { fallbackCopy(text); });
+      } else { fallbackCopy(text); }
+    };
+  }
+
+  function flash(btn, msg) {
+    var old = btn.textContent; btn.textContent = msg;
+    setTimeout(function () { btn.textContent = old; }, 1400);
+  }
+  function fallbackCopy(text) {
+    var ta = document.createElement("textarea");
+    ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+
+  /* ---------------- 事件 ---------------- */
+  var modes = document.querySelectorAll(".mode");
+  for (var i = 0; i < modes.length; i++) {
+    modes[i].addEventListener("click", function () {
+      clearSave();
+      start(this.getAttribute("data-mode"), {}, 0);
+    });
+  }
+  var btns = $("scale").querySelectorAll("button");
+  for (var k = 0; k < btns.length; k++) {
+    btns[k].addEventListener("click", function () {
+      choose(Number(this.getAttribute("data-v")));
+    });
+  }
+  $("backBtn").addEventListener("click", back);
+
+  document.addEventListener("keydown", function (e) {
+    if ($("test").classList.contains("hidden")) return;
+    var map = { "1": 2, "2": 1, "3": -1, "4": -2 };
+    if (map[e.key] !== undefined) { e.preventDefault(); choose(map[e.key]); }
+    else if (e.key === "ArrowLeft" || e.key === "Backspace") { e.preventDefault(); back(); }
+  });
+
+  /* 恢复上次进度 */
+  var saved = null;
+  try { saved = JSON.parse(localStorage.getItem(SAVE) || "null"); } catch (e) {}
+  if (saved && saved.mode && saved.answers && saved.idx < itemsFor(saved.mode).length) {
+    var n = Object.keys(saved.answers).length;
+    var box = $("resumeBox");
+    box.classList.remove("hidden");
+    box.innerHTML = "上次做到第 " + (saved.idx + 1) + " 题（" + (saved.mode === "quick" ? "快速版" : "完整版") +
+      "，已答 " + n + " 题）。<button class=\"link\" id=\"resumeBtn\">继续</button>　" +
+      "<button class=\"link\" id=\"clearBtn\">清空重来</button>";
+    $("resumeBtn").onclick = function () { start(saved.mode, saved.answers, saved.idx); };
+    $("clearBtn").onclick = function () { clearSave(); box.classList.add("hidden"); };
+  }
+})();
+</script>
+</body>
+</html>

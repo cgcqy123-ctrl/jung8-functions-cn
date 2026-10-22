@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# 编辑器 / 系统
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# 本项目的临时产物
+tools/.tmp_app.js
+tools/.parity_*.json
+PREVIEW_*.docx
+.dsh-office-*/
+~$*.docx
