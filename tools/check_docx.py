@@ -35,9 +35,9 @@ def main() -> int:
     n_a = sum(1 for p in paras if p.startswith("A　"))
     n_b = sum(1 for p in paras if p.startswith("B　"))
     print(f"段落 {len(paras)} 段；表格 {len(doc.tables)} 个；正文约 {len(alltext)} 字")
-    print(f"选项行：A {n_a} 条 / B {n_b} 条（应为 56 / 56）")
-    if n_a != 56 or n_b != 56:
-        errors.append(f"题目选项行数不对：A={n_a} B={n_b}")
+    print(f"选项行：A {n_a} 条 / B {n_b} 条（应为 64 / 64）")
+    if n_a != 64 or n_b != 64:
+        errors.append(f"题目选项行数不对：A={n_a} B={n_b}（应各 64）")
 
     missing = [c for c in CODES if f"{c}｜" not in alltext]
     if missing:

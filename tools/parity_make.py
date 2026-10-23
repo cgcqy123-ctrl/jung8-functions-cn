@@ -14,8 +14,9 @@ T = os.path.join(BASE, "tools")
 
 def main() -> int:
     items = load_items([os.path.join(BASE, "data", "items_a.json"),
-                        os.path.join(BASE, "data", "items_b.json")])
-    if len(items) != 56:
+                        os.path.join(BASE, "data", "items_b.json"),
+                        os.path.join(BASE, "data", "items_c.json")])
+    if len(items) != 64:
         print("题目不全，跳过")
         return 2
     rnd = random.Random(20261022)

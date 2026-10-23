@@ -1,5 +1,5 @@
 // 无浏览器环境下的 HTML 交互冒烟测试：用极简 DOM 桩把整份网页跑一遍。
-// 覆盖：初始渲染 → 点完 56 题 → 出结果 → 快速版 28 题 → 复制摘要。
+// 覆盖：初始渲染 → 点完 64 题 → 出结果 → 快速版 32 题 → 复制摘要与 AI 提示词。
 const fs = require("fs");
 const vm = require("vm");
 const path = require("path");
@@ -76,7 +76,7 @@ function run(mode) {
   const startHandler = modes[mode === "full" ? 0 : 1].handlers.click[0];
   startHandler.call(modes[mode === "full" ? 0 : 1]);
   ok(get("test").classList.contains("hidden") === false, `${mode}：进入答题页`);
-  const n = mode === "full" ? 56 : 28;
+  const n = mode === "full" ? 64 : 32;
   ok(get("qno").textContent.indexOf("/ " + n) > 0, `${mode}：题量 ${n}（${get("qno").textContent}）`);
   ok(get("scenario").textContent.length > 8, `${mode}：题干非空`);
   ok(get("textA").textContent.length > 5 && get("textB").textContent.length > 5, `${mode}：两个选项非空`);

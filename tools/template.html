@@ -157,7 +157,7 @@ details summary{cursor:pointer;font-size:13px;color:var(--muted)}
       <p class="eyebrow">基于荣格《心理类型》（1921）· 八维认知功能</p>
       <h1>荣格八维人格测验</h1>
       <p class="sub">中国情境版</p>
-      <p class="lede">56 个中国生活场景 · 8 种认知功能 · 先定主导，再定辅助</p>
+      <p class="lede">64 个中国生活场景 · 8 种认知功能 · 先定主导，再定辅助</p>
     </div>
     <div class="panel">
       <h2>开始之前</h2>
@@ -168,8 +168,8 @@ details summary{cursor:pointer;font-size:13px;color:var(--muted)}
         <li>进度会自动存在本机浏览器里，可以分两次做完。</li>
       </ul>
       <div class="modes">
-        <button class="mode" data-mode="full"><b>完整版</b><span>56 题 · 约 20 分钟</span><em>推荐</em></button>
-        <button class="mode" data-mode="quick"><b>快速版</b><span>28 题 · 约 8 分钟</span></button>
+        <button class="mode" data-mode="full"><b>完整版</b><span>64 题 · 约 24 分钟</span><em>推荐</em></button>
+        <button class="mode" data-mode="quick"><b>快速版</b><span>32 题 · 约 10 分钟</span></button>
       </div>
       <p class="resume hidden" id="resumeBox"></p>
     </div>
@@ -211,7 +211,7 @@ details summary{cursor:pointer;font-size:13px;color:var(--muted)}
 var DATA = /*__DATA__*/;
 var SAVE = "j8cn-v1";
 /* 版本号：与 README 更新记录、Word 手册封面保持一致 */
-var APP_VERSION = "v1.3";
+var APP_VERSION = "v1.4";
 
 (function () {
   var state = { mode: null, answers: {}, idx: 0, items: [] };
@@ -345,7 +345,7 @@ var APP_VERSION = "v1.3";
 
   function buildAiPrompt(r) {
     var t = DATA.types[r.code] || {};
-    var mode = state.mode === "quick" ? "快速版（28 题）" : "完整版（56 题）";
+    var mode = state.mode === "quick" ? "快速版（32 题）" : "完整版（64 题）";
     var stamp = nowStamp();
     var scores = r.P_order.map(function (f) { return f + " " + r.P[f].toFixed(0); }).join(" / ");
     var top3 = r.top3.map(function (kv) { return kv[0] + " " + kv[1].toFixed(2); }).join("，");
@@ -363,7 +363,7 @@ var APP_VERSION = "v1.3";
     L.push("核对提示：如果上面的功能栈与文档表 6-1 里 " + r.code + " 的功能栈不一致，请以表 6-1 为准，并直接提醒我重做一次。");
     L.push("");
     L.push("【这组分数怎么来的（供你判断可信度，不用复述给我）】");
-    L.push("56 题 = 8 个功能两两配对（28 对）× 双向各一题，每个功能出现 14 次、7 次在 A 位。");
+    L.push("64 题 = 32 对 × 双向各一题（八个功能两两组合共 28 对，另加 4 对补足薄弱场景），每个功能出现 16 次、8 次在 A 位。");
     L.push("每题在两种反应里二选一、再选强度，记 +2 / +1 / −1 / −2，加给 A 选项对应的功能、从 B 选项对应的功能里减掉；八维相加恒为 0，所以只有相对排序有意义。");
     L.push("判定：八维最高者为主导 → 在「另一类功能 × 相反态度」的两个候选里取辅助 → 第三 = 与辅助同类、态度同主导，劣势 = 与主导同类、态度相反；四字母只做换算层。");
     L.push("注意：J/P 不是荣格的概念，是迈尔斯的操作化补充（看对外展示的那个功能属判断还是知觉）；所以 J ≠ 计划性强，P ≠ 散漫。");

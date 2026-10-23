@@ -10,6 +10,7 @@ answers.json 形如 {"Q01a": 2, "Q01b": -1, ...}，取值 +2/+1/-1/-2（+ 偏 A�
 from __future__ import annotations
 
 import json
+import math
 import sys
 from collections import Counter
 
@@ -195,7 +196,7 @@ def score(answers: dict, items: list[dict]) -> dict:
     return {
         "n_answered": len(answered), "n_items": len(items), "complete": len(answered) == len(items),
         "S": {f: round(S[f], 2) for f in FUNCS},
-        "P": {f: round(P[f], 1) for f in FUNCS},
+        "P": {f: math.floor(P[f] * 10 + 0.5) / 10 for f in FUNCS},
         "Z": {f: round(Z[f], 3) for f in FUNCS},
         "dominant": dom, "dominant_cn": FN_CN[dom],
         "auxiliary": aux, "auxiliary_cn": FN_CN[aux],
@@ -270,9 +271,9 @@ def main() -> int:
         return selftest()
     with open(args[0], encoding="utf-8") as f:
         answers = json.load(f)
-    items_paths = ["data/items_a.json", "data/items_b.json"]
+    items_paths = ["data/items_a.json", "data/items_b.json", "data/items_c.json"]
     if "--quick" in sys.argv:
-        items_paths = ["data/items_a.json", "data/items_b.json"]
+        items_paths = ["data/items_a.json", "data/items_b.json", "data/items_c.json"]
     try:
         items = load_items(items_paths)
     except FileNotFoundError:

@@ -37,7 +37,7 @@ CHAPTERS = [
     "第一章　为什么现成的网测在你身上总差一点",
     "第二章　理论依据：荣格《心理类型》里的类型是怎么来的",
     "第三章　怎么测",
-    "第四章　计分：从 56 个选择到你的类型",
+    "第四章　计分：从 64 个选择到你的类型",
     "第五章　八种荣格类型",
     "第六章　十六型画像",
     "第七章　拿到结果之后，怎么用",
@@ -377,7 +377,7 @@ def build_cover(doc, n_items=56):
          indent=False, size=11, align=WD_ALIGN_PARAGRAPH.CENTER, after=60)
     for _ in range(6):
         para(doc, "", indent=False, after=0)
-    para(doc, "2026 年 10 月　第 1.3 版", indent=False, size=10,
+    para(doc, "2026 年 10 月　第 1.4 版", indent=False, size=10,
          align=WD_ALIGN_PARAGRAPH.CENTER, after=6, color=GRAY)
     para(doc, "本测验是自我认识工具，不是医学诊断，也不应作为招聘、筛选或评价他人的依据。",
          indent=False, size=9, align=WD_ALIGN_PARAGRAPH.CENTER, color=GRAY)
@@ -504,10 +504,13 @@ def table_b_3(doc):
 
 # ---------------------------------------------------------------- 内容：题目
 def render_items(doc, items):
-    parts = ["第一部分（第 1—14 题）", "第二部分（第 15—28 题）",
-             "第三部分（第 29—42 题）", "第四部分（第 43—56 题）"]
-    for pi in range(4):
-        chunk = list(enumerate(items))[pi * 14:(pi + 1) * 14]
+    per = 16
+    parts = []
+    for start in range(0, len(items), per):
+        end = min(start + per, len(items))
+        parts.append(f"第{'一二三四五六七八'[start // per]}部分（第 {start + 1}—{end} 题）")
+    for pi in range(len(parts)):
+        chunk = list(enumerate(items))[pi * per:(pi + 1) * per]
         if not chunk:
             continue
         h(doc, parts[pi], 2)
@@ -541,7 +544,8 @@ def render_items(doc, items):
                 r = po.add_run(it["options"][key]["text"])
                 set_font(r, cn=SERIF, size=BODY)
         if pi == 1:
-            para(doc, "（到这里是第 28 题。可以停一下；回来时从第 29 题接着做，不要回头改前面的答案。）",
+            para(doc, f"（到这里是第 {per * 2} 题。可以停一下；回来时从第 {per * 2 + 1} 题接着做，"
+                      "不要回头改前面的答案。）",
                  indent=False, size=9, before=12, color=GRAY)
     para(doc, "做完了？先翻到附录 A 检查答题卡有没有漏填，再进第四章。",
          indent=False, size=9.5, before=16)
@@ -603,30 +607,37 @@ def build_appendix_a(doc, items):
     para(doc, "把每题的选择写进对应的格子里：1 = 强烈偏向 A，2 = 略微偏向 A，"
               "3 = 略偏向 B，4 = 强烈偏向 B。做完检查一遍有没有空格。")
     para(doc, "填完之后，翻到附录 B 计分。", after=10)
-    caption(doc, "表 A-1　答题卡（完整版 56 题）")
+    caption(doc, f"表 A-1　答题卡（完整版 {len(items)} 题）")
     nums = list(range(1, len(items) + 1))
     rows = [["题号", "选择", "题号", "选择", "题号", "选择", "题号", "选择"]]
-    for r in range(14):
+    per_col = (len(nums) + 3) // 4
+    for r in range(per_col):
         row = []
         for g in range(4):
-            idx = r + g * 14
+            idx = r + g * per_col
             row += [f"{nums[idx]:02d}" if idx < len(nums) else "", ""]
         rows.append(row)
     add_table(doc, rows, widths=[2.2, 1.8, 2.2, 1.8, 2.2, 1.8, 2.2, 1.8], size=10,
               center_cols=[0, 1, 2, 3, 4, 5, 6, 7], row_h=0.85)
-    para(doc, "快速版只做编号为奇数的题（1、3、5……55），共 28 题，也即每个功能对的两个方向里取前一个"
-              "（Q01a、Q02a……Q28a）。", indent=False, size=9, color=GRAY)
+    para(doc, f"快速版只做编号为奇数的题，共 {len(nums) // 2} 题，也就是每个功能对的两个方向里取前一个。",
+         indent=False, size=9, color=GRAY)
 
 
 def build_appendix_b(doc, items):
     new_chapter(doc, "附录 B　计分表")
     para(doc, "纸笔版的计分可以完全手动完成，三步：")
-    para(doc, "**第一步**，按表 4-1 把 56 个选择分到八个功能上，各自累加出 S（−28 到 +28）。"
-              "下表可以直接用来记：")
+    cnt = {}
+    for it in items:
+        for side in ("A", "B"):
+            fn = it["options"][side]["fn"]
+            cnt[fn] = cnt.get(fn, 0) + 1
+    M = max(cnt.values())
+    para(doc, f"**第一步**，按表 4-1 把 {len(items)} 个选择分到八个功能上，"
+              f"各自累加出 S（−{2 * M} 到 +{2 * M}）。下表可以直接用来记：")
     caption(doc, "表 B-1　八维计分汇总（自行填写）")
-    rows = [["功能态度", "本题数", "S 小计", "P = 50 + 25 × S ÷ 14", "八维排名"]]
+    rows = [["功能态度", "本题数", "S 小计", f"P = 50 + 25 × S ÷ {M}", "八维排名"]]
     for f in FUNCS:
-        rows.append([f"**{f}**　{FN_CN[f]}", "14", "", "", ""])
+        rows.append([f"**{f}**　{FN_CN[f]}", str(M), "", "", ""])
     add_table(doc, rows, widths=[4.0, 2.4, 3.0, 4.4, 2.2], size=9,
               center_cols=[1, 2, 3, 4], row_h=0.8)
     para(doc, "**第二步**，S 最高的那个功能就是你的主导功能。按表 4-2 找到它的荣格类型和两个辅助候选，"
@@ -634,7 +645,8 @@ def build_appendix_b(doc, items):
     para(doc, "**第三步**，用下表把主导 + 辅助换成四字母，再对照第六章找到你的画像。")
     para(doc, "注意：八维分数是**相对强度**。八个 S 相加恒等于 0，所以 P 的绝对值没有意义，"
               "只有排序有意义。不要拿它和别人的分数比。", size=9.5)
-    para(doc, "快速版把表 B-1 的 14 改成 7、把公式里除以 14 改成除以 7 即可，判定流程完全相同。",
+    para(doc, f"快速版把表 B-1 的 {M} 改成 {M // 2}、把公式里除以 {M} 改成除以 {M // 2} 即可，"
+              "判定流程完全相同。",
          indent=False, size=9, color=GRAY)
     doc.add_page_break()
     table_b_3(doc)
@@ -674,6 +686,8 @@ def load_data(demo=False):
         with open(os.path.join(BASE, "data", "items_a.json"), encoding="utf-8") as f:
             items = __import__("json").load(f)["items"]
         with open(os.path.join(BASE, "data", "items_b.json"), encoding="utf-8") as f:
+            items += __import__("json").load(f)["items"]
+        with open(os.path.join(BASE, "data", "items_c.json"), encoding="utf-8") as f:
             items += __import__("json").load(f)["items"]
         items.sort(key=lambda x: x["id"])
         types = {"letter_types": [], "jung_types": []}
@@ -715,8 +729,8 @@ def build(demo=False) -> str:
     # 第三章
     new_chapter(doc, CHAPTERS[3])
     render_md(doc, os.path.join(BASE, "data", "ch3.md"), tables)
-    h(doc, "3.5　题目（完整版 56 题）", 2)
-    para(doc, "下面 56 题分为四部分。请一次做完前两部分，休息后再做后两部分；"
+    h(doc, f"3.5　题目（完整版 {len(items)} 题）", 2)
+    para(doc, f"下面 {len(items)} 题分为四部分。请一次做完前两部分，休息后再做后两部分；"
               "纸笔版请把答案写在附录 A 的答题卡上。", before=2, after=6)
     render_items(doc, items)
 

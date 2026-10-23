@@ -41,10 +41,10 @@ def main() -> int:
     if data:
         items, types, jung = data.get("items", []), data.get("types", {}), data.get("jung", {})
         print(f"题目 {len(items)} 题，类型 {len(types)} 个，荣格类型 {len(jung)} 个")
-        if len(items) != 56:
+        if len(items) != 64:
             errors.append(f"题目数应为 56，实际 {len(items)}")
         ids = [it["id"] for it in items]
-        expect = [f"Q{n:02d}{s}" for n in range(1, 29) for s in ("a", "b")]
+        expect = [f"Q{n:02d}{s}" for n in range(1, 33) for s in ("a", "b")]
         if sorted(ids) != sorted(expect):
             errors.append("题号集合不完整")
         for it in items:

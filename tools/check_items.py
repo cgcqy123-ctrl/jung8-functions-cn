@@ -22,13 +22,23 @@ PAIRS = {
     "P22": ("Ne", "Ti"), "P23": ("Ne", "Fe"), "P24": ("Ne", "Fi"),
     "P25": ("Ni", "Te"), "P26": ("Ni", "Ti"), "P27": ("Ni", "Fe"),
     "P28": ("Ni", "Fi"),
+    # v1.4 扩展组：八个功能各多出现一次，配平不受影响
+    "P29": ("Fe", "Ti"), "P30": ("Fi", "Te"),
+    "P31": ("Ni", "Se"), "P32": ("Ne", "Si"),
 }
 FUNCS = ["Se", "Si", "Ne", "Ni", "Te", "Ti", "Fe", "Fi"]
 DOMAINS = ["家庭亲戚", "职场办公", "学习考试", "社交人情", "消费生活", "冲突矛盾", "兴趣娱乐", "信息媒体"]
-RANGE_EXPECT = {
-    ("P01", "P14"): {"Se": 10, "Si": 6, "Ne": 6, "Ni": 6, "Te": 8, "Ti": 8, "Fe": 6, "Fi": 6},
-    ("P15", "P28"): {"Se": 4, "Si": 8, "Ne": 8, "Ni": 8, "Te": 6, "Ti": 6, "Fe": 8, "Fi": 8},
-}
+
+
+def expected_counts(pair_ids) -> dict:
+    """每个功能应有的出现次数 = 2 × 含该功能的配对数（a/b 双向各一次）。"""
+    exp = {f: 0 for f in FUNCS}
+    for pid in pair_ids:
+        for f in PAIRS[pid]:
+            exp[f] += 2
+    return exp
+
+
 def nchars(s: str) -> int:
     """统计有效字数（不计标点、符号与空白）。"""
     t = unicodedata.normalize("NFKC", s)
@@ -117,14 +127,13 @@ def check_file(path: str, errors: list, warns: list) -> list:
         if len(ids_expected) != 2 * len(nums):
             errors.append(f"{path}: 每个 pair 应有 a/b 两题，实际 {len(ids_expected)} 题 / {len(nums)} 对")
     # 配平
-    rng = (f"P{nums[0]:02d}", f"P{nums[-1]:02d}") if nums else None
-    if rng in RANGE_EXPECT:
-        exp = RANGE_EXPECT[rng]
-        for fn in FUNCS:
-            if fcount[fn] != exp[fn]:
-                errors.append(f"配平错误：{fn} 出现 {fcount[fn]} 次，应为 {exp[fn]}")
-            if apos[fn] * 2 not in (fcount[fn], fcount[fn] + 1):
-                warns.append(f"位置偏差：{fn} 作 A 位 {apos[fn]} 次 / 共 {fcount[fn]} 次")
+    pids = sorted({it["pair_id"] for it in items if it.get("pair_id") in PAIRS})
+    exp = expected_counts(pids)
+    for fn in FUNCS:
+        if fcount[fn] != exp[fn]:
+            errors.append(f"配平错误：{fn} 出现 {fcount[fn]} 次，应为 {exp[fn]}")
+        if apos[fn] * 2 not in (fcount[fn], fcount[fn] + 1):
+            warns.append(f"位置偏差：{fn} 作 A 位 {apos[fn]} 次 / 共 {fcount[fn]} 次")
     print(f"\n=== {path} ===")
     print(f"题数: {len(ids_expected)}（{len(nums) if ids_expected else 0} 对）")
     print("功能出现次数: " + "  ".join(f"{f}={fcount[f]}" for f in FUNCS))
@@ -151,10 +160,9 @@ def main() -> int:
         print(f"总题数: {len(allitems)}")
         print("功能出现次数: " + "  ".join(f"{f}={fcount[f]}" for f in FUNCS))
         for fn in FUNCS:
-            if fcount[fn] != 14:
-                errors.append(f"合并配平错误：{fn} 出现 {fcount[fn]} 次，应为 14")
-            elif fcount[fn]:
-                pass
+            need = expected_counts(list(PAIRS))[fn]
+            if fcount[fn] != need:
+                errors.append(f"合并配平错误：{fn} 出现 {fcount[fn]} 次，应为 {need}")
         ids = {it["id"] for it in allitems}
         if len(ids) != len(allitems):
             errors.append("合并后题号有重复")

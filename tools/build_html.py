@@ -24,12 +24,13 @@ def load_json(name):
 
 
 def build_data():
-    items = load_json("items_a.json")["items"] + load_json("items_b.json")["items"]
+    items = (load_json("items_a.json")["items"] + load_json("items_b.json")["items"]
+             + load_json("items_c.json")["items"])
     items.sort(key=lambda it: it["id"])
     ids = [it["id"] for it in items]
-    expect = [f"Q{n:02d}{s}" for n in range(1, 29) for s in ("a", "b")]
+    expect = [f"Q{n:02d}{s}" for n in range(1, 33) for s in ("a", "b")]
     missing = [i for i in expect if i not in ids]
-    if len(items) != 56 or missing:
+    if missing or len(items) != len(expect):
         raise SystemExit(f"题目不完整：{len(items)} 题，缺 {missing[:5]}")
 
     slim_items = []
