@@ -90,5 +90,7 @@ ok(res.indexOf("undefined") < 0 && res.indexOf("NaN") < 0, "结果里没有 unde
 ok((get("aiPrompt").value || "").length > 700, "AI 提示词长度 " + (get("aiPrompt").value || "").length);
 ok(res.indexOf("Se</span>") > 0 && res.indexOf("Fi</span>") > 0, "八维条覆盖首尾功能");
 
+ok(String((get("manualBtn").attrs||{}).href||"").indexOf(".docx") > 0, "手册下载按钮已绑定：" + String((get("manualBtn").attrs||{}).href).slice(-24));
+ok(String((get("manualNote")._text||"")).indexOf("手册") >= 0, "手册说明文案已写入");
 console.log(fails === 0 ? "\n结论：PASS（八维量表版冒烟测试通过）" : `\n结论：FAIL（${fails} 项）`);
 process.exit(fails === 0 ? 0 : 1);
