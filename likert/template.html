@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>性格倾向量表（中国情境版）· 7 点作答</title>
+<style>
+:root{
+  --ink:#1d2024; --muted:#6d7178; --faint:#9aa0a6; --line:#e2ddd3;
+  --bg:#f5f2ec; --card:#fffdf8; --accent:#2f5d50; --accent-soft:#e6efe9;
+  --blue:#2f5d8a; --blue-soft:#e6edf5; --warn:#a24b2b; --warn-soft:#f7e8e1;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased;
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}
+#app{max-width:780px;margin:0 auto;padding:30px 20px 80px}
+.hidden{display:none !important}
+h1,h2,h3{font-weight:700;line-height:1.35;margin:0}
+p{margin:0 0 12px}
+button{font:inherit;color:inherit;cursor:pointer}
+
+/* intro */
+.hero{padding:24px 4px 10px;border-bottom:1px solid var(--line);margin-bottom:26px}
+.eyebrow{font-size:12px;letter-spacing:.12em;color:var(--muted);margin-bottom:10px}
+.hero h1{font-size:32px}
+.hero .sub{font-size:16px;color:var(--accent);letter-spacing:.2em;margin:6px 0 14px}
+.lede{font-size:14px;color:var(--muted);margin:0}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px}
+.panel h2{font-size:15px;letter-spacing:.06em;color:var(--muted);margin-bottom:12px}
+.panel ul{margin:0 0 20px;padding-left:1.2em;font-size:14.5px}
+.panel li{margin-bottom:6px}
+.mode{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:#fff;
+  border:1.5px solid var(--line);border-radius:12px;padding:16px 18px;transition:.15s}
+.mode:hover{border-color:var(--accent);background:var(--accent-soft)}
+.mode b{font-size:16px}
+.mode span{color:var(--muted);font-size:13px;margin-left:auto}
+.alt{font-size:13px;color:var(--muted);margin-top:16px}
+.alt a{color:var(--blue)}
+.disclaimer{font-size:12px;color:var(--faint);margin-top:22px;line-height:1.6}
+
+/* test */
+.topbar{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:14px;
+  padding:12px 0 14px;background:linear-gradient(var(--bg) 70%,rgba(245,242,236,0))}
+.ghost{background:#fff;border:1px solid var(--line);border-radius:8px;padding:5px 11px;font-size:12.5px;color:var(--muted)}
+.ghost:disabled{opacity:.35;cursor:default}
+.progress{flex:1;height:5px;background:#e7e2d8;border-radius:4px;overflow:hidden}
+.progress i{display:block;height:100%;width:0;background:var(--blue);border-radius:4px;transition:width .25s}
+.counter{font-size:12.5px;color:var(--muted);min-width:52px;text-align:right;font-variant-numeric:tabular-nums}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 24px 20px;margin-top:8px}
+.qno{font-size:12px;letter-spacing:.1em;color:var(--faint);margin-bottom:10px}
+.statement{font-size:20px;line-height:1.7;margin:0 0 22px;font-weight:600}
+.scale7{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.scale7 button{border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:12px 4px;
+  font-size:12.5px;line-height:1.3;transition:.12s;min-height:64px}
+.scale7 button b{display:block;font-size:15px;margin-bottom:2px}
+.scale7 button:hover{border-color:var(--blue);background:var(--blue-soft)}
+.scale7 button.sel{background:var(--blue);border-color:var(--blue);color:#fff}
+.scale7 button.sel b{color:#fff}
+.scale7 button.mid{background:#f7f5f0}
+.scale7 button.mid:hover{background:var(--blue-soft)}
+.hint{font-size:11.5px;color:var(--faint);margin:14px 0 0;text-align:center}
+@media (max-width:560px){
+  .scale7{grid-template-columns:repeat(4,1fr)}
+  .scale7 button{min-height:58px;font-size:11.5px}
+  .statement{font-size:18px}
+}
+
+/* result */
+.rhead{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 24px;margin-bottom:18px}
+.rhead .code{font-size:42px;font-weight:800;letter-spacing:.06em;line-height:1}
+.rhead .name{font-size:19px;font-weight:700;margin:10px 0 4px}
+.rhead .ver{font-size:11px;color:var(--faint);margin-top:10px}
+.sect{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:18px}
+.sect h3{font-size:14px;letter-spacing:.08em;color:var(--muted);margin-bottom:14px}
+.dimrow{margin-bottom:16px}
+.dimtop{display:flex;align-items:baseline;gap:8px;font-size:13px;color:var(--muted)}
+.dimtop b{font-size:14px;color:var(--ink)}
+.dimtop .pct{margin-left:auto;font-variant-numeric:tabular-nums}
+.dimbar{position:relative;height:12px;background:#eee9df;border-radius:6px;margin:6px 0 4px;overflow:hidden}
+.dimbar i{position:absolute;top:0;bottom:0;background:var(--blue);border-radius:6px}
+.dimbar .mid{position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:#cfc8bb}
+.poles{display:flex;justify-content:space-between;font-size:11.5px;color:var(--faint)}
+.facets{margin-top:6px}
+.facet{display:grid;grid-template-columns:96px 1fr 40px;align-items:center;gap:8px;font-size:12px;margin-bottom:6px}
+.facet span:first-child{color:var(--muted)}
+.facet .fb{height:7px;background:#eee9df;border-radius:4px;overflow:hidden}
+.facet .fb i{display:block;height:100%;background:#9db3a8}
+.facet .fv{text-align:right;color:var(--faint);font-variant-numeric:tabular-nums}
+details{background:#faf8f3;border:1px solid #ece7dd;border-radius:10px;padding:10px 14px;margin-top:12px}
+details summary{cursor:pointer;font-size:13px;color:var(--muted)}
+.promptBox{width:100%;min-height:220px;margin-top:10px;padding:12px 13px;border:1px solid #ece7dd;border-radius:9px;
+  background:#fff;color:var(--ink);resize:vertical;font:12.5px/1.65 ui-monospace,Consolas,Menlo,monospace}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 8px}
+.actions button{border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:10px 16px;font-size:13.5px}
+.actions button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+@media print{
+  body{background:#fff} #app{max-width:none;padding:0}
+  .actions,.topbar,.hint{display:none !important}
+  .sect,.rhead{border:1px solid #ccc;break-inside:avoid}
+  details{display:none}
+}
+</style>
+</head>
+<body>
+<div id="app">
+
+  <section id="intro" class="view">
+    <div class="hero">
+      <p class="eyebrow">五维倾向 · 7 点同意度 · 题目全部按中国日常重写</p>
+      <h1>性格倾向量表</h1>
+      <p class="sub">中 国 情 境 版</p>
+      <p class="lede">50 句话 · 每句选一个同意程度 · 约 8 分钟</p>
+    </div>
+    <div class="panel">
+      <h2>怎么答</h2>
+      <ul>
+        <li>每题一句话，按"<b>这有多像我</b>"选程度，从"强烈不同意"到"强烈同意"。</li>
+        <li>想<b>平时的你</b>，不要想你希望成为的样子。</li>
+        <li>凭第一反应，每题十秒内；中间那档"中立"能不用就不用。</li>
+        <li>进度自动存在这台设备上，可以分两次做完。</li>
+      </ul>
+      <button class="mode" id="startBtn"><b>开始</b><span>50 题 · 约 8 分钟</span></button>
+      <p class="alt">想用荣格八维那套（每题二选一、按功能栈判定）？<a href="./jungian.html">切到那个版本</a></p>
+    </div>
+    <p class="disclaimer">这是自我认识工具，不是诊断，也不该拿来筛选或评价别人。
+      分数是"你多常这样"，不是"你有多强"。</p>
+  </section>
+
+  <section id="test" class="view hidden">
+    <div class="topbar">
+      <button id="backBtn" class="ghost">← 上一题</button>
+      <div class="progress"><i id="pbar"></i></div>
+      <span id="counter" class="counter"></span>
+    </div>
+    <div class="qcard">
+      <p class="qno" id="qno"></p>
+      <p class="statement" id="statement"></p>
+      <div class="scale7" id="scale"></div>
+      <p class="hint">键盘 1–7 也能选：1 强烈不同意 … 4 中立 … 7 强烈同意</p>
+    </div>
+  </section>
+
+  <section id="result" class="view hidden"></section>
+</div>
+
+<script>
+var LIKERT = /*__DATA__*/;
+var APP_VERSION = /*__VERSION__*/;
+</script>
+<script>
+"use strict";
+(function () {
+  var DIMS = [
+    { key: "Mind",     a: "E", b: "I", cnA: "外倾", cnB: "内倾", cn: "心力",
+      noteA: "你从人群里回血", noteB: "你从独处里回血" },
+    { key: "Energy",   a: "N", b: "S", cnA: "直觉", cnB: "观察", cn: "能量",
+      noteA: "你先看可能性", noteB: "你先看眼前的事实" },
+    { key: "Nature",   a: "T", b: "F", cnA: "思维", cnB: "情感", cn: "本性",
+      noteA: "你按逻辑下判断", noteB: "你按感受与关系下判断" },
+    { key: "Tactics",  a: "J", b: "P", cnA: "计划", cnB: "展望", cn: "对策",
+      noteA: "你先把事情定下来", noteB: "你先留着口子再看" },
+    { key: "Identity", a: "A", b: "T", cnA: "自信", cnB: "起伏", cn: "身份",
+      noteA: "你对自己比较笃定", noteB: "你对自己反复掂量" }
+  ];
+  var LABELS = ["强烈不同意", "不同意", "有点不同意", "中立", "有点同意", "同意", "强烈同意"];
+  var SAVE = "likert-cn-v1";
+  var state = { answers: {}, idx: 0 };
+  var $ = function (id) { return document.getElementById(id); };
+
+  function view(name) {
+    ["intro", "test", "result"].forEach(function (v) { $(v).classList.toggle("hidden", v !== name); });
+    window.scrollTo(0, 0);
+  }
+  function save() { try { localStorage.setItem(SAVE, JSON.stringify(state)); } catch (e) {} }
+  function clearSave() { try { localStorage.removeItem(SAVE); } catch (e) {} }
+  function nowStamp() {
+    var d = new Date(), p2 = function (n) { return ("0" + n).slice(-2); };
+    return d.getFullYear() + "-" + p2(d.getMonth() + 1) + "-" + p2(d.getDate()) + " " + p2(d.getHours()) + ":" + p2(d.getMinutes());
+  }
+
+  /* ---------- 计分 ---------- */
+  function compute() {
+    var per = {}, facet = {};
+    LIKERT.items.forEach(function (it) {
+      var raw = state.answers[it.id];
+      if (raw === undefined) return;
+      raw = raw - 3;                                  // 0..6 → -3..3
+      var v = it.reverse ? -raw : raw;                 // 反向题翻转
+      var pole = DIMS.filter(function (d) { return d.key === it.dim; })[0];
+      if (it.key === pole.b) v = -v;                   // 统一成"正数 = 偏 a 端"
+      (per[it.dim] = per[it.dim] || []).push(v);
+      var fk = it.dim + "/" + it.facet;
+      (facet[fk] = facet[fk] || []).push(v);
+    });
+    var mean = function (a) { return a.reduce(function (x, y) { return x + y; }, 0) / a.length; };
+    var toPct = function (m) { return Math.round((m + 3) / 6 * 1000) / 10; };
+    var dims = {}, facets = {};
+    Object.keys(per).forEach(function (k) { dims[k] = toPct(mean(per[k])); });
+    Object.keys(facet).forEach(function (k) { facets[k] = toPct(mean(facet[k])); });
+    var letters = "", centered = [];
+    DIMS.forEach(function (d) {
+      var s = dims[d.key];
+      if (s === undefined) { letters += "?"; return; }
+      if (s >= 53) letters += d.a;
+      else if (s <= 47) letters += d.b;
+      else { letters += d.a; centered.push(d.cn); }
+    });
+    return { dims: dims, facets: facets, letters: letters, centered: centered,
+             answered: Object.keys(state.answers).length, total: LIKERT.items.length };
+  }
+
+  /* ---------- 作答 ---------- */
+  function start(resume) {
+    if (resume && pendingResume) { state = pendingResume; pendingResume = null; }
+    else { state = { answers: {}, idx: 0 }; clearSave(); }
+    view("test"); render();
+  }
+  function render() {
+    var it = LIKERT.items[state.idx];
+    if (!it) { showResult(); return; }
+    $("qno").textContent = "第 " + (state.idx + 1) + " / " + LIKERT.items.length + " 题";
+    $("statement").textContent = it.text;
+    $("counter").textContent = (state.idx + 1) + "/" + LIKERT.items.length;
+    $("backBtn").disabled = state.idx === 0;
+    $("pbar").style.width = Math.round(state.idx / LIKERT.items.length * 100) + "%";
+    paint();
+  }
+  function paint() {
+    var v = state.answers[LIKERT.items[state.idx].id];
+    var btns = $("scale").querySelectorAll("button");
+    for (var i = 0; i < btns.length; i++) {
+      var bv = Number(btns[i].getAttribute("data-v"));
+      btns[i].className = (v === bv ? "sel" : (bv === 3 ? "mid" : ""));
+    }
+  }
+  function choose(v) {
+    state.answers[LIKERT.items[state.idx].id] = v;
+    save(); paint();
+    setTimeout(function () {
+      state.idx++; save();
+      if (state.idx >= LIKERT.items.length) showResult(); else render();
+    }, 130);
+  }
+  function back() { if (state.idx > 0) { state.idx--; save(); render(); } }
+
+  /* ---------- 结果 ---------- */
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+
+  function showResult() {
+    var r = compute();
+    var h = [];
+    var code = r.letters.slice(0, 4), idn = r.letters.slice(4);
+    h.push('<div class="rhead"><div class="code">' + (code || "?") + "-" + (idn || "?") + '</div>');
+    h.push('<div class="name">五维倾向：' + DIMS.map(function (d) {
+      var s = r.dims[d.key];
+      if (s === undefined) return d.cn + " 未答";
+      return d.cn + " " + (s >= 53 ? d.cnA : (s <= 47 ? d.cnB : "居中"));
+    }).join(" · ") + '</div>');
+    h.push('<div class="ver">作答 ' + r.answered + ' / ' + r.total + ' 题　·　生成于 ' + nowStamp() +
+      '　·　量表版本 ' + APP_VERSION + '</div></div>');
+
+    h.push('<div class="sect"><h3>五个维度</h3>');
+    DIMS.forEach(function (d) {
+      var s = r.dims[d.key];
+      if (s === undefined) return;
+      var left = Math.min(s, 100), right = Math.max(0, 100 - s);
+      h.push('<div class="dimrow"><div class="dimtop"><b>' + d.cn + '</b><span>' + d.a + ' / ' + d.b +
+        '</span><span class="pct">' + s.toFixed(0) + '% 偏 ' + (s >= 50 ? d.cnA : d.cnB) + '</span></div>');
+      h.push('<div class="dimbar"><i style="left:0;width:' + s + '%"></i><span class="mid"></span></div>');
+      h.push('<div class="poles"><span>' + d.cnA + ' ' + d.a + '</span><span>' + d.cnB + ' ' + d.b + '</span></div>');
+      h.push('<div style="font-size:12.5px;color:var(--muted);margin-top:4px">' +
+        (s >= 50 ? d.noteA : d.noteB) + '（这一维 ' + s.toFixed(0) + ' 分，50 为中线）</div></div>');
+    });
+    if (r.centered.length) {
+      h.push('<p style="font-size:13px;color:var(--warn)">' + r.centered.join("、") +
+        ' 这几维落在中线附近：说明你两边都用，不用硬给自己贴一个字母。</p>');
+    }
+    h.push('</div>');
+
+    h.push('<div class="sect"><h3>25 个面向</h3><div class="facets">');
+    DIMS.forEach(function (d) {
+      LIKERT.items.filter(function (it) { return it.dim === d.key; })
+        .map(function (it) { return it.facet; })
+        .filter(function (v, i, a) { return a.indexOf(v) === i; })
+        .forEach(function (fc) {
+          var s = r.facets[d.key + "/" + fc];
+          if (s === undefined) return;
+          h.push('<div class="facet"><span>' + esc(fc) + '</span><span class="fb"><i style="width:' + s + '%"></i></span>' +
+            '<span class="fv">' + s.toFixed(0) + '</span></div>');
+        });
+    });
+    h.push('</div><p style="font-size:11.5px;color:var(--faint);margin-top:10px">' +
+      '每个面向 2 题（一正一反）。50 以上偏左端，50 以下偏右端。</p></div>');
+
+    h.push('<div class="sect"><h3>把结果交给 AI 分析</h3>' +
+      '<p style="font-size:13.5px;color:var(--muted)">这段提示词已把分数、量表口径和边界写好，复制后黏到常用的 AI 里即可。</p>' +
+      '<div class="actions" style="margin:12px 0 0"><button class="primary" id="copyPromptBtn">复制 AI 分析提示词</button>' +
+      '<button id="downloadPromptBtn">下载为 .txt</button></div>' +
+      '<details><summary>展开查看提示词全文</summary><textarea class="promptBox" id="aiPrompt" spellcheck="false"></textarea>' +
+      '<p style="font-size:11.5px;color:var(--faint);margin:8px 0 0">只有分数，没有姓名。</p></details></div>');
+
+    h.push('<div class="actions"><button class="primary" id="againBtn">重新做一次</button>' +
+      '<button id="printBtn">打印 / 存为 PDF</button>' +
+      '<button id="copyBtn">复制结果摘要</button></div>');
+    h.push('<p class="disclaimer">这是自我认识工具，不是诊断。分数是"你多常这样"，不是能力高低；' +
+      '也不是类型判决——五维落在中线附近时，本来就不该硬分。' +
+      '想看荣格八维那套（功能栈判定）请到<a href="./jungian.html">另一个版本</a>。</p>');
+
+    $("result").innerHTML = h.join("");
+    view("result");
+
+    $("againBtn").onclick = function () { start(false); };
+    $("printBtn").onclick = function () { window.print(); };
+    $("copyBtn").onclick = function () { copyText(summary(r), $("copyBtn")); };
+    $("aiPrompt").value = aiPrompt(r);
+    $("copyPromptBtn").onclick = function () { copyText($("aiPrompt").value, $("copyPromptBtn")); };
+    $("downloadPromptBtn").onclick = function () {
+      downloadText("性格倾向量表-结果-AI分析提示.txt", $("aiPrompt").value);
+    };
+  }
+
+  function summary(r) {
+    return ["性格倾向量表（中国情境版）结果 · " + APP_VERSION,
+      "四字母：" + r.letters.slice(0, 4) + "　身份：" + r.letters.slice(4),
+      DIMS.map(function (d) { return d.cn + " " + d.a + "/" + d.b + " = " + (r.dims[d.key] || 0).toFixed(0); }).join("　"),
+      "生成时间：" + nowStamp(), "", "自我认识工具，非诊断。"].join("\n");
+  }
+
+  function aiPrompt(r) {
+    var L = [];
+    L.push("你是熟悉人格倾向量表（五维：心力 E/I、能量 N/S、本性 T/F、对策 J/P、身份 A/T）的分析者。下面是我的自测结果，请据此和我一起分析。");
+    L.push("");
+    L.push("【我的结果】");
+    L.push("四字母：" + r.letters.slice(0, 4) + "　身份：" + r.letters.slice(4));
+    DIMS.forEach(function (d) {
+      var s = r.dims[d.key];
+      if (s !== undefined) L.push(d.cn + "（" + d.a + "/" + d.b + "）：" + s.toFixed(0) + "（50 为中线，越高越偏 " + d.a + "）");
+    });
+    L.push("");
+    L.push("【面向细分】");
+    DIMS.forEach(function (d) {
+      LIKERT.items.filter(function (it) { return it.dim === d.key; })
+        .map(function (it) { return it.facet; })
+        .filter(function (v, i, a) { return a.indexOf(v) === i; })
+        .forEach(function (fc) {
+          var s = r.facets[d.key + "/" + fc];
+          if (s !== undefined) L.push("  " + d.cn + "/" + fc + "：" + s.toFixed(0));
+        });
+    });
+    L.push("");
+    L.push("【怎么算的】每题 7 点（-3 到 +3），每个面向 2 题、一正一反；面向分与维度分都是均值线性映射到 0–100；50 是中线。");
+    L.push("这不是类型学，只是倾向强弱；50 附近说明两边都用。");
+    L.push("");
+    L.push("【请按顺序回答】");
+    L.push("1. 用三句话概括这个组合在日常里最明显的样子。");
+    L.push("2. 指出哪两三个面向的分数组合最值得注意（不必是最高分），并说明为什么。");
+    L.push("3. 分别就职场、家庭、亲密关系各给 3 条具体描述 + 1 条可操作建议。");
+    L.push("4. 指出我可能高估或低估的部分，并说明量表本身容易在哪里失真。");
+    L.push("5. 给未来 6 个月两件可验证的具体行动，不要空话。");
+    L.push("6. 反问我 3 个能修正结论的问题。");
+    L.push("");
+    L.push("【约束】不做诊断、不编数据、不下\"你就是这种人\"的判决；信息不足就说需要更多信息；用中文、少术语。");
+    return L.join("\n");
+  }
+
+  function copyText(text, btn) {
+    var done = function () { flash(btn, "已复制"); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { fallbackCopy(text); done(); });
+    } else { fallbackCopy(text); done(); }
+  }
+  function fallbackCopy(text) {
+    var ta = document.createElement("textarea");
+    ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+  function downloadText(name, text) {
+    try {
+      var blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+      var url = URL.createObjectURL(blob), a = document.createElement("a");
+      a.href = url; a.download = name; document.body.appendChild(a);
+      if (a.click) a.click();
+      document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    } catch (e) { fallbackCopy(text); }
+  }
+  function flash(btn, msg) { var old = btn.textContent; btn.textContent = msg; setTimeout(function () { btn.textContent = old; }, 1400); }
+
+  /* ---------- 初始化 ---------- */
+  (function buildScale() {
+    var box = $("scale"), html = "";
+    LABELS.forEach(function (lab, i) {
+      html += '<button data-v="' + i + '"><b>' + (i === 3 ? "—" : (i < 3 ? (i - 3) : ("+" + (i - 3)))) + '</b>' + lab + '</button>';
+    });
+    box.innerHTML = html;
+    var btns = box.querySelectorAll("button");
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener("click", function () { choose(Number(this.getAttribute("data-v"))); });
+    }
+  })();
+
+  var pendingResume = null;
+  var saved = null;
+  try { saved = JSON.parse(localStorage.getItem(SAVE) || "null"); } catch (e) {}
+  if (saved && saved.answers && Object.keys(saved.answers).length && saved.idx < LIKERT.items.length) {
+    pendingResume = saved;
+    $("startBtn").innerHTML = "<b>继续上次</b><span>已答 " + Object.keys(saved.answers).length + " / " + LIKERT.items.length + " 题</span>";
+  }
+  $("startBtn").addEventListener("click", function () { start(!!pendingResume); });
+
+  /* 供自动化测试调用的最小钩子（不影响正常使用） */
+  if (typeof window !== "undefined") {
+    window.__LIKERT_DEBUG = { start: function () { start(false); }, choose: choose, compute: compute,
+      answered: function () { return Object.keys(state.answers).length; } };
+  }
+  $("backBtn").addEventListener("click", back);
+  document.addEventListener("keydown", function (e) {
+    if ($("test").classList.contains("hidden")) return;
+    if (/^[1-7]$/.test(e.key)) { e.preventDefault(); choose(Number(e.key) - 1); }
+    else if (e.key === "ArrowLeft" || e.key === "Backspace") { e.preventDefault(); back(); }
+  });
+
+})();
+</script>
+</body>
+</html>

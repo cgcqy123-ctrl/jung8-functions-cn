@@ -5,7 +5,7 @@ const vm = require("vm");
 const path = require("path");
 
 const BASE = path.resolve(__dirname, "..");
-const file = path.join(BASE, "index.html");
+const file = path.join(BASE, "jungian.html");
 const html = fs.readFileSync(file, "utf8");
 const scripts = [...html.matchAll(/<script>\n([\s\S]*?)\n<\/script>/g)].map((m) => m[1]);
 if (scripts.length !== 2) throw new Error("script 块数量异常：" + scripts.length);

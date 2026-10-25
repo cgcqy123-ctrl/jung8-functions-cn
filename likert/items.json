@@ -1,0 +1,134 @@
+{
+  "meta": {
+    "version": "0.2",
+    "scale": 7,
+    "plan": "25 个面向 × 每个 2 题（一正一反）= 50 题",
+    "items_done": 50
+  },
+  "items": [
+    {"id": "L01", "dim": "Mind", "facet": "社交启动", "key": "E", "reverse": false,
+     "text": "一桌人都不熟的时候，你往往是先开口的那个。"},
+    {"id": "L26", "dim": "Mind", "facet": "社交启动", "key": "E", "reverse": true,
+     "text": "进了一屋子陌生人，你多半会等别人先开口。"},
+
+    {"id": "L02", "dim": "Mind", "facet": "主动表达", "key": "E", "reverse": false,
+     "text": "会上有不同意见，你通常会当场说出来。"},
+    {"id": "L27", "dim": "Mind", "facet": "主动表达", "key": "E", "reverse": true,
+     "text": "会上有不同意见，你通常先咽下去，会后再说。"},
+
+    {"id": "L03", "dim": "Mind", "facet": "独处恢复", "key": "I", "reverse": true,
+     "text": "连着两天跟人打交道，你还想继续约人出去。"},
+    {"id": "L28", "dim": "Mind", "facet": "独处恢复", "key": "I", "reverse": false,
+     "text": "一个人待着的周末，比出门聚会更让你缓过来。"},
+
+    {"id": "L04", "dim": "Mind", "facet": "人群耐受", "key": "I", "reverse": false,
+     "text": "人多的饭局超过两小时，你会开始想找个借口先走。"},
+    {"id": "L29", "dim": "Mind", "facet": "人群耐受", "key": "I", "reverse": true,
+     "text": "人多的场合待久了，你也不觉得累。"},
+
+    {"id": "L05", "dim": "Mind", "facet": "陌生场合", "key": "E", "reverse": false,
+     "text": "去一个谁都不认识的场合，你会主动找人搭话。"},
+    {"id": "L30", "dim": "Mind", "facet": "陌生场合", "key": "E", "reverse": true,
+     "text": "到了没人认识的场合，你会先找个角落站一会儿。"},
+
+    {"id": "L06", "dim": "Energy", "facet": "细节留神", "key": "S", "reverse": false,
+     "text": "别人换了发型、桌上多了个杯子，你通常第一眼就发现。"},
+    {"id": "L31", "dim": "Energy", "facet": "细节留神", "key": "S", "reverse": true,
+     "text": "别人换了发型、桌上多了个杯子，你常常注意不到。"},
+
+    {"id": "L07", "dim": "Energy", "facet": "想象投入", "key": "N", "reverse": false,
+     "text": "排队、坐地铁这种空档，你脑子里常在推演别的事。"},
+    {"id": "L32", "dim": "Energy", "facet": "想象投入", "key": "N", "reverse": true,
+     "text": "排队、坐地铁这种空档，你多半就发呆或刷手机，不太想别的。"},
+
+    {"id": "L08", "dim": "Energy", "facet": "抽象兴趣", "key": "N", "reverse": false,
+     "text": "「人为什么会这样」这类问题，你会忍不住想下去。"},
+    {"id": "L33", "dim": "Energy", "facet": "抽象兴趣", "key": "N", "reverse": true,
+     "text": "「人为什么会这样」这类问题，你觉得想多了没用。"},
+
+    {"id": "L09", "dim": "Energy", "facet": "现实焦点", "key": "S", "reverse": true,
+     "text": "做方案时，你更在意它将来能变成什么，而不是这周能不能落地。"},
+    {"id": "L34", "dim": "Energy", "facet": "现实焦点", "key": "S", "reverse": false,
+     "text": "做方案时，你更在意这周能不能落地，而不是它将来能变成什么。"},
+
+    {"id": "L10", "dim": "Energy", "facet": "模式与隐喻", "key": "N", "reverse": false,
+     "text": "你常从两件看着不相干的事里，看出同一个道理。"},
+    {"id": "L35", "dim": "Energy", "facet": "模式与隐喻", "key": "N", "reverse": true,
+     "text": "你很少把两件不相干的事往一块儿想。"},
+
+    {"id": "L11", "dim": "Nature", "facet": "逻辑优先", "key": "T", "reverse": false,
+     "text": "朋友跟你诉苦，你第一反应是帮他找出问题出在哪。"},
+    {"id": "L36", "dim": "Nature", "facet": "逻辑优先", "key": "T", "reverse": true,
+     "text": "朋友跟你诉苦，你会先陪他把情绪捋顺，不急着找问题。"},
+
+    {"id": "L12", "dim": "Nature", "facet": "情绪感知", "key": "F", "reverse": false,
+     "text": "别人还没开口，你常能觉出他今天不太对。"},
+    {"id": "L37", "dim": "Nature", "facet": "情绪感知", "key": "F", "reverse": true,
+     "text": "别人心情不好，你常常是最后一个察觉的。"},
+
+    {"id": "L13", "dim": "Nature", "facet": "冲突直面", "key": "T", "reverse": true,
+     "text": "有人当场把一个事实说错了，你通常不会当面纠正。"},
+    {"id": "L38", "dim": "Nature", "facet": "冲突直面", "key": "T", "reverse": false,
+     "text": "有人当场把一个事实说错了，你会直接纠正。"},
+
+    {"id": "L14", "dim": "Nature", "facet": "取悦倾向", "key": "F", "reverse": false,
+     "text": "为了让气氛好一点，你会把自己想说的话咽回去。"},
+    {"id": "L39", "dim": "Nature", "facet": "取悦倾向", "key": "F", "reverse": true,
+     "text": "想说的话你一般会说出口，不太为了气氛咽回去。"},
+
+    {"id": "L15", "dim": "Nature", "facet": "人情与原则", "key": "T", "reverse": false,
+     "text": "定规矩的时候，你愿意一条条写清楚，不留模糊空间。"},
+    {"id": "L40", "dim": "Nature", "facet": "人情与原则", "key": "T", "reverse": true,
+     "text": "定规矩的时候，你愿意留点余地，具体事具体看。"},
+
+    {"id": "L16", "dim": "Tactics", "facet": "计划性", "key": "J", "reverse": false,
+     "text": "出门旅行前，你会把每天住哪儿、走哪条路先定下来。"},
+    {"id": "L41", "dim": "Tactics", "facet": "计划性", "key": "J", "reverse": true,
+     "text": "出门旅行前，你通常只定个大概，到了再说。"},
+
+    {"id": "L17", "dim": "Tactics", "facet": "收尾习惯", "key": "J", "reverse": true,
+     "text": "手头的事没做完，你也能先放下，回头再说。"},
+    {"id": "L42", "dim": "Tactics", "facet": "收尾习惯", "key": "J", "reverse": false,
+     "text": "手头的事没做完，你很难安心去做别的。"},
+
+    {"id": "L18", "dim": "Tactics", "facet": "临场应变", "key": "P", "reverse": true,
+     "text": "计划被临时打乱，你会有点烦。"},
+    {"id": "L43", "dim": "Tactics", "facet": "临场应变", "key": "P", "reverse": false,
+     "text": "计划被临时打乱，你反而觉得有点意思。"},
+
+    {"id": "L19", "dim": "Tactics", "facet": "秩序需求", "key": "J", "reverse": false,
+     "text": "桌面上、手机相册里乱着，你会不太自在。"},
+    {"id": "L44", "dim": "Tactics", "facet": "秩序需求", "key": "J", "reverse": true,
+     "text": "桌面乱着、相册里一堆截图，你也不太在意。"},
+
+    {"id": "L20", "dim": "Tactics", "facet": "开放选项", "key": "P", "reverse": false,
+     "text": "订行程时，你常故意留几天空着，到时候再说。"},
+    {"id": "L45", "dim": "Tactics", "facet": "开放选项", "key": "P", "reverse": true,
+     "text": "订行程时，你习惯把每天排满，空着会心慌。"},
+
+    {"id": "L21", "dim": "Identity", "facet": "自我肯定", "key": "A", "reverse": false,
+     "text": "做完一件事，你一般觉得自己做得还行。"},
+    {"id": "L46", "dim": "Identity", "facet": "自我肯定", "key": "A", "reverse": true,
+     "text": "别人夸你一件事做得好，你心里会先想「他只是客气」。"},
+
+    {"id": "L22", "dim": "Identity", "facet": "事后反刍", "key": "T", "reverse": false,
+     "text": "跟人说完一段话，你会反复回想自己是不是说错了什么。"},
+    {"id": "L47", "dim": "Identity", "facet": "事后反刍", "key": "T", "reverse": true,
+     "text": "跟人说完一段话，你不太会回头再想自己说错没说错。"},
+
+    {"id": "L23", "dim": "Identity", "facet": "压力反应", "key": "T", "reverse": false,
+     "text": "事情一多，你会先担心做不完，而不是先动手。"},
+    {"id": "L48", "dim": "Identity", "facet": "压力反应", "key": "T", "reverse": true,
+     "text": "事情一多，你会直接挑一件先做起来。"},
+
+    {"id": "L24", "dim": "Identity", "facet": "完美主义", "key": "T", "reverse": false,
+     "text": "交出去的东西，你常觉得还能再改改，不太放心。"},
+    {"id": "L49", "dim": "Identity", "facet": "完美主义", "key": "T", "reverse": true,
+     "text": "交出去的东西，你觉得到位了就交，不太反复改。"},
+
+    {"id": "L25", "dim": "Identity", "facet": "情绪起伏", "key": "T", "reverse": false,
+     "text": "一天里你的心情，会因为一两件小事起落好几次。"},
+    {"id": "L50", "dim": "Identity", "facet": "情绪起伏", "key": "T", "reverse": true,
+     "text": "一天下来，你的心情基本是平的，不太受小事影响。"}
+  ]
+}
