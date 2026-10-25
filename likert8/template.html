@@ -82,6 +82,9 @@ button{font:inherit;color:inherit;cursor:pointer}
 .actions{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 8px}
 .actions button{border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:10px 16px;font-size:13.5px}
 .actions button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.actions a.dl{display:inline-block;border:1.5px solid var(--accent);background:var(--accent-soft);
+  color:var(--accent);border-radius:10px;padding:10px 16px;font-size:13.5px;text-decoration:none;font-weight:600}
+.actions a.dl:hover{background:var(--accent);color:#fff}
 details{background:#faf8f3;border:1px solid #ece7dd;border-radius:10px;padding:10px 14px;margin-top:12px}
 details summary{cursor:pointer;font-size:13px;color:var(--muted)}
 .promptBox{width:100%;min-height:220px;margin-top:10px;padding:12px 13px;border:1px solid #ece7dd;border-radius:9px;
@@ -220,6 +223,7 @@ function aiPrompt(r) {
   L.push("6. 反问我 3 个能修正这个结论的问题。");
   L.push("");
   L.push("【约束】不做诊断、不编数据、不下「你就是这种人」的判决；信息不足就说需要更多信息；中文、少术语。");
+  L.push("我可能还会把《荣格八维人格测验·量表版》手册一起上传：里面八种功能的定义、判定结构与计分口径，请以手册为准；手册与本提示词冲突时，先指出冲突再继续。");
   return L.join("\n");
 }
 
@@ -289,9 +293,12 @@ function showResult() {
   }
 
   h.push('<div class="sect"><h3>把结果交给 AI 分析</h3>' +
-    '<p style="font-size:13.5px;color:var(--muted)">这段提示词已把分数、计分口径和边界写好，复制后黏到常用的 AI 里即可。</p>' +
+    '<p style="font-size:13.5px;color:var(--muted)">这段提示词已把分数、计分口径和边界写好，复制后黏到常用的 AI 里即可。' +
+    '<b>把手册一起上传</b>，它才知道每个功能是什么意思、哪些结论不能下。</p>' +
     '<div class="actions" style="margin:12px 0 0"><button class="primary" id="copyPromptBtn">复制 AI 分析提示词</button>' +
-    '<button id="downloadPromptBtn">下载为 .txt</button></div>' +
+    '<button id="downloadPromptBtn">下载提示词 .txt</button>' +
+    '<a class="dl" id="manualBtn" href="#" download>下载手册 .docx</a></div>' +
+    '<p style="font-size:11.5px;color:var(--faint);margin:10px 0 0" id="manualNote"></p>' +
     '<details><summary>展开查看提示词全文</summary><textarea class="promptBox" id="aiPrompt" spellcheck="false"></textarea>' +
     '<p style="font-size:11.5px;color:var(--faint);margin:8px 0 0">只有分数，没有姓名。</p></details></div>');
 
@@ -309,6 +316,16 @@ function showResult() {
   $("aiPrompt").value = aiPrompt(r);
   $("copyPromptBtn").onclick = function () { copyText($("aiPrompt").value, $("copyPromptBtn")); };
   $("downloadPromptBtn").onclick = function () { downloadText("八维量表-结果-AI分析提示.txt", $("aiPrompt").value); };
+
+  var mb = $("manualBtn");
+  if (DATA.manual && DATA.manual.name) {
+    mb.setAttribute("href", "./" + encodeURIComponent(DATA.manual.name));
+    mb.setAttribute("download", DATA.manual.name);
+    $("manualNote").textContent = "手册：" + DATA.manual.name + "（Word，可打印，也可直接上传给 AI）。";
+  } else if (mb && mb.parentNode) {
+    mb.parentNode.removeChild(mb);
+    $("manualNote").textContent = "";
+  }
 }
 
 function copyText(text, btn) {

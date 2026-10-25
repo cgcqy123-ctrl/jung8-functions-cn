@@ -41,6 +41,11 @@ def main() -> int:
     payload = {"items": [{"id": x["id"], "fn": x["fn"], "reverse": x["reverse"], "text": x["text"]}
                          for x in items],
                "types": types, "jung": jung}
+    manual_name = "荣格八维测验-152题手册.docx"
+    if os.path.exists(os.path.join(BASE, manual_name)):
+        payload["manual"] = {"name": manual_name}
+    else:
+        print(f"[提醒] 未找到 {manual_name}，页面上不会出现手册下载按钮")
     data_js = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
 
     html = load("template.html")

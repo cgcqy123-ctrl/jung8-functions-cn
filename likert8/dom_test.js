@@ -22,6 +22,7 @@ function makeEl(id, attrs) {
       toggle(c, f) { if (f === undefined) { this._s.has(c) ? this._s.delete(c) : this._s.add(c); } else if (f) this._s.add(c); else this._s.delete(c); } },
     addEventListener(e, f) { (this.handlers[e] = this.handlers[e] || []).push(f); },
     getAttribute(k) { return this.attrs[k] === undefined ? null : this.attrs[k]; },
+    setAttribute(k, v) { this.attrs[k] = v; },
     querySelectorAll() { return []; }, appendChild(c) { this.children.push(c); },
     removeChild(c) { this.children = this.children.filter((x) => x !== c); }, select() {}
   };
