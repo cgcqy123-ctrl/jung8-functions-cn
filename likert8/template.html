@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>荣格八维人格测验（7 点量表版）</title>
+<style>
+:root{--ink:#1d2024;--muted:#6d7178;--faint:#9aa0a6;--line:#e2ddd3;--bg:#f5f2ec;--card:#fffdf8;
+  --accent:#2f5d50;--accent-soft:#e6efe9;--blue:#2f5d8a;--blue-soft:#e6edf5;--warn:#a24b2b;--warn-soft:#f7e8e1}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased;
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}
+#app{max-width:780px;margin:0 auto;padding:30px 20px 80px}
+.hidden{display:none !important}
+h1,h2,h3{font-weight:700;line-height:1.35;margin:0}
+p{margin:0 0 12px}
+button{font:inherit;color:inherit;cursor:pointer}
+.hero{padding:24px 4px 10px;border-bottom:1px solid var(--line);margin-bottom:26px}
+.eyebrow{font-size:12px;letter-spacing:.12em;color:var(--muted);margin-bottom:10px}
+.hero h1{font-size:31px}
+.hero .sub{font-size:16px;color:var(--accent);letter-spacing:.2em;margin:6px 0 14px}
+.lede{font-size:14px;color:var(--muted);margin:0}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px}
+.panel h2{font-size:15px;letter-spacing:.06em;color:var(--muted);margin-bottom:12px}
+.panel ul{margin:0 0 20px;padding-left:1.2em;font-size:14.5px}
+.panel li{margin-bottom:6px}
+.mode{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:#fff;
+  border:1.5px solid var(--line);border-radius:12px;padding:16px 18px;transition:.15s}
+.mode:hover{border-color:var(--accent);background:var(--accent-soft)}
+.mode b{font-size:16px}.mode span{color:var(--muted);font-size:13px;margin-left:auto}
+.disclaimer{font-size:12px;color:var(--faint);margin-top:22px;line-height:1.6}
+.topbar{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:14px;padding:12px 0 14px;
+  background:linear-gradient(var(--bg) 70%,rgba(245,242,236,0))}
+.ghost{background:#fff;border:1px solid var(--line);border-radius:8px;padding:5px 11px;font-size:12.5px;color:var(--muted)}
+.ghost:disabled{opacity:.35;cursor:default}
+.progress{flex:1;height:5px;background:#e7e2d8;border-radius:4px;overflow:hidden}
+.progress i{display:block;height:100%;width:0;background:var(--accent);border-radius:4px;transition:width .25s}
+.counter{font-size:12.5px;color:var(--muted);min-width:56px;text-align:right;font-variant-numeric:tabular-nums}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 24px 20px;margin-top:8px}
+.qno{font-size:12px;letter-spacing:.1em;color:var(--faint);margin-bottom:10px}
+.statement{font-size:20px;line-height:1.7;margin:0 0 22px;font-weight:600}
+.scale7{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.scale7 button{border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:12px 4px;
+  font-size:12.5px;line-height:1.3;min-height:64px;transition:.12s}
+.scale7 button b{display:block;font-size:15px;margin-bottom:2px}
+.scale7 button:hover{border-color:var(--accent);background:var(--accent-soft)}
+.scale7 button.sel{background:var(--accent);border-color:var(--accent);color:#fff}
+.scale7 button.mid{background:#f7f5f0}
+.hint{font-size:11.5px;color:var(--faint);margin:14px 0 0;text-align:center}
+@media (max-width:560px){.scale7{grid-template-columns:repeat(4,1fr)}.scale7 button{min-height:58px;font-size:11.5px}
+  .statement{font-size:18px}}
+.rhead{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 24px;margin-bottom:18px}
+.rhead .code{font-size:42px;font-weight:800;letter-spacing:.06em;line-height:1}
+.rhead .name{font-size:19px;font-weight:700;margin:10px 0 4px}
+.rhead .jung{font-size:13.5px;color:var(--muted)}
+.rhead .ver{font-size:11px;color:var(--faint);margin-top:8px}
+.badge{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:20px;margin-left:8px;
+  background:var(--accent-soft);color:var(--accent);vertical-align:middle}
+.badge.low{background:var(--warn-soft);color:var(--warn)}
+.sect{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:18px}
+.sect h3{font-size:14px;letter-spacing:.08em;color:var(--muted);margin-bottom:14px}
+.stackline{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.stackline div{background:#faf8f3;border:1px solid #ece7dd;border-radius:10px;padding:10px 12px}
+.stackline small{display:block;font-size:11px;color:var(--faint);letter-spacing:.08em}
+.stackline b{font-size:17px}.stackline span{display:block;font-size:11.5px;color:var(--muted)}
+.barrow{display:grid;grid-template-columns:44px 1fr 42px;grid-template-areas:"n b v" "c b v";
+  align-items:center;column-gap:8px;margin-bottom:9px}
+.barrow .bn{grid-area:n;font-weight:700;font-size:13px}
+.barrow .bc{grid-area:c;font-size:10.5px;color:var(--faint)}
+.barrow .bar{grid-area:b;height:9px;background:#eee9df;border-radius:5px;overflow:hidden}
+.barrow .bar i{display:block;height:100%;border-radius:5px;background:#9db3a8}
+.barrow .bv{grid-area:v;text-align:right;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.barrow.role-dom .bar i{background:var(--accent)}
+.barrow.role-aux .bar i{background:#4d7d6d}
+.barrow.role-inf .bar i{background:var(--warn)}
+.rolebadge{font-size:10px;padding:1px 6px;border-radius:20px;margin-left:6px;background:var(--accent-soft);color:var(--accent)}
+.role-inf .rolebadge{background:var(--warn-soft);color:var(--warn)}
+.fits{display:flex;gap:8px;flex-wrap:wrap}
+.fit{background:#faf8f3;border:1px solid #ece7dd;border-radius:9px;padding:7px 12px;font-size:13px}
+.fit.cur{border-color:var(--accent);background:var(--accent-soft)}
+.profile p b.lbl{color:var(--accent)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 8px}
+.actions button{border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:10px 16px;font-size:13.5px}
+.actions button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+details{background:#faf8f3;border:1px solid #ece7dd;border-radius:10px;padding:10px 14px;margin-top:12px}
+details summary{cursor:pointer;font-size:13px;color:var(--muted)}
+.promptBox{width:100%;min-height:220px;margin-top:10px;padding:12px 13px;border:1px solid #ece7dd;border-radius:9px;
+  background:#fff;color:var(--ink);resize:vertical;font:12.5px/1.65 ui-monospace,Consolas,Menlo,monospace}
+@media print{body{background:#fff}#app{max-width:none;padding:0}.actions,.topbar,.hint{display:none !important}
+  .sect,.rhead{border:1px solid #ccc;break-inside:avoid}details{display:none}}
+</style>
+</head>
+<body>
+<div id="app">
+
+  <section id="intro" class="view">
+    <div class="hero">
+      <p class="eyebrow">荣格八维 · 7 点同意度 · 152 句中国日常</p>
+      <h1>荣格八维人格测验</h1>
+      <p class="sub">量 表 版</p>
+      <p class="lede">152 句话 · 每句选一个同意程度 · 约 25 分钟</p>
+    </div>
+    <div class="panel">
+      <h2>怎么答</h2>
+      <ul>
+        <li>每题一句话，按「<b>这有多像我</b>」选程度，从「强烈不同意」到「强烈同意」。</li>
+        <li>想<b>平时的你</b>，不要想你希望成为的样子。</li>
+        <li>凭第一反应，每题十秒内；中间那档「中立」能不用就不用。</li>
+        <li>152 题，可以分三次做完，进度自动存在这台设备上。</li>
+      </ul>
+      <button class="mode" id="startBtn"><b>开始</b><span>152 题 · 约 25 分钟</span></button>
+    </div>
+    <p class="disclaimer">八个维度每题数相同（各 19 题、其中 6 题反向），所以分数之间可以直接比。
+      这是自我认识工具，不是诊断。</p>
+  </section>
+
+  <section id="test" class="view hidden">
+    <div class="topbar">
+      <button id="backBtn" class="ghost">← 上一题</button>
+      <div class="progress"><i id="pbar"></i></div>
+      <span id="counter" class="counter"></span>
+    </div>
+    <div class="qcard">
+      <p class="qno" id="qno"></p>
+      <p class="statement" id="statement"></p>
+      <div class="scale7" id="scale"></div>
+      <p class="hint">键盘 1–7：1 强烈不同意 … 4 中立 … 7 强烈同意</p>
+    </div>
+  </section>
+
+  <section id="result" class="view hidden"></section>
+</div>
+
+<script>
+/*__SCORING__*/
+</script>
+<script>
+"use strict";
+var DATA = /*__DATA__*/;
+var APP_VERSION = /*__VERSION__*/;
+var ITEMS = DATA.items;
+var LABELS = ["强烈不同意", "不同意", "有点不同意", "中立", "有点同意", "同意", "强烈同意"];
+var SAVE = "jung8-likert-v1";
+var state = { values: {}, idx: 0 };
+var pendingResume = null;
+function $(id) { return document.getElementById(id); }
+function view(n) { ["intro", "test", "result"].forEach(function (v) { $(v).classList.toggle("hidden", v !== n); }); window.scrollTo(0, 0); }
+function save() { try { localStorage.setItem(SAVE, JSON.stringify(state)); } catch (e) {} }
+function clearSave() { try { localStorage.removeItem(SAVE); } catch (e) {} }
+function nowStamp() {
+  var d = new Date(), p2 = function (n) { return ("0" + n).slice(-2); };
+  return d.getFullYear() + "-" + p2(d.getMonth() + 1) + "-" + p2(d.getDate()) + " " + p2(d.getHours()) + ":" + p2(d.getMinutes());
+}
+function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {
+  return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+
+function start(resume) {
+  if (resume && pendingResume) { state = pendingResume; pendingResume = null; }
+  else { state = { values: {}, idx: 0 }; clearSave(); }
+  view("test"); render();
+}
+function render() {
+  var it = ITEMS[state.idx];
+  if (!it) { showResult(); return; }
+  $("qno").textContent = "第 " + (state.idx + 1) + " / " + ITEMS.length + " 题";
+  $("statement").textContent = it.text;
+  $("counter").textContent = (state.idx + 1) + "/" + ITEMS.length;
+  $("backBtn").disabled = state.idx === 0;
+  $("pbar").style.width = Math.round(state.idx / ITEMS.length * 100) + "%";
+  paint();
+}
+function paint() {
+  var v = state.values[ITEMS[state.idx].id];
+  var btns = $("scale").querySelectorAll("button");
+  for (var i = 0; i < btns.length; i++) {
+    var bv = Number(btns[i].getAttribute("data-v"));
+    btns[i].className = (v === bv ? "sel" : (bv === 3 ? "mid" : ""));
+  }
+}
+function choose(v) {
+  state.values[ITEMS[state.idx].id] = v;
+  save(); paint();
+  setTimeout(function () {
+    state.idx++; save();
+    if (state.idx >= ITEMS.length) showResult(); else render();
+  }, 120);
+}
+function back() { if (state.idx > 0) { state.idx--; save(); render(); } }
+
+function summary(r) {
+  return ["荣格八维人格测验（7 点量表版）· " + APP_VERSION,
+    r.code + "｜" + r.cn_name + "｜荣格归属：" + r.jung_name,
+    "功能栈：" + r.stack.join("-"),
+    "置信度：" + r.confidence + "（分差 " + r.gap + "，一致性 " + r.consistency + "）",
+    "八维：" + r.order.map(function (f) { return f + " " + r.scores[f].toFixed(0); }).join("　"),
+    "生成时间：" + nowStamp(), "", "自我认识工具，非诊断。"].join("\n");
+}
+
+function aiPrompt(r) {
+  var L = [];
+  L.push("你是熟悉荣格分析心理学（《心理类型》，1921）的类型学分析者。下面是我做一份 7 点同意度量表的完整结果，请据此分析。");
+  L.push("");
+  L.push("【我的结果】");
+  L.push("四字母：" + r.code + "（" + r.cn_name + "）");
+  L.push("荣格类型：" + r.jung_name + "（" + r.dominant + " 主导）");
+  L.push("功能栈：" + r.stack[0] + " 主导 · " + r.stack[1] + " 辅助 · " + r.stack[2] + " 第三 · " + r.stack[3] + " 劣势");
+  L.push("置信度：" + r.confidence + "（八维领先幅度 " + r.gap + " 分，奇偶一致性 " + r.consistency + "）");
+  L.push("八维强度（0–100）：" + r.order.map(function (f) { return f + " " + r.scores[f].toFixed(0); }).join(" / "));
+  L.push("候选类型前三：" + r.top3.map(function (kv) { return kv[0] + " " + kv[1]; }).join("，"));
+  L.push("");
+  L.push("【怎么算的】152 句陈述，每句 7 点（-3 到 +3），每个功能 19 题、其中 6 题反向；功能分是该功能 19 题均值线性映射到 0–100，八个功能题数相同所以可直接比；主导取「个人内中心化后」最高的那个，辅助在「另一类功能 × 相反态度」两个候选里取高者，第三/劣势按结构推出（同类、功能对立、态度相反）。");
+  L.push("注意：这是自评量表，社会赞许偏差会让高分整体抬高；反向题只减少不消除这个偏差。");
+  L.push("");
+  L.push("【请按顺序回答】");
+  L.push("1. 用三句话概括这个组合在日常里最明显的样子。");
+  L.push("2. 指出除了主导功能之外，哪一个功能性分数最值得注意，为什么。");
+  L.push("3. 职场、家庭、亲密关系各给 3 条具体描述 + 1 条可操作建议。");
+  L.push("4. 分析劣势功能（" + r.inferior + "）被触发时的失控方式，以及爆发前可识别信号。");
+  L.push("5. 给未来 6 个月两件可验证的具体行动。");
+  L.push("6. 反问我 3 个能修正这个结论的问题。");
+  L.push("");
+  L.push("【约束】不做诊断、不编数据、不下「你就是这种人」的判决；信息不足就说需要更多信息；中文、少术语。");
+  return L.join("\n");
+}
+
+function showResult() {
+  var r = J8L.computeResult(state.values, ITEMS);
+  var t = DATA.types[r.code] || {}, j = DATA.jung[r.jung_code] || {}, st = r.stack;
+  var h = [];
+
+  h.push('<div class="rhead"><div class="code">' + r.code + '</div>');
+  h.push('<div class="name">' + esc(t.cn_name || r.cn_name) +
+    '<span class="badge' + (r.confidence === "低" ? " low" : "") + '">置信度 ' + r.confidence + '</span></div>');
+  h.push('<div class="jung">荣格归属：' + esc(r.jung_name) + '（主导 ' + r.dominant + '）</div>');
+  h.push('<div class="ver">功能栈 ' + st.join('-') + '　·　作答 ' + r.answered + '/' + r.total +
+    ' 题　·　生成于 ' + nowStamp() + '　·　量表版本 ' + APP_VERSION + '</div></div>');
+
+  h.push('<div class="sect"><h3>功能栈</h3><div class="stackline">');
+  ["主导", "辅助", "第三", "劣势"].forEach(function (lab, i) {
+    h.push('<div><small>' + lab + '</small><b>' + st[i] + '</b><span>' + J8L.FN_CN[st[i]] + '</span></div>');
+  });
+  h.push('</div>');
+  if (t.core) h.push('<p style="margin-top:14px">' + esc(t.core) + '</p>');
+  h.push('</div>');
+
+  h.push('<div class="sect"><h3>八维强度</h3>');
+  var roles = { "主导": "dom", "辅助": "aux", "第三": "ter", "劣势": "inf" };
+  var names = ["主导", "辅助", "第三", "劣势"];
+  r.order.forEach(function (f) {
+    var i = st.indexOf(f), role = i >= 0 ? names[i] : null;
+    h.push('<div class="barrow' + (role ? " role-" + roles[role] : "") + '">' +
+      '<span class="bn">' + f + '</span><span class="bc">' + J8L.FN_CN[f] + '</span>' +
+      '<span class="bar"><i style="width:' + Math.max(2, r.scores[f]) + '%"></i></span>' +
+      '<span class="bv">' + r.scores[f].toFixed(0) + '</span></div>' +
+      (role ? '<div style="margin:-6px 0 6px 52px"><span class="rolebadge">' + role + '</span></div>' : ''));
+  });
+  h.push('<p style="font-size:11.5px;color:var(--faint);margin-top:10px">0–100 是绝对强度（题数等权，可直接互比）。' +
+    '主导的判定用的是「个人内中心化」，避免整体爱打高分的人被误判。</p>');
+  h.push('<details><summary>中心化后（判类型用的相对分）</summary><p style="font-size:12.5px;color:var(--muted)">' +
+    r.order.map(function (f) { return f + " " + (r.centered[f] >= 0 ? "+" : "") + r.centered[f].toFixed(1); }).join("　") +
+    '</p></details></div>');
+
+  h.push('<div class="sect"><h3>候选类型</h3><div class="fits">');
+  r.top3.forEach(function (kv) {
+    h.push('<span class="fit' + (kv[0] === r.code ? " cur" : "") + '">' + kv[0] + ' <b>' + kv[1].toFixed(2) + '</b></span>');
+  });
+  h.push('</div>');
+  h.push('<p style="font-size:13px;margin-top:12px;color:var(--muted)">' +
+    (r.mismatch ? '主判与吻合度排序不一致：你的答案在两种方式之间有拉扯，建议隔一周重做或用另一种答法对照。'
+                : '主判与吻合度排序一致。领先幅度 ' + r.gap + ' 分、奇偶一致性 ' + r.consistency + '。') + '</p></div>');
+
+  h.push('<div class="sect profile"><h3>' + r.code + ' · ' + esc(t.cn_name || "") + '</h3>');
+  [["work", "职场"], ["family", "家庭与亲戚"], ["love", "亲密关系"]].forEach(function (s) {
+    if (t[s[0]]) h.push('<p><b class="lbl">' + s[1] + '。</b>' + esc(t[s[0]]) + '</p>');
+  });
+  if (t.strength && t.strength.length) h.push('<p><b class="lbl">优势。</b>' + t.strength.map(esc).join("；") + '。</p>');
+  if (t.blindspot && t.blindspot.length) h.push('<p><b class="lbl">盲区。</b>' + t.blindspot.map(esc).join("；") + '。</p>');
+  if (t.stress) h.push('<p><b class="lbl">压力下的样子。</b>' + esc(t.stress) + '</p>');
+  if (t.growth) h.push('<p><b class="lbl">可以怎么长。</b>' + esc(t.growth) + '</p>');
+  if (t.mistype) h.push('<p><b class="lbl">容易和谁混。</b>' + esc(t.mistype) + '</p>');
+  h.push('</div>');
+
+  if (j.essence) {
+    h.push('<div class="sect profile"><h3>你所属的荣格类型：' + esc(r.jung_name) + '</h3>');
+    h.push('<p>' + esc(j.essence) + '</p>');
+    if (j.everyday) h.push('<p><b class="lbl">日常里的样子。</b>' + esc(j.everyday) + '</p>');
+    if (j.blind) h.push('<p><b class="lbl">盲区与压力。</b>' + esc(j.blind) + '</p>');
+    h.push('</div>');
+  }
+
+  h.push('<div class="sect"><h3>把结果交给 AI 分析</h3>' +
+    '<p style="font-size:13.5px;color:var(--muted)">这段提示词已把分数、计分口径和边界写好，复制后黏到常用的 AI 里即可。</p>' +
+    '<div class="actions" style="margin:12px 0 0"><button class="primary" id="copyPromptBtn">复制 AI 分析提示词</button>' +
+    '<button id="downloadPromptBtn">下载为 .txt</button></div>' +
+    '<details><summary>展开查看提示词全文</summary><textarea class="promptBox" id="aiPrompt" spellcheck="false"></textarea>' +
+    '<p style="font-size:11.5px;color:var(--faint);margin:8px 0 0">只有分数，没有姓名。</p></details></div>');
+
+  h.push('<div class="actions"><button class="primary" id="againBtn">重新做一次</button>' +
+    '<button id="printBtn">打印 / 存为 PDF</button>' +
+    '<button id="copyBtn">复制结果摘要</button></div>');
+  h.push('<p class="disclaimer">这是自我认识工具，不是诊断，也不该拿来筛选别人。' +
+    '分数是「你多常这样」，不是能力高低；类型是假设，不是判决。</p>');
+
+  $("result").innerHTML = h.join("");
+  view("result");
+  $("againBtn").onclick = function () { start(false); };
+  $("printBtn").onclick = function () { window.print(); };
+  $("copyBtn").onclick = function () { copyText(summary(r), $("copyBtn")); };
+  $("aiPrompt").value = aiPrompt(r);
+  $("copyPromptBtn").onclick = function () { copyText($("aiPrompt").value, $("copyPromptBtn")); };
+  $("downloadPromptBtn").onclick = function () { downloadText("八维量表-结果-AI分析提示.txt", $("aiPrompt").value); };
+}
+
+function copyText(text, btn) {
+  var done = function () { flash(btn, "已复制"); };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done, function () { fallbackCopy(text); done(); });
+  } else { fallbackCopy(text); done(); }
+}
+function fallbackCopy(text) {
+  var ta = document.createElement("textarea");
+  ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand("copy"); } catch (e) {}
+  document.body.removeChild(ta);
+}
+function downloadText(name, text) {
+  try {
+    var blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+    var url = URL.createObjectURL(blob), a = document.createElement("a");
+    a.href = url; a.download = name; document.body.appendChild(a);
+    if (a.click) a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  } catch (e) { fallbackCopy(text); }
+}
+function flash(btn, msg) { var old = btn.textContent; btn.textContent = msg; setTimeout(function () { btn.textContent = old; }, 1400); }
+
+(function buildScale() {
+  var html = "";
+  LABELS.forEach(function (lab, i) {
+    html += '<button data-v="' + i + '"><b>' + (i === 3 ? "—" : (i < 3 ? (i - 3) : ("+" + (i - 3)))) + '</b>' + lab + '</button>';
+  });
+  $("scale").innerHTML = html;
+  var btns = $("scale").querySelectorAll("button");
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].addEventListener("click", function () { choose(Number(this.getAttribute("data-v"))); });
+  }
+})();
+
+$("backBtn").addEventListener("click", back);
+document.addEventListener("keydown", function (e) {
+  if ($("test").classList.contains("hidden")) return;
+  if (/^[1-7]$/.test(e.key)) { e.preventDefault(); choose(Number(e.key) - 1); }
+  else if (e.key === "ArrowLeft" || e.key === "Backspace") { e.preventDefault(); back(); }
+});
+
+(function resumeCheck() {
+  var saved = null;
+  try { saved = JSON.parse(localStorage.getItem(SAVE) || "null"); } catch (e) {}
+  if (saved && saved.values && Object.keys(saved.values).length && saved.idx < ITEMS.length) {
+    pendingResume = saved;
+    $("startBtn").innerHTML = "<b>继续上次</b><span>已答 " + Object.keys(saved.values).length + " / " + ITEMS.length + " 题</span>";
+  }
+})();
+$("startBtn").addEventListener("click", function () { start(!!pendingResume); });
+
+if (typeof window !== "undefined") {
+  window.__J8L_DEBUG = { start: function () { start(false); }, choose: choose,
+    answered: function () { return Object.keys(state.values).length; } };
+}
+</script>
+</body>
+</html>

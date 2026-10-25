@@ -1,0 +1,52 @@
+{
+  "fn": "Fe",
+  "items": [
+    {"id": "Fe-01", "fn": "Fe", "reverse": false, "domain": "家庭亲戚",
+     "text": "饭桌上有人话赶话要吵起来，你先岔开话题。"},
+    {"id": "Fe-02", "fn": "Fe", "reverse": false, "domain": "家庭亲戚",
+     "text": "长辈当众被晚辈顶了一句，你会替他找台阶。"},
+    {"id": "Fe-03", "fn": "Fe", "reverse": true, "domain": "家庭亲戚",
+     "text": "亲戚之间传话，你只管带到，不管对方听了怎么想。"},
+
+    {"id": "Fe-04", "fn": "Fe", "reverse": false, "domain": "职场办公",
+     "text": "同事被领导当众批评，散会后你会私下问一句。"},
+    {"id": "Fe-05", "fn": "Fe", "reverse": false, "domain": "职场办公",
+     "text": "跨部门会开冷了场，你会先接话把气顺过来。"},
+    {"id": "Fe-06", "fn": "Fe", "reverse": true, "domain": "职场办公",
+     "text": "会议室气氛僵住，你照自己的说完就走。"},
+
+    {"id": "Fe-07", "fn": "Fe", "reverse": false, "domain": "学习考试",
+     "text": "小组作业有人跟不上，你会把节奏放慢一点。"},
+    {"id": "Fe-08", "fn": "Fe", "reverse": true, "domain": "学习考试",
+     "text": "老师一句话让全班不舒服，你觉得跟自己没关系。"},
+
+    {"id": "Fe-09", "fn": "Fe", "reverse": false, "domain": "社交人情",
+     "text": "敬酒你会留意顺序，别让谁被落下。"},
+    {"id": "Fe-10", "fn": "Fe", "reverse": true, "domain": "社交人情",
+     "text": "聚会上谁被冷落，你不去管。"},
+
+    {"id": "Fe-11", "fn": "Fe", "reverse": false, "domain": "消费生活",
+     "text": "陪人买东西，你会先想他的预算和面子。"},
+    {"id": "Fe-12", "fn": "Fe", "reverse": true, "domain": "消费生活",
+     "text": "送礼你挑自己喜欢的，不管对方合不合适。"},
+
+    {"id": "Fe-13", "fn": "Fe", "reverse": false, "domain": "冲突矛盾",
+     "text": "两边都下不来台时，你会递个台阶。"},
+    {"id": "Fe-14", "fn": "Fe", "reverse": true, "domain": "冲突矛盾",
+     "text": "群里吵起来你先看热闹，不掺和。"},
+
+    {"id": "Fe-15", "fn": "Fe", "reverse": false, "domain": "兴趣娱乐",
+     "text": "组织活动你会照顾到不爱说话的人。"},
+    {"id": "Fe-16", "fn": "Fe", "reverse": false, "domain": "兴趣娱乐",
+     "text": "唱歌时你会留意谁一直没唱。"},
+
+    {"id": "Fe-17", "fn": "Fe", "reverse": false, "domain": "信息媒体",
+     "text": "转发消息前你会想，会不会让谁难堪。"},
+
+    {"id": "Fe-18", "fn": "Fe", "reverse": false, "domain": "亲密关系",
+     "text": "对方不开心，你会先接住情绪再谈事。"},
+
+    {"id": "Fe-19", "fn": "Fe", "reverse": false, "domain": "身体健康",
+     "text": "家里人生病，你张罗挂号、陪床、忌口这些细节。"}
+  ]
+}

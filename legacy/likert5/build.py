@@ -10,7 +10,7 @@ import sys
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HERE = os.path.join(BASE, "likert")
-OUT = os.path.join(BASE, "index.html")
+OUT = os.path.join(BASE, "legacy", "likert5", "index-legacy.html")
 VERSION = "v0.2"
 
 

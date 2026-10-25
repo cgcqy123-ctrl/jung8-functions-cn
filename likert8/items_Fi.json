@@ -1,0 +1,52 @@
+{
+  "fn": "Fi",
+  "items": [
+    {"id": "Fi-01", "fn": "Fi", "reverse": false, "domain": "家庭亲戚",
+     "text": "亲戚的话让你觉得违心，你会当场不太接。"},
+    {"id": "Fi-02", "fn": "Fi", "reverse": false, "domain": "家庭亲戚",
+     "text": "要不要为家里改自己的选择，你心里掂量很久。"},
+    {"id": "Fi-03", "fn": "Fi", "reverse": true, "domain": "家庭亲戚",
+     "text": "长辈说什么你就照做，不太问自己认不认。"},
+
+    {"id": "Fi-04", "fn": "Fi", "reverse": false, "domain": "职场办公",
+     "text": "让你做一件你不认同的事，你会先顶住。"},
+    {"id": "Fi-05", "fn": "Fi", "reverse": false, "domain": "职场办公",
+     "text": "方案跟你的标准冲突，你宁可慢一点也不改。"},
+    {"id": "Fi-06", "fn": "Fi", "reverse": true, "domain": "职场办公",
+     "text": "工作里做什么都行，只要给钱。"},
+
+    {"id": "Fi-07", "fn": "Fi", "reverse": false, "domain": "学习考试",
+     "text": "学一门自己不认同的课，你很难投入。"},
+    {"id": "Fi-08", "fn": "Fi", "reverse": true, "domain": "学习考试",
+     "text": "论文怎么写能过就怎么写，不管自己怎么想。"},
+
+    {"id": "Fi-09", "fn": "Fi", "reverse": false, "domain": "社交人情",
+     "text": "朋友的玩笑踩到你的线，你会直接说。"},
+    {"id": "Fi-10", "fn": "Fi", "reverse": true, "domain": "社交人情",
+     "text": "为了合群，你会跟着说自己也不同意的话。"},
+
+    {"id": "Fi-11", "fn": "Fi", "reverse": false, "domain": "消费生活",
+     "text": "大家抢着买的东西，你不喜欢就不买。"},
+    {"id": "Fi-12", "fn": "Fi", "reverse": true, "domain": "消费生活",
+     "text": "别人都买，你也跟着买一份。"},
+
+    {"id": "Fi-13", "fn": "Fi", "reverse": false, "domain": "冲突矛盾",
+     "text": "明知会得罪人，该说的你还是要说。"},
+    {"id": "Fi-14", "fn": "Fi", "reverse": false, "domain": "冲突矛盾",
+     "text": "道歉你会等自己想清楚了才开口。"},
+
+    {"id": "Fi-15", "fn": "Fi", "reverse": false, "domain": "兴趣娱乐",
+     "text": "你只做自己真喜欢的那件事，别人怎么看另说。"},
+    {"id": "Fi-16", "fn": "Fi", "reverse": true, "domain": "兴趣娱乐",
+     "text": "流行什么你就玩什么，自己喜不喜欢另说。"},
+
+    {"id": "Fi-17", "fn": "Fi", "reverse": false, "domain": "信息媒体",
+     "text": "看到某条新闻，你心里会过不去很久。"},
+
+    {"id": "Fi-18", "fn": "Fi", "reverse": false, "domain": "亲密关系",
+     "text": "关系里你会反复确认自己是不是还在做自己。"},
+
+    {"id": "Fi-19", "fn": "Fi", "reverse": false, "domain": "身体健康",
+     "text": "身体不舒服时，你会想这是不是自己不想面对什么。"}
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "fn": "Ti",
+  "items": [
+    {"id": "Ti-01", "fn": "Ti", "reverse": false, "domain": "家庭亲戚",
+     "text": "家里争论该不该，你先问清这个该是按谁的标准。"},
+    {"id": "Ti-02", "fn": "Ti", "reverse": false, "domain": "家庭亲戚",
+     "text": "说明书上的原理你会读明白再动手。"},
+    {"id": "Ti-03", "fn": "Ti", "reverse": true, "domain": "家庭亲戚",
+     "text": "亲戚说的话前后对不对得上，你不去管。"},
+
+    {"id": "Ti-04", "fn": "Ti", "reverse": false, "domain": "职场办公",
+     "text": "方案里的逻辑漏洞，你一眼就能指出来。"},
+    {"id": "Ti-05", "fn": "Ti", "reverse": false, "domain": "职场办公",
+     "text": "你会追问这个流程为什么非要这么设。"},
+    {"id": "Ti-06", "fn": "Ti", "reverse": true, "domain": "职场办公",
+     "text": "两份文档说法不一致，你按最新那份照做就行。"},
+
+    {"id": "Ti-07", "fn": "Ti", "reverse": false, "domain": "学习考试",
+     "text": "推公式你会把每一步的前提写出来。"},
+    {"id": "Ti-08", "fn": "Ti", "reverse": true, "domain": "学习考试",
+     "text": "教材前后矛盾，你背下来应付考试就行。"},
+
+    {"id": "Ti-09", "fn": "Ti", "reverse": false, "domain": "社交人情",
+     "text": "朋友的说法站不站得住，你心里先过一遍。"},
+    {"id": "Ti-10", "fn": "Ti", "reverse": true, "domain": "社交人情",
+     "text": "聊天里一个词用得不准确，你不太在意。"},
+
+    {"id": "Ti-11", "fn": "Ti", "reverse": false, "domain": "消费生活",
+     "text": "参数之间的取舍，你会先弄清原理再选。"},
+    {"id": "Ti-12", "fn": "Ti", "reverse": true, "domain": "消费生活",
+     "text": "保修条款你扫一眼就签，不太抠字眼。"},
+
+    {"id": "Ti-13", "fn": "Ti", "reverse": false, "domain": "冲突矛盾",
+     "text": "争执你会拆成哪些是事实、哪些是判断。"},
+    {"id": "Ti-14", "fn": "Ti", "reverse": true, "domain": "冲突矛盾",
+     "text": "谁对谁错你不细究，先把事放过去。"},
+
+    {"id": "Ti-15", "fn": "Ti", "reverse": false, "domain": "兴趣娱乐",
+     "text": "游戏或器械的规则，你会读到最细那一层。"},
+    {"id": "Ti-16", "fn": "Ti", "reverse": false, "domain": "兴趣娱乐",
+     "text": "玩之前你会先把规则完整读一遍。"},
+
+    {"id": "Ti-17", "fn": "Ti", "reverse": false, "domain": "信息媒体",
+     "text": "一条消息你会去追它的出处和前提。"},
+
+    {"id": "Ti-18", "fn": "Ti", "reverse": false, "domain": "亲密关系",
+     "text": "对方说的和你理解的是不是一回事，你会确认。"},
+
+    {"id": "Ti-19", "fn": "Ti", "reverse": false, "domain": "身体健康",
+     "text": "身体出状况，你想弄清它对应的机理。"}
+  ]
+}

@@ -1,0 +1,1074 @@
+{
+  "meta": {
+    "version": "v3.0",
+    "scale": 7,
+    "items": 152,
+    "plan": "8 个功能 × 19 题；每题 7 点同意度；每功能 6 题反向"
+  },
+  "items": [
+    {
+      "id": "Se-01",
+      "fn": "Se",
+      "reverse": false,
+      "domain": "家庭亲戚",
+      "text": "全家自驾途中临时改道，你马上看路牌问往哪拐。"
+    },
+    {
+      "id": "Se-02",
+      "fn": "Se",
+      "reverse": false,
+      "domain": "家庭亲戚",
+      "text": "年夜饭桌上菜还没齐，你就挽袖子现张罗起来。"
+    },
+    {
+      "id": "Se-03",
+      "fn": "Se",
+      "reverse": true,
+      "domain": "家庭亲戚",
+      "text": "全家自驾途中临时改道，你先打电话问清原来的安排。"
+    },
+    {
+      "id": "Se-04",
+      "fn": "Se",
+      "reverse": false,
+      "domain": "职场办公",
+      "text": "客户当场推翻方案，你在会议室就着白板改。"
+    },
+    {
+      "id": "Se-05",
+      "fn": "Se",
+      "reverse": false,
+      "domain": "职场办公",
+      "text": "仓库盘点时你一眼看出货架上有箱摆错了。"
+    },
+    {
+      "id": "Se-06",
+      "fn": "Se",
+      "reverse": true,
+      "domain": "职场办公",
+      "text": "团建爬山你跟着队伍走，脚下的路交给别人看。"
+    },
+    {
+      "id": "Se-07",
+      "fn": "Se",
+      "reverse": false,
+      "domain": "学习考试",
+      "text": "学游泳你不看教程，先下水扶着池边蹬腿。"
+    },
+    {
+      "id": "Se-08",
+      "fn": "Se",
+      "reverse": true,
+      "domain": "学习考试",
+      "text": "学游泳前你先把教程视频看完，才肯下水。"
+    },
+    {
+      "id": "Se-09",
+      "fn": "Se",
+      "reverse": false,
+      "domain": "社交人情",
+      "text": "饭局上你拿过菜单，边翻边问大家吃什么。"
+    },
+    {
+      "id": "Se-10",
+      "fn": "Se",
+      "reverse": false,
+      "domain": "社交人情",
+      "text": "朋友拿出新桌游，你先抓牌试一把再听规则。"
+    },
+    {
+      "id": "Se-11",
+      "fn": "Se",
+      "reverse": false,
+      "domain": "消费生活",
+      "text": "逛家电卖场你打开冰箱门，摸内壁听声音。"
+    },
+    {
+      "id": "Se-12",
+      "fn": "Se",
+      "reverse": true,
+      "domain": "消费生活",
+      "text": "买冰箱前你翻参数做对比，到了卖场也没上手看。"
+    },
+    {
+      "id": "Se-13",
+      "fn": "Se",
+      "reverse": false,
+      "domain": "冲突矛盾",
+      "text": "楼上半夜还在响，你披上衣服上楼敲门当面说。"
+    },
+    {
+      "id": "Se-14",
+      "fn": "Se",
+      "reverse": true,
+      "domain": "冲突矛盾",
+      "text": "菜市场少称了，你心里记一下，回家再想办法。"
+    },
+    {
+      "id": "Se-15",
+      "fn": "Se",
+      "reverse": false,
+      "domain": "兴趣娱乐",
+      "text": "做菜你靠手感撒盐，尝一口再补一点。"
+    },
+    {
+      "id": "Se-16",
+      "fn": "Se",
+      "reverse": true,
+      "domain": "兴趣娱乐",
+      "text": "做菜你按菜谱称好克数，再一样一样下锅。"
+    },
+    {
+      "id": "Se-17",
+      "fn": "Se",
+      "reverse": false,
+      "domain": "信息媒体",
+      "text": "新手机上市，你先去店里把它拿在手上转两圈。"
+    },
+    {
+      "id": "Se-18",
+      "fn": "Se",
+      "reverse": false,
+      "domain": "亲密关系",
+      "text": "对方情绪不好，你不劝，拉他出门走一段。"
+    },
+    {
+      "id": "Se-19",
+      "fn": "Se",
+      "reverse": false,
+      "domain": "身体健康",
+      "text": "身体不舒服，你先说清是哪儿疼、怎么个疼法。"
+    },
+    {
+      "id": "Si-01",
+      "fn": "Si",
+      "reverse": false,
+      "domain": "家庭亲戚",
+      "text": "过年走亲戚，你按往年的顺序一家一家去。"
+    },
+    {
+      "id": "Si-02",
+      "fn": "Si",
+      "reverse": false,
+      "domain": "家庭亲戚",
+      "text": "妈妈的旧菜谱，你照着上面的火候和顺序做。"
+    },
+    {
+      "id": "Si-03",
+      "fn": "Si",
+      "reverse": true,
+      "domain": "家庭亲戚",
+      "text": "家里的东西放哪儿你不太在意，找的时候再翻。"
+    },
+    {
+      "id": "Si-04",
+      "fn": "Si",
+      "reverse": false,
+      "domain": "职场办公",
+      "text": "做报表你还是沿用上季度那份模板的格式。"
+    },
+    {
+      "id": "Si-05",
+      "fn": "Si",
+      "reverse": false,
+      "domain": "职场办公",
+      "text": "公司流程你一步步照着走，跳一步心里不踏实。"
+    },
+    {
+      "id": "Si-06",
+      "fn": "Si",
+      "reverse": true,
+      "domain": "职场办公",
+      "text": "新项目你不翻旧资料，直接从头摸一遍。"
+    },
+    {
+      "id": "Si-07",
+      "fn": "Si",
+      "reverse": true,
+      "domain": "学习考试",
+      "text": "复习你不翻旧笔记，另找一套方法从头试。"
+    },
+    {
+      "id": "Si-08",
+      "fn": "Si",
+      "reverse": false,
+      "domain": "学习考试",
+      "text": "考试你先按熟的那套时间分配往下答。"
+    },
+    {
+      "id": "Si-09",
+      "fn": "Si",
+      "reverse": false,
+      "domain": "社交人情",
+      "text": "老朋友见面，你还是约那家去了很多年的老馆子。"
+    },
+    {
+      "id": "Si-10",
+      "fn": "Si",
+      "reverse": true,
+      "domain": "社交人情",
+      "text": "饭桌上你换个新段子讲，老段子自己都想不起来。"
+    },
+    {
+      "id": "Si-11",
+      "fn": "Si",
+      "reverse": false,
+      "domain": "消费生活",
+      "text": "买酱油你伸手就拿一直吃的那个牌子。"
+    },
+    {
+      "id": "Si-12",
+      "fn": "Si",
+      "reverse": false,
+      "domain": "消费生活",
+      "text": "换新手机，你先去把旧手机里的设置一项项对回来。"
+    },
+    {
+      "id": "Si-13",
+      "fn": "Si",
+      "reverse": false,
+      "domain": "冲突矛盾",
+      "text": "邻里有点摩擦，你按以前那回的办法去处理。"
+    },
+    {
+      "id": "Si-14",
+      "fn": "Si",
+      "reverse": true,
+      "domain": "冲突矛盾",
+      "text": "跟同事闹别扭，你不去想上回，只谈这次的事。"
+    },
+    {
+      "id": "Si-15",
+      "fn": "Si",
+      "reverse": false,
+      "domain": "兴趣娱乐",
+      "text": "跑步你顺着那条走熟的路线，心里有数。"
+    },
+    {
+      "id": "Si-16",
+      "fn": "Si",
+      "reverse": true,
+      "domain": "兴趣娱乐",
+      "text": "做菜你不看量杯和计时器，随手放随手炒。"
+    },
+    {
+      "id": "Si-17",
+      "fn": "Si",
+      "reverse": false,
+      "domain": "信息媒体",
+      "text": "看到一条传言，你想起前几年传过的那版。"
+    },
+    {
+      "id": "Si-18",
+      "fn": "Si",
+      "reverse": false,
+      "domain": "亲密关系",
+      "text": "对方不吃什么、几点睡，你都记在心里。"
+    },
+    {
+      "id": "Si-19",
+      "fn": "Si",
+      "reverse": false,
+      "domain": "身体健康",
+      "text": "换季时你会留意身上反应跟往年像不像。"
+    },
+    {
+      "id": "Ne-01",
+      "fn": "Ne",
+      "reverse": false,
+      "domain": "家庭亲戚",
+      "text": "装修想试混搭，北欧的墙配旧木料地板，阳台也想掺一手。"
+    },
+    {
+      "id": "Ne-02",
+      "fn": "Ne",
+      "reverse": false,
+      "domain": "家庭亲戚",
+      "text": "孩子问天为什么蓝，你从光的散射扯到海和晚霞，话还没完。"
+    },
+    {
+      "id": "Ne-03",
+      "fn": "Ne",
+      "reverse": true,
+      "domain": "家庭亲戚",
+      "text": "旧家具你就按原来的用处用，没想过改成别的样子。"
+    },
+    {
+      "id": "Ne-04",
+      "fn": "Ne",
+      "reverse": false,
+      "domain": "职场办公",
+      "text": "会上你一口气抛出三个方向，还顺手补了两条别的路。"
+    },
+    {
+      "id": "Ne-05",
+      "fn": "Ne",
+      "reverse": false,
+      "domain": "职场办公",
+      "text": "给产品想点子，你专挑不正经的路子试，再看哪个能成。"
+    },
+    {
+      "id": "Ne-06",
+      "fn": "Ne",
+      "reverse": true,
+      "domain": "职场办公",
+      "text": "开会你只讲定好的那个方向，别的一条都不提。"
+    },
+    {
+      "id": "Ne-07",
+      "fn": "Ne",
+      "reverse": false,
+      "domain": "学习考试",
+      "text": "啃一个概念，你会想到别的领域也有同一套东西在转。"
+    },
+    {
+      "id": "Ne-08",
+      "fn": "Ne",
+      "reverse": true,
+      "domain": "学习考试",
+      "text": "记概念你就按书上那一章记下来，不往别的地方联。"
+    },
+    {
+      "id": "Ne-09",
+      "fn": "Ne",
+      "reverse": false,
+      "domain": "社交人情",
+      "text": "聊着聊着，你从天气跳到谁家的事，再跳到新开的店。"
+    },
+    {
+      "id": "Ne-10",
+      "fn": "Ne",
+      "reverse": true,
+      "domain": "社交人情",
+      "text": "聊天时你守着同一个话题往下说，不往旁边岔。"
+    },
+    {
+      "id": "Ne-11",
+      "fn": "Ne",
+      "reverse": false,
+      "domain": "消费生活",
+      "text": "逛超市专看新品，看完就琢磨家里哪块地方能用上。"
+    },
+    {
+      "id": "Ne-12",
+      "fn": "Ne",
+      "reverse": true,
+      "domain": "消费生活",
+      "text": "逛超市只拿清单上的，新品柜台一眼不看就走过去。"
+    },
+    {
+      "id": "Ne-13",
+      "fn": "Ne",
+      "reverse": false,
+      "domain": "冲突矛盾",
+      "text": "吵起来的时候，你提出第三条路，两边都没想过的。"
+    },
+    {
+      "id": "Ne-14",
+      "fn": "Ne",
+      "reverse": false,
+      "domain": "冲突矛盾",
+      "text": "矛盾里你会替对方想几种处境，还想过换个说法。"
+    },
+    {
+      "id": "Ne-15",
+      "fn": "Ne",
+      "reverse": false,
+      "domain": "兴趣娱乐",
+      "text": "想同时学三样乐器，还给每样找了个入门的法子。"
+    },
+    {
+      "id": "Ne-16",
+      "fn": "Ne",
+      "reverse": true,
+      "domain": "兴趣娱乐",
+      "text": "旅行前你把路线定成一套，路上不再琢磨别的走法。"
+    },
+    {
+      "id": "Ne-17",
+      "fn": "Ne",
+      "reverse": false,
+      "domain": "信息媒体",
+      "text": "看到新技术新闻，你先想它还能用在哪，能替掉哪些活。"
+    },
+    {
+      "id": "Ne-18",
+      "fn": "Ne",
+      "reverse": false,
+      "domain": "亲密关系",
+      "text": "计划约会你想换花样，吃完饭还能骑车、看展，再去别处。"
+    },
+    {
+      "id": "Ne-19",
+      "fn": "Ne",
+      "reverse": false,
+      "domain": "身体健康",
+      "text": "身体一不舒服，你脑子里先冒出一串可能的原因。"
+    },
+    {
+      "id": "Ni-01",
+      "fn": "Ni",
+      "reverse": false,
+      "domain": "家庭亲戚",
+      "text": "看亲戚家孩子，你会想他十年后大概走成什么样。"
+    },
+    {
+      "id": "Ni-02",
+      "fn": "Ni",
+      "reverse": false,
+      "domain": "家庭亲戚",
+      "text": "家里闹矛盾，你会想根子其实在很早以前的一件小事上。"
+    },
+    {
+      "id": "Ni-03",
+      "fn": "Ni",
+      "reverse": true,
+      "domain": "家庭亲戚",
+      "text": "亲戚家的事你只看眼前这一件，不往以后想。"
+    },
+    {
+      "id": "Ni-04",
+      "fn": "Ni",
+      "reverse": false,
+      "domain": "职场办公",
+      "text": "你会判断这个行业三年后大概会变成什么样。"
+    },
+    {
+      "id": "Ni-05",
+      "fn": "Ni",
+      "reverse": false,
+      "domain": "职场办公",
+      "text": "项目刚立项，你就能说出它最后可能死在哪一步。"
+    },
+    {
+      "id": "Ni-06",
+      "fn": "Ni",
+      "reverse": true,
+      "domain": "职场办公",
+      "text": "项目你只关心这周要做完的那部分。"
+    },
+    {
+      "id": "Ni-07",
+      "fn": "Ni",
+      "reverse": false,
+      "domain": "学习考试",
+      "text": "读完一本书，你能用一句话说清它到底在讲什么。"
+    },
+    {
+      "id": "Ni-08",
+      "fn": "Ni",
+      "reverse": true,
+      "domain": "学习考试",
+      "text": "复习时你按章节顺序过，不太想整门课的主线。"
+    },
+    {
+      "id": "Ni-09",
+      "fn": "Ni",
+      "reverse": false,
+      "domain": "社交人情",
+      "text": "见一个人第一面，你心里就有个整体判断。"
+    },
+    {
+      "id": "Ni-10",
+      "fn": "Ni",
+      "reverse": true,
+      "domain": "社交人情",
+      "text": "一群人待着时，你只顾说自己的，不太管气氛。"
+    },
+    {
+      "id": "Ni-11",
+      "fn": "Ni",
+      "reverse": false,
+      "domain": "消费生活",
+      "text": "买大件时你会想这东西过几年会不会过时。"
+    },
+    {
+      "id": "Ni-12",
+      "fn": "Ni",
+      "reverse": true,
+      "domain": "消费生活",
+      "text": "买东西你只看现在用不用得上。"
+    },
+    {
+      "id": "Ni-13",
+      "fn": "Ni",
+      "reverse": false,
+      "domain": "冲突矛盾",
+      "text": "争执里你能指出两边真正的分歧在哪。"
+    },
+    {
+      "id": "Ni-14",
+      "fn": "Ni",
+      "reverse": true,
+      "domain": "冲突矛盾",
+      "text": "争执里你只回应他最后说的那一句。"
+    },
+    {
+      "id": "Ni-15",
+      "fn": "Ni",
+      "reverse": false,
+      "domain": "兴趣娱乐",
+      "text": "看完一部电影，你想的是它真正在讲什么。"
+    },
+    {
+      "id": "Ni-16",
+      "fn": "Ni",
+      "reverse": false,
+      "domain": "兴趣娱乐",
+      "text": "听一首歌，你脑子里会浮出一个画面。"
+    },
+    {
+      "id": "Ni-17",
+      "fn": "Ni",
+      "reverse": false,
+      "domain": "信息媒体",
+      "text": "一条新闻你会想它背后正往哪个方向走。"
+    },
+    {
+      "id": "Ni-18",
+      "fn": "Ni",
+      "reverse": false,
+      "domain": "亲密关系",
+      "text": "关系里你常预感到这样下去会走到哪。"
+    },
+    {
+      "id": "Ni-19",
+      "fn": "Ni",
+      "reverse": false,
+      "domain": "身体健康",
+      "text": "长期累的时候，你觉得身体在提示你什么。"
+    },
+    {
+      "id": "Te-01",
+      "fn": "Te",
+      "reverse": false,
+      "domain": "家庭亲戚",
+      "text": "搬家前你先列好时间表和分工，谁搬哪间都写清。"
+    },
+    {
+      "id": "Te-02",
+      "fn": "Te",
+      "reverse": false,
+      "domain": "家庭亲戚",
+      "text": "过年回谁家、哪天走，你排成一张表。"
+    },
+    {
+      "id": "Te-03",
+      "fn": "Te",
+      "reverse": true,
+      "domain": "家庭亲戚",
+      "text": "家里出游你到了再商量去哪，事先不定计划。"
+    },
+    {
+      "id": "Te-04",
+      "fn": "Te",
+      "reverse": false,
+      "domain": "职场办公",
+      "text": "接到任务，你先拆成步骤和截止时间。"
+    },
+    {
+      "id": "Te-05",
+      "fn": "Te",
+      "reverse": false,
+      "domain": "职场办公",
+      "text": "开会你负责收口：谁做、什么时候交。"
+    },
+    {
+      "id": "Te-06",
+      "fn": "Te",
+      "reverse": true,
+      "domain": "职场办公",
+      "text": "项目推进你走一步看一步，不排节点。"
+    },
+    {
+      "id": "Te-07",
+      "fn": "Te",
+      "reverse": false,
+      "domain": "学习考试",
+      "text": "备考你先排一张到考前的计划表。"
+    },
+    {
+      "id": "Te-08",
+      "fn": "Te",
+      "reverse": true,
+      "domain": "学习考试",
+      "text": "复习你翻到哪算哪，不做进度安排。"
+    },
+    {
+      "id": "Te-09",
+      "fn": "Te",
+      "reverse": false,
+      "domain": "社交人情",
+      "text": "组织同学聚会，你把时间、人数、地点定死。"
+    },
+    {
+      "id": "Te-10",
+      "fn": "Te",
+      "reverse": false,
+      "domain": "社交人情",
+      "text": "群里收钱办事，你会把账目和进度贴出来。"
+    },
+    {
+      "id": "Te-11",
+      "fn": "Te",
+      "reverse": false,
+      "domain": "消费生活",
+      "text": "买大件你做一张比价表，参数价格一起看。"
+    },
+    {
+      "id": "Te-12",
+      "fn": "Te",
+      "reverse": true,
+      "domain": "消费生活",
+      "text": "买东西你看着顺眼就下单，不比价。"
+    },
+    {
+      "id": "Te-13",
+      "fn": "Te",
+      "reverse": false,
+      "domain": "冲突矛盾",
+      "text": "吵完你把规矩重写一遍，免得再吵。"
+    },
+    {
+      "id": "Te-14",
+      "fn": "Te",
+      "reverse": true,
+      "domain": "冲突矛盾",
+      "text": "有矛盾你等它自己过去，不另定规矩。"
+    },
+    {
+      "id": "Te-15",
+      "fn": "Te",
+      "reverse": false,
+      "domain": "兴趣娱乐",
+      "text": "出去玩你先把每天的行程排出来。"
+    },
+    {
+      "id": "Te-16",
+      "fn": "Te",
+      "reverse": true,
+      "domain": "兴趣娱乐",
+      "text": "组队打游戏，你等别人安排位置，自己不动手分。"
+    },
+    {
+      "id": "Te-17",
+      "fn": "Te",
+      "reverse": false,
+      "domain": "信息媒体",
+      "text": "看新政策你先找关键条款和执行时间。"
+    },
+    {
+      "id": "Te-18",
+      "fn": "Te",
+      "reverse": false,
+      "domain": "亲密关系",
+      "text": "共同开销你记账，到月底对一次。"
+    },
+    {
+      "id": "Te-19",
+      "fn": "Te",
+      "reverse": false,
+      "domain": "身体健康",
+      "text": "体检你按计划安排，复查时间也先定好。"
+    },
+    {
+      "id": "Ti-01",
+      "fn": "Ti",
+      "reverse": false,
+      "domain": "家庭亲戚",
+      "text": "家里争论该不该，你先问清这个该是按谁的标准。"
+    },
+    {
+      "id": "Ti-02",
+      "fn": "Ti",
+      "reverse": false,
+      "domain": "家庭亲戚",
+      "text": "说明书上的原理你会读明白再动手。"
+    },
+    {
+      "id": "Ti-03",
+      "fn": "Ti",
+      "reverse": true,
+      "domain": "家庭亲戚",
+      "text": "亲戚说的话前后对不对得上，你不去管。"
+    },
+    {
+      "id": "Ti-04",
+      "fn": "Ti",
+      "reverse": false,
+      "domain": "职场办公",
+      "text": "方案里的逻辑漏洞，你一眼就能指出来。"
+    },
+    {
+      "id": "Ti-05",
+      "fn": "Ti",
+      "reverse": false,
+      "domain": "职场办公",
+      "text": "你会追问这个流程为什么非要这么设。"
+    },
+    {
+      "id": "Ti-06",
+      "fn": "Ti",
+      "reverse": true,
+      "domain": "职场办公",
+      "text": "两份文档说法不一致，你按最新那份照做就行。"
+    },
+    {
+      "id": "Ti-07",
+      "fn": "Ti",
+      "reverse": false,
+      "domain": "学习考试",
+      "text": "推公式你会把每一步的前提写出来。"
+    },
+    {
+      "id": "Ti-08",
+      "fn": "Ti",
+      "reverse": true,
+      "domain": "学习考试",
+      "text": "教材前后矛盾，你背下来应付考试就行。"
+    },
+    {
+      "id": "Ti-09",
+      "fn": "Ti",
+      "reverse": false,
+      "domain": "社交人情",
+      "text": "朋友的说法站不站得住，你心里先过一遍。"
+    },
+    {
+      "id": "Ti-10",
+      "fn": "Ti",
+      "reverse": true,
+      "domain": "社交人情",
+      "text": "聊天里一个词用得不准确，你不太在意。"
+    },
+    {
+      "id": "Ti-11",
+      "fn": "Ti",
+      "reverse": false,
+      "domain": "消费生活",
+      "text": "参数之间的取舍，你会先弄清原理再选。"
+    },
+    {
+      "id": "Ti-12",
+      "fn": "Ti",
+      "reverse": true,
+      "domain": "消费生活",
+      "text": "保修条款你扫一眼就签，不太抠字眼。"
+    },
+    {
+      "id": "Ti-13",
+      "fn": "Ti",
+      "reverse": false,
+      "domain": "冲突矛盾",
+      "text": "争执你会拆成哪些是事实、哪些是判断。"
+    },
+    {
+      "id": "Ti-14",
+      "fn": "Ti",
+      "reverse": true,
+      "domain": "冲突矛盾",
+      "text": "谁对谁错你不细究，先把事放过去。"
+    },
+    {
+      "id": "Ti-15",
+      "fn": "Ti",
+      "reverse": false,
+      "domain": "兴趣娱乐",
+      "text": "游戏或器械的规则，你会读到最细那一层。"
+    },
+    {
+      "id": "Ti-16",
+      "fn": "Ti",
+      "reverse": false,
+      "domain": "兴趣娱乐",
+      "text": "玩之前你会先把规则完整读一遍。"
+    },
+    {
+      "id": "Ti-17",
+      "fn": "Ti",
+      "reverse": false,
+      "domain": "信息媒体",
+      "text": "一条消息你会去追它的出处和前提。"
+    },
+    {
+      "id": "Ti-18",
+      "fn": "Ti",
+      "reverse": false,
+      "domain": "亲密关系",
+      "text": "对方说的和你理解的是不是一回事，你会确认。"
+    },
+    {
+      "id": "Ti-19",
+      "fn": "Ti",
+      "reverse": false,
+      "domain": "身体健康",
+      "text": "身体出状况，你想弄清它对应的机理。"
+    },
+    {
+      "id": "Fe-01",
+      "fn": "Fe",
+      "reverse": false,
+      "domain": "家庭亲戚",
+      "text": "饭桌上有人话赶话要吵起来，你先岔开话题。"
+    },
+    {
+      "id": "Fe-02",
+      "fn": "Fe",
+      "reverse": false,
+      "domain": "家庭亲戚",
+      "text": "长辈当众被晚辈顶了一句，你会替他找台阶。"
+    },
+    {
+      "id": "Fe-03",
+      "fn": "Fe",
+      "reverse": true,
+      "domain": "家庭亲戚",
+      "text": "亲戚之间传话，你只管带到，不管对方听了怎么想。"
+    },
+    {
+      "id": "Fe-04",
+      "fn": "Fe",
+      "reverse": false,
+      "domain": "职场办公",
+      "text": "同事被领导当众批评，散会后你会私下问一句。"
+    },
+    {
+      "id": "Fe-05",
+      "fn": "Fe",
+      "reverse": false,
+      "domain": "职场办公",
+      "text": "跨部门会开冷了场，你会先接话把气顺过来。"
+    },
+    {
+      "id": "Fe-06",
+      "fn": "Fe",
+      "reverse": true,
+      "domain": "职场办公",
+      "text": "会议室气氛僵住，你照自己的说完就走。"
+    },
+    {
+      "id": "Fe-07",
+      "fn": "Fe",
+      "reverse": false,
+      "domain": "学习考试",
+      "text": "小组作业有人跟不上，你会把节奏放慢一点。"
+    },
+    {
+      "id": "Fe-08",
+      "fn": "Fe",
+      "reverse": true,
+      "domain": "学习考试",
+      "text": "老师一句话让全班不舒服，你觉得跟自己没关系。"
+    },
+    {
+      "id": "Fe-09",
+      "fn": "Fe",
+      "reverse": false,
+      "domain": "社交人情",
+      "text": "敬酒你会留意顺序，别让谁被落下。"
+    },
+    {
+      "id": "Fe-10",
+      "fn": "Fe",
+      "reverse": true,
+      "domain": "社交人情",
+      "text": "聚会上谁被冷落，你不去管。"
+    },
+    {
+      "id": "Fe-11",
+      "fn": "Fe",
+      "reverse": false,
+      "domain": "消费生活",
+      "text": "陪人买东西，你会先想他的预算和面子。"
+    },
+    {
+      "id": "Fe-12",
+      "fn": "Fe",
+      "reverse": true,
+      "domain": "消费生活",
+      "text": "送礼你挑自己喜欢的，不管对方合不合适。"
+    },
+    {
+      "id": "Fe-13",
+      "fn": "Fe",
+      "reverse": false,
+      "domain": "冲突矛盾",
+      "text": "两边都下不来台时，你会递个台阶。"
+    },
+    {
+      "id": "Fe-14",
+      "fn": "Fe",
+      "reverse": true,
+      "domain": "冲突矛盾",
+      "text": "群里吵起来你先看热闹，不掺和。"
+    },
+    {
+      "id": "Fe-15",
+      "fn": "Fe",
+      "reverse": false,
+      "domain": "兴趣娱乐",
+      "text": "组织活动你会照顾到不爱说话的人。"
+    },
+    {
+      "id": "Fe-16",
+      "fn": "Fe",
+      "reverse": false,
+      "domain": "兴趣娱乐",
+      "text": "唱歌时你会留意谁一直没唱。"
+    },
+    {
+      "id": "Fe-17",
+      "fn": "Fe",
+      "reverse": false,
+      "domain": "信息媒体",
+      "text": "转发消息前你会想，会不会让谁难堪。"
+    },
+    {
+      "id": "Fe-18",
+      "fn": "Fe",
+      "reverse": false,
+      "domain": "亲密关系",
+      "text": "对方不开心，你会先接住情绪再谈事。"
+    },
+    {
+      "id": "Fe-19",
+      "fn": "Fe",
+      "reverse": false,
+      "domain": "身体健康",
+      "text": "家里人生病，你张罗挂号、陪床、忌口这些细节。"
+    },
+    {
+      "id": "Fi-01",
+      "fn": "Fi",
+      "reverse": false,
+      "domain": "家庭亲戚",
+      "text": "亲戚的话让你觉得违心，你会当场不太接。"
+    },
+    {
+      "id": "Fi-02",
+      "fn": "Fi",
+      "reverse": false,
+      "domain": "家庭亲戚",
+      "text": "要不要为家里改自己的选择，你心里掂量很久。"
+    },
+    {
+      "id": "Fi-03",
+      "fn": "Fi",
+      "reverse": true,
+      "domain": "家庭亲戚",
+      "text": "长辈说什么你就照做，不太问自己认不认。"
+    },
+    {
+      "id": "Fi-04",
+      "fn": "Fi",
+      "reverse": false,
+      "domain": "职场办公",
+      "text": "让你做一件你不认同的事，你会先顶住。"
+    },
+    {
+      "id": "Fi-05",
+      "fn": "Fi",
+      "reverse": false,
+      "domain": "职场办公",
+      "text": "方案跟你的标准冲突，你宁可慢一点也不改。"
+    },
+    {
+      "id": "Fi-06",
+      "fn": "Fi",
+      "reverse": true,
+      "domain": "职场办公",
+      "text": "工作里做什么都行，只要给钱。"
+    },
+    {
+      "id": "Fi-07",
+      "fn": "Fi",
+      "reverse": false,
+      "domain": "学习考试",
+      "text": "学一门自己不认同的课，你很难投入。"
+    },
+    {
+      "id": "Fi-08",
+      "fn": "Fi",
+      "reverse": true,
+      "domain": "学习考试",
+      "text": "论文怎么写能过就怎么写，不管自己怎么想。"
+    },
+    {
+      "id": "Fi-09",
+      "fn": "Fi",
+      "reverse": false,
+      "domain": "社交人情",
+      "text": "朋友的玩笑踩到你的线，你会直接说。"
+    },
+    {
+      "id": "Fi-10",
+      "fn": "Fi",
+      "reverse": true,
+      "domain": "社交人情",
+      "text": "为了合群，你会跟着说自己也不同意的话。"
+    },
+    {
+      "id": "Fi-11",
+      "fn": "Fi",
+      "reverse": false,
+      "domain": "消费生活",
+      "text": "大家抢着买的东西，你不喜欢就不买。"
+    },
+    {
+      "id": "Fi-12",
+      "fn": "Fi",
+      "reverse": true,
+      "domain": "消费生活",
+      "text": "别人都买，你也跟着买一份。"
+    },
+    {
+      "id": "Fi-13",
+      "fn": "Fi",
+      "reverse": false,
+      "domain": "冲突矛盾",
+      "text": "明知会得罪人，该说的你还是要说。"
+    },
+    {
+      "id": "Fi-14",
+      "fn": "Fi",
+      "reverse": false,
+      "domain": "冲突矛盾",
+      "text": "道歉你会等自己想清楚了才开口。"
+    },
+    {
+      "id": "Fi-15",
+      "fn": "Fi",
+      "reverse": false,
+      "domain": "兴趣娱乐",
+      "text": "你只做自己真喜欢的那件事，别人怎么看另说。"
+    },
+    {
+      "id": "Fi-16",
+      "fn": "Fi",
+      "reverse": true,
+      "domain": "兴趣娱乐",
+      "text": "流行什么你就玩什么，自己喜不喜欢另说。"
+    },
+    {
+      "id": "Fi-17",
+      "fn": "Fi",
+      "reverse": false,
+      "domain": "信息媒体",
+      "text": "看到某条新闻，你心里会过不去很久。"
+    },
+    {
+      "id": "Fi-18",
+      "fn": "Fi",
+      "reverse": false,
+      "domain": "亲密关系",
+      "text": "关系里你会反复确认自己是不是还在做自己。"
+    },
+    {
+      "id": "Fi-19",
+      "fn": "Fi",
+      "reverse": false,
+      "domain": "身体健康",
+      "text": "身体不舒服时，你会想这是不是自己不想面对什么。"
+    }
+  ]
+}

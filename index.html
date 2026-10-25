@@ -3,13 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>性格倾向量表（中国情境版）· 7 点作答</title>
+<title>荣格八维人格测验（7 点量表版）</title>
 <style>
-:root{
-  --ink:#1d2024; --muted:#6d7178; --faint:#9aa0a6; --line:#e2ddd3;
-  --bg:#f5f2ec; --card:#fffdf8; --accent:#2f5d50; --accent-soft:#e6efe9;
-  --blue:#2f5d8a; --blue-soft:#e6edf5; --warn:#a24b2b; --warn-soft:#f7e8e1;
-}
+:root{--ink:#1d2024;--muted:#6d7178;--faint:#9aa0a6;--line:#e2ddd3;--bg:#f5f2ec;--card:#fffdf8;
+  --accent:#2f5d50;--accent-soft:#e6efe9;--blue:#2f5d8a;--blue-soft:#e6edf5;--warn:#a24b2b;--warn-soft:#f7e8e1}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased;
   font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}
@@ -18,11 +15,9 @@ body{margin:0;background:var(--bg);color:var(--ink);line-height:1.75;-webkit-fon
 h1,h2,h3{font-weight:700;line-height:1.35;margin:0}
 p{margin:0 0 12px}
 button{font:inherit;color:inherit;cursor:pointer}
-
-/* intro */
 .hero{padding:24px 4px 10px;border-bottom:1px solid var(--line);margin-bottom:26px}
 .eyebrow{font-size:12px;letter-spacing:.12em;color:var(--muted);margin-bottom:10px}
-.hero h1{font-size:32px}
+.hero h1{font-size:31px}
 .hero .sub{font-size:16px;color:var(--accent);letter-spacing:.2em;margin:6px 0 14px}
 .lede{font-size:14px;color:var(--muted);margin:0}
 .panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px}
@@ -32,73 +27,67 @@ button{font:inherit;color:inherit;cursor:pointer}
 .mode{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:#fff;
   border:1.5px solid var(--line);border-radius:12px;padding:16px 18px;transition:.15s}
 .mode:hover{border-color:var(--accent);background:var(--accent-soft)}
-.mode b{font-size:16px}
-.mode span{color:var(--muted);font-size:13px;margin-left:auto}
-.alt{font-size:13px;color:var(--muted);margin-top:16px}
-.alt a{color:var(--blue)}
+.mode b{font-size:16px}.mode span{color:var(--muted);font-size:13px;margin-left:auto}
 .disclaimer{font-size:12px;color:var(--faint);margin-top:22px;line-height:1.6}
-
-/* test */
-.topbar{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:14px;
-  padding:12px 0 14px;background:linear-gradient(var(--bg) 70%,rgba(245,242,236,0))}
+.topbar{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:14px;padding:12px 0 14px;
+  background:linear-gradient(var(--bg) 70%,rgba(245,242,236,0))}
 .ghost{background:#fff;border:1px solid var(--line);border-radius:8px;padding:5px 11px;font-size:12.5px;color:var(--muted)}
 .ghost:disabled{opacity:.35;cursor:default}
 .progress{flex:1;height:5px;background:#e7e2d8;border-radius:4px;overflow:hidden}
-.progress i{display:block;height:100%;width:0;background:var(--blue);border-radius:4px;transition:width .25s}
-.counter{font-size:12.5px;color:var(--muted);min-width:52px;text-align:right;font-variant-numeric:tabular-nums}
+.progress i{display:block;height:100%;width:0;background:var(--accent);border-radius:4px;transition:width .25s}
+.counter{font-size:12.5px;color:var(--muted);min-width:56px;text-align:right;font-variant-numeric:tabular-nums}
 .qcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 24px 20px;margin-top:8px}
 .qno{font-size:12px;letter-spacing:.1em;color:var(--faint);margin-bottom:10px}
 .statement{font-size:20px;line-height:1.7;margin:0 0 22px;font-weight:600}
 .scale7{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
 .scale7 button{border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:12px 4px;
-  font-size:12.5px;line-height:1.3;transition:.12s;min-height:64px}
+  font-size:12.5px;line-height:1.3;min-height:64px;transition:.12s}
 .scale7 button b{display:block;font-size:15px;margin-bottom:2px}
-.scale7 button:hover{border-color:var(--blue);background:var(--blue-soft)}
-.scale7 button.sel{background:var(--blue);border-color:var(--blue);color:#fff}
-.scale7 button.sel b{color:#fff}
+.scale7 button:hover{border-color:var(--accent);background:var(--accent-soft)}
+.scale7 button.sel{background:var(--accent);border-color:var(--accent);color:#fff}
 .scale7 button.mid{background:#f7f5f0}
-.scale7 button.mid:hover{background:var(--blue-soft)}
 .hint{font-size:11.5px;color:var(--faint);margin:14px 0 0;text-align:center}
-@media (max-width:560px){
-  .scale7{grid-template-columns:repeat(4,1fr)}
-  .scale7 button{min-height:58px;font-size:11.5px}
-  .statement{font-size:18px}
-}
-
-/* result */
+@media (max-width:560px){.scale7{grid-template-columns:repeat(4,1fr)}.scale7 button{min-height:58px;font-size:11.5px}
+  .statement{font-size:18px}}
 .rhead{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 24px;margin-bottom:18px}
 .rhead .code{font-size:42px;font-weight:800;letter-spacing:.06em;line-height:1}
 .rhead .name{font-size:19px;font-weight:700;margin:10px 0 4px}
-.rhead .ver{font-size:11px;color:var(--faint);margin-top:10px}
+.rhead .jung{font-size:13.5px;color:var(--muted)}
+.rhead .ver{font-size:11px;color:var(--faint);margin-top:8px}
+.badge{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:20px;margin-left:8px;
+  background:var(--accent-soft);color:var(--accent);vertical-align:middle}
+.badge.low{background:var(--warn-soft);color:var(--warn)}
 .sect{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:18px}
 .sect h3{font-size:14px;letter-spacing:.08em;color:var(--muted);margin-bottom:14px}
-.dimrow{margin-bottom:16px}
-.dimtop{display:flex;align-items:baseline;gap:8px;font-size:13px;color:var(--muted)}
-.dimtop b{font-size:14px;color:var(--ink)}
-.dimtop .pct{margin-left:auto;font-variant-numeric:tabular-nums}
-.dimbar{position:relative;height:12px;background:#eee9df;border-radius:6px;margin:6px 0 4px;overflow:hidden}
-.dimbar i{position:absolute;top:0;bottom:0;background:var(--blue);border-radius:6px}
-.dimbar .mid{position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:#cfc8bb}
-.poles{display:flex;justify-content:space-between;font-size:11.5px;color:var(--faint)}
-.facets{margin-top:6px}
-.facet{display:grid;grid-template-columns:96px 1fr 40px;align-items:center;gap:8px;font-size:12px;margin-bottom:6px}
-.facet span:first-child{color:var(--muted)}
-.facet .fb{height:7px;background:#eee9df;border-radius:4px;overflow:hidden}
-.facet .fb i{display:block;height:100%;background:#9db3a8}
-.facet .fv{text-align:right;color:var(--faint);font-variant-numeric:tabular-nums}
+.stackline{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.stackline div{background:#faf8f3;border:1px solid #ece7dd;border-radius:10px;padding:10px 12px}
+.stackline small{display:block;font-size:11px;color:var(--faint);letter-spacing:.08em}
+.stackline b{font-size:17px}.stackline span{display:block;font-size:11.5px;color:var(--muted)}
+.barrow{display:grid;grid-template-columns:44px 1fr 42px;grid-template-areas:"n b v" "c b v";
+  align-items:center;column-gap:8px;margin-bottom:9px}
+.barrow .bn{grid-area:n;font-weight:700;font-size:13px}
+.barrow .bc{grid-area:c;font-size:10.5px;color:var(--faint)}
+.barrow .bar{grid-area:b;height:9px;background:#eee9df;border-radius:5px;overflow:hidden}
+.barrow .bar i{display:block;height:100%;border-radius:5px;background:#9db3a8}
+.barrow .bv{grid-area:v;text-align:right;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.barrow.role-dom .bar i{background:var(--accent)}
+.barrow.role-aux .bar i{background:#4d7d6d}
+.barrow.role-inf .bar i{background:var(--warn)}
+.rolebadge{font-size:10px;padding:1px 6px;border-radius:20px;margin-left:6px;background:var(--accent-soft);color:var(--accent)}
+.role-inf .rolebadge{background:var(--warn-soft);color:var(--warn)}
+.fits{display:flex;gap:8px;flex-wrap:wrap}
+.fit{background:#faf8f3;border:1px solid #ece7dd;border-radius:9px;padding:7px 12px;font-size:13px}
+.fit.cur{border-color:var(--accent);background:var(--accent-soft)}
+.profile p b.lbl{color:var(--accent)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 8px}
+.actions button{border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:10px 16px;font-size:13.5px}
+.actions button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
 details{background:#faf8f3;border:1px solid #ece7dd;border-radius:10px;padding:10px 14px;margin-top:12px}
 details summary{cursor:pointer;font-size:13px;color:var(--muted)}
 .promptBox{width:100%;min-height:220px;margin-top:10px;padding:12px 13px;border:1px solid #ece7dd;border-radius:9px;
   background:#fff;color:var(--ink);resize:vertical;font:12.5px/1.65 ui-monospace,Consolas,Menlo,monospace}
-.actions{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 8px}
-.actions button{border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:10px 16px;font-size:13.5px}
-.actions button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
-@media print{
-  body{background:#fff} #app{max-width:none;padding:0}
-  .actions,.topbar,.hint{display:none !important}
-  .sect,.rhead{border:1px solid #ccc;break-inside:avoid}
-  details{display:none}
-}
+@media print{body{background:#fff}#app{max-width:none;padding:0}.actions,.topbar,.hint{display:none !important}
+  .sect,.rhead{border:1px solid #ccc;break-inside:avoid}details{display:none}}
 </style>
 </head>
 <body>
@@ -106,24 +95,23 @@ details summary{cursor:pointer;font-size:13px;color:var(--muted)}
 
   <section id="intro" class="view">
     <div class="hero">
-      <p class="eyebrow">五维倾向 · 7 点同意度 · 题目全部按中国日常重写</p>
-      <h1>性格倾向量表</h1>
-      <p class="sub">中 国 情 境 版</p>
-      <p class="lede">50 句话 · 每句选一个同意程度 · 约 8 分钟</p>
+      <p class="eyebrow">荣格八维 · 7 点同意度 · 152 句中国日常</p>
+      <h1>荣格八维人格测验</h1>
+      <p class="sub">量 表 版</p>
+      <p class="lede">152 句话 · 每句选一个同意程度 · 约 25 分钟</p>
     </div>
     <div class="panel">
       <h2>怎么答</h2>
       <ul>
-        <li>每题一句话，按"<b>这有多像我</b>"选程度，从"强烈不同意"到"强烈同意"。</li>
+        <li>每题一句话，按「<b>这有多像我</b>」选程度，从「强烈不同意」到「强烈同意」。</li>
         <li>想<b>平时的你</b>，不要想你希望成为的样子。</li>
-        <li>凭第一反应，每题十秒内；中间那档"中立"能不用就不用。</li>
-        <li>进度自动存在这台设备上，可以分两次做完。</li>
+        <li>凭第一反应，每题十秒内；中间那档「中立」能不用就不用。</li>
+        <li>152 题，可以分三次做完，进度自动存在这台设备上。</li>
       </ul>
-      <button class="mode" id="startBtn"><b>开始</b><span>50 题 · 约 8 分钟</span></button>
-      <p class="alt">想用荣格八维那套（每题二选一、按功能栈判定）？<a href="./jungian.html">切到那个版本</a></p>
+      <button class="mode" id="startBtn"><b>开始</b><span>152 题 · 约 25 分钟</span></button>
     </div>
-    <p class="disclaimer">这是自我认识工具，不是诊断，也不该拿来筛选或评价别人。
-      分数是"你多常这样"，不是"你有多强"。</p>
+    <p class="disclaimer">八个维度每题数相同（各 19 题、其中 6 题反向），所以分数之间可以直接比。
+      这是自我认识工具，不是诊断。</p>
   </section>
 
   <section id="test" class="view hidden">
@@ -136,7 +124,7 @@ details summary{cursor:pointer;font-size:13px;color:var(--muted)}
       <p class="qno" id="qno"></p>
       <p class="statement" id="statement"></p>
       <div class="scale7" id="scale"></div>
-      <p class="hint">键盘 1–7 也能选：1 强烈不同意 … 4 中立 … 7 强烈同意</p>
+      <p class="hint">键盘 1–7：1 强烈不同意 … 4 中立 … 7 强烈同意</p>
     </div>
   </section>
 
@@ -144,286 +132,378 @@ details summary{cursor:pointer;font-size:13px;color:var(--muted)}
 </div>
 
 <script>
-var LIKERT = {"meta":{"version":"0.2","scale":7,"plan":"25 个面向 × 每个 2 题（一正一反）= 50 题","items_done":50},"items":[{"id":"L01","dim":"Mind","facet":"社交启动","key":"E","reverse":false,"text":"一桌人都不熟的时候，你往往是先开口的那个。"},{"id":"L26","dim":"Mind","facet":"社交启动","key":"E","reverse":true,"text":"进了一屋子陌生人，你多半会等别人先开口。"},{"id":"L02","dim":"Mind","facet":"主动表达","key":"E","reverse":false,"text":"会上有不同意见，你通常会当场说出来。"},{"id":"L27","dim":"Mind","facet":"主动表达","key":"E","reverse":true,"text":"会上有不同意见，你通常先咽下去，会后再说。"},{"id":"L03","dim":"Mind","facet":"独处恢复","key":"I","reverse":true,"text":"连着两天跟人打交道，你还想继续约人出去。"},{"id":"L28","dim":"Mind","facet":"独处恢复","key":"I","reverse":false,"text":"一个人待着的周末，比出门聚会更让你缓过来。"},{"id":"L04","dim":"Mind","facet":"人群耐受","key":"I","reverse":false,"text":"人多的饭局超过两小时，你会开始想找个借口先走。"},{"id":"L29","dim":"Mind","facet":"人群耐受","key":"I","reverse":true,"text":"人多的场合待久了，你也不觉得累。"},{"id":"L05","dim":"Mind","facet":"陌生场合","key":"E","reverse":false,"text":"去一个谁都不认识的场合，你会主动找人搭话。"},{"id":"L30","dim":"Mind","facet":"陌生场合","key":"E","reverse":true,"text":"到了没人认识的场合，你会先找个角落站一会儿。"},{"id":"L06","dim":"Energy","facet":"细节留神","key":"S","reverse":false,"text":"别人换了发型、桌上多了个杯子，你通常第一眼就发现。"},{"id":"L31","dim":"Energy","facet":"细节留神","key":"S","reverse":true,"text":"别人换了发型、桌上多了个杯子，你常常注意不到。"},{"id":"L07","dim":"Energy","facet":"想象投入","key":"N","reverse":false,"text":"排队、坐地铁这种空档，你脑子里常在推演别的事。"},{"id":"L32","dim":"Energy","facet":"想象投入","key":"N","reverse":true,"text":"排队、坐地铁这种空档，你多半就发呆或刷手机，不太想别的。"},{"id":"L08","dim":"Energy","facet":"抽象兴趣","key":"N","reverse":false,"text":"「人为什么会这样」这类问题，你会忍不住想下去。"},{"id":"L33","dim":"Energy","facet":"抽象兴趣","key":"N","reverse":true,"text":"「人为什么会这样」这类问题，你觉得想多了没用。"},{"id":"L09","dim":"Energy","facet":"现实焦点","key":"S","reverse":true,"text":"做方案时，你更在意它将来能变成什么，而不是这周能不能落地。"},{"id":"L34","dim":"Energy","facet":"现实焦点","key":"S","reverse":false,"text":"做方案时，你更在意这周能不能落地，而不是它将来能变成什么。"},{"id":"L10","dim":"Energy","facet":"模式与隐喻","key":"N","reverse":false,"text":"你常从两件看着不相干的事里，看出同一个道理。"},{"id":"L35","dim":"Energy","facet":"模式与隐喻","key":"N","reverse":true,"text":"你很少把两件不相干的事往一块儿想。"},{"id":"L11","dim":"Nature","facet":"逻辑优先","key":"T","reverse":false,"text":"朋友跟你诉苦，你第一反应是帮他找出问题出在哪。"},{"id":"L36","dim":"Nature","facet":"逻辑优先","key":"T","reverse":true,"text":"朋友跟你诉苦，你会先陪他把情绪捋顺，不急着找问题。"},{"id":"L12","dim":"Nature","facet":"情绪感知","key":"F","reverse":false,"text":"别人还没开口，你常能觉出他今天不太对。"},{"id":"L37","dim":"Nature","facet":"情绪感知","key":"F","reverse":true,"text":"别人心情不好，你常常是最后一个察觉的。"},{"id":"L13","dim":"Nature","facet":"冲突直面","key":"T","reverse":true,"text":"有人当场把一个事实说错了，你通常不会当面纠正。"},{"id":"L38","dim":"Nature","facet":"冲突直面","key":"T","reverse":false,"text":"有人当场把一个事实说错了，你会直接纠正。"},{"id":"L14","dim":"Nature","facet":"取悦倾向","key":"F","reverse":false,"text":"为了让气氛好一点，你会把自己想说的话咽回去。"},{"id":"L39","dim":"Nature","facet":"取悦倾向","key":"F","reverse":true,"text":"想说的话你一般会说出口，不太为了气氛咽回去。"},{"id":"L15","dim":"Nature","facet":"人情与原则","key":"T","reverse":false,"text":"定规矩的时候，你愿意一条条写清楚，不留模糊空间。"},{"id":"L40","dim":"Nature","facet":"人情与原则","key":"T","reverse":true,"text":"定规矩的时候，你愿意留点余地，具体事具体看。"},{"id":"L16","dim":"Tactics","facet":"计划性","key":"J","reverse":false,"text":"出门旅行前，你会把每天住哪儿、走哪条路先定下来。"},{"id":"L41","dim":"Tactics","facet":"计划性","key":"J","reverse":true,"text":"出门旅行前，你通常只定个大概，到了再说。"},{"id":"L17","dim":"Tactics","facet":"收尾习惯","key":"J","reverse":true,"text":"手头的事没做完，你也能先放下，回头再说。"},{"id":"L42","dim":"Tactics","facet":"收尾习惯","key":"J","reverse":false,"text":"手头的事没做完，你很难安心去做别的。"},{"id":"L18","dim":"Tactics","facet":"临场应变","key":"P","reverse":true,"text":"计划被临时打乱，你会有点烦。"},{"id":"L43","dim":"Tactics","facet":"临场应变","key":"P","reverse":false,"text":"计划被临时打乱，你反而觉得有点意思。"},{"id":"L19","dim":"Tactics","facet":"秩序需求","key":"J","reverse":false,"text":"桌面上、手机相册里乱着，你会不太自在。"},{"id":"L44","dim":"Tactics","facet":"秩序需求","key":"J","reverse":true,"text":"桌面乱着、相册里一堆截图，你也不太在意。"},{"id":"L20","dim":"Tactics","facet":"开放选项","key":"P","reverse":false,"text":"订行程时，你常故意留几天空着，到时候再说。"},{"id":"L45","dim":"Tactics","facet":"开放选项","key":"P","reverse":true,"text":"订行程时，你习惯把每天排满，空着会心慌。"},{"id":"L21","dim":"Identity","facet":"自我肯定","key":"A","reverse":false,"text":"做完一件事，你一般觉得自己做得还行。"},{"id":"L46","dim":"Identity","facet":"自我肯定","key":"A","reverse":true,"text":"别人夸你一件事做得好，你心里会先想「他只是客气」。"},{"id":"L22","dim":"Identity","facet":"事后反刍","key":"T","reverse":false,"text":"跟人说完一段话，你会反复回想自己是不是说错了什么。"},{"id":"L47","dim":"Identity","facet":"事后反刍","key":"T","reverse":true,"text":"跟人说完一段话，你不太会回头再想自己说错没说错。"},{"id":"L23","dim":"Identity","facet":"压力反应","key":"T","reverse":false,"text":"事情一多，你会先担心做不完，而不是先动手。"},{"id":"L48","dim":"Identity","facet":"压力反应","key":"T","reverse":true,"text":"事情一多，你会直接挑一件先做起来。"},{"id":"L24","dim":"Identity","facet":"完美主义","key":"T","reverse":false,"text":"交出去的东西，你常觉得还能再改改，不太放心。"},{"id":"L49","dim":"Identity","facet":"完美主义","key":"T","reverse":true,"text":"交出去的东西，你觉得到位了就交，不太反复改。"},{"id":"L25","dim":"Identity","facet":"情绪起伏","key":"T","reverse":false,"text":"一天里你的心情，会因为一两件小事起落好几次。"},{"id":"L50","dim":"Identity","facet":"情绪起伏","key":"T","reverse":true,"text":"一天下来，你的心情基本是平的，不太受小事影响。"}]};
-var APP_VERSION = "v0.2";
-</script>
-<script>
-"use strict";
-(function () {
-  var DIMS = [
-    { key: "Mind",     a: "E", b: "I", cnA: "外倾", cnB: "内倾", cn: "心力",
-      noteA: "你从人群里回血", noteB: "你从独处里回血" },
-    { key: "Energy",   a: "N", b: "S", cnA: "直觉", cnB: "观察", cn: "能量",
-      noteA: "你先看可能性", noteB: "你先看眼前的事实" },
-    { key: "Nature",   a: "T", b: "F", cnA: "思维", cnB: "情感", cn: "本性",
-      noteA: "你按逻辑下判断", noteB: "你按感受与关系下判断" },
-    { key: "Tactics",  a: "J", b: "P", cnA: "计划", cnB: "展望", cn: "对策",
-      noteA: "你先把事情定下来", noteB: "你先留着口子再看" },
-    { key: "Identity", a: "A", b: "T", cnA: "自信", cnB: "起伏", cn: "身份",
-      noteA: "你对自己比较笃定", noteB: "你对自己反复掂量" }
-  ];
-  var LABELS = ["强烈不同意", "不同意", "有点不同意", "中立", "有点同意", "同意", "强烈同意"];
-  var SAVE = "likert-cn-v1";
-  var state = { answers: {}, idx: 0 };
-  var $ = function (id) { return document.getElementById(id); };
+/* 八维量表计分内核（7 点同意度 → 八功能强度 → 荣格类型） */
+var J8L = (function () {
+  var FUNCS = ["Se", "Si", "Ne", "Ni", "Te", "Ti", "Fe", "Fi"];
+  var PERC = { Se: 1, Si: 1, Ne: 1, Ni: 1 };
+  var JUDG = { Te: 1, Ti: 1, Fe: 1, Fi: 1 };
+  var ATT = { Se: "E", Si: "I", Ne: "E", Ni: "I", Te: "E", Ti: "I", Fe: "E", Fi: "I" };
+  // 第三/劣势：同类、功能对立、态度相反
+  var MAP = { Te: "Fi", Ti: "Fe", Fe: "Ti", Fi: "Te", Se: "Ni", Si: "Ne", Ne: "Si", Ni: "Se" };
+  var FN_CN = { Se: "外倾感觉", Si: "内倾感觉", Ne: "外倾直觉", Ni: "内倾直觉",
+                Te: "外倾思维", Ti: "内倾思维", Fe: "外倾情感", Fi: "内倾情感" };
+  var JUNG_OF = { Te: ["ET", "外倾思维型"], Ti: ["IT", "内倾思维型"],
+                  Fe: ["EF", "外倾情感型"], Fi: ["IF", "内倾情感型"],
+                  Se: ["ES", "外倾感觉型"], Si: ["IS", "内倾感觉型"],
+                  Ne: ["EN", "外倾直觉型"], Ni: ["IN", "内倾直觉型"] };
+  var STACKS = {
+    INTJ: ["Ni", "Te", "Fi", "Se"], INTP: ["Ti", "Ne", "Si", "Fe"],
+    ENTJ: ["Te", "Ni", "Se", "Fi"], ENTP: ["Ne", "Ti", "Fe", "Si"],
+    INFJ: ["Ni", "Fe", "Ti", "Se"], INFP: ["Fi", "Ne", "Si", "Te"],
+    ENFJ: ["Fe", "Ni", "Se", "Ti"], ENFP: ["Ne", "Fi", "Te", "Si"],
+    ISTJ: ["Si", "Te", "Fi", "Ne"], ISFJ: ["Si", "Fe", "Ti", "Ne"],
+    ESTJ: ["Te", "Si", "Ne", "Fi"], ESFJ: ["Fe", "Si", "Ne", "Ti"],
+    ISTP: ["Ti", "Se", "Ni", "Fe"], ISFP: ["Fi", "Se", "Ni", "Te"],
+    ESTP: ["Se", "Ti", "Fe", "Ni"], ESFP: ["Se", "Fi", "Te", "Ni"]
+  };
+  var CN_NAME = {
+    INTJ: "远景架构者", INTP: "原理拆解者", ENTJ: "目标统帅者", ENTP: "可能性发动机",
+    INFJ: "深察引路者", INFP: "价值守火者", ENFJ: "人心凝聚者", ENFP: "火花点燃者",
+    ISTJ: "秩序守护者", ISFJ: "细致托底者", ESTJ: "事务操盘者", ESFJ: "场面照拂者",
+    ISTP: "现场解题者", ISFP: "感受力行家", ESTP: "临场破局者", ESFP: "即兴享乐者"
+  };
+  var W = [1.0, 0.6, 0.3, 0.1];
 
-  function view(name) {
-    ["intro", "test", "result"].forEach(function (v) { $(v).classList.toggle("hidden", v !== name); });
-    window.scrollTo(0, 0);
+  function mean(a) { var s = 0; a.forEach(function (x) { s += x; }); return s / a.length; }
+  function rank(xs) {
+    var idx = xs.map(function (v, i) { return i; }).sort(function (a, b) { return xs[a] - xs[b]; });
+    var r = new Array(xs.length), i = 0;
+    while (i < idx.length) {
+      var j = i;
+      while (j + 1 < idx.length && xs[idx[j + 1]] === xs[idx[i]]) j++;
+      var avg = (i + j) / 2 + 1;
+      for (var k = i; k <= j; k++) r[idx[k]] = avg;
+      i = j + 1;
+    }
+    return r;
   }
-  function save() { try { localStorage.setItem(SAVE, JSON.stringify(state)); } catch (e) {} }
-  function clearSave() { try { localStorage.removeItem(SAVE); } catch (e) {} }
-  function nowStamp() {
-    var d = new Date(), p2 = function (n) { return ("0" + n).slice(-2); };
-    return d.getFullYear() + "-" + p2(d.getMonth() + 1) + "-" + p2(d.getDate()) + " " + p2(d.getHours()) + ":" + p2(d.getMinutes());
+  function pearson(a, b) {
+    var ma = mean(a), mb = mean(b), cov = 0, va = 0, vb = 0;
+    for (var i = 0; i < a.length; i++) {
+      cov += (a[i] - ma) * (b[i] - mb);
+      va += (a[i] - ma) * (a[i] - ma);
+      vb += (b[i] - mb) * (b[i] - mb);
+    }
+    if (va === 0 || vb === 0) return 0;
+    return cov / Math.sqrt(va * vb);
   }
+  function spearman(a, b) { return pearson(rank(a), rank(b)); }
 
-  /* ---------- 计分 ---------- */
-  function compute() {
-    var per = {}, facet = {};
-    LIKERT.items.forEach(function (it) {
-      var raw = state.answers[it.id];
+  function profile(values, items, filter) {
+    var acc = {}, n = {};
+    FUNCS.forEach(function (f) { acc[f] = 0; n[f] = 0; });
+    items.forEach(function (it, i) {
+      var raw = values[it.id];
       if (raw === undefined) return;
-      raw = raw - 3;                                  // 0..6 → -3..3
-      var v = it.reverse ? -raw : raw;                 // 反向题翻转
-      var pole = DIMS.filter(function (d) { return d.key === it.dim; })[0];
-      if (it.key === pole.b) v = -v;                   // 统一成"正数 = 偏 a 端"
-      (per[it.dim] = per[it.dim] || []).push(v);
-      var fk = it.dim + "/" + it.facet;
-      (facet[fk] = facet[fk] || []).push(v);
+      if (filter && !filter(i)) return;
+      var v = raw - 3;                       // 0..6 → -3..3
+      if (it.reverse) v = -v;                // 反向题翻转
+      acc[it.fn] += v; n[it.fn] += 1;
     });
-    var mean = function (a) { return a.reduce(function (x, y) { return x + y; }, 0) / a.length; };
-    var toPct = function (m) { return Math.round((m + 3) / 6 * 1000) / 10; };
-    var dims = {}, facets = {};
-    Object.keys(per).forEach(function (k) { dims[k] = toPct(mean(per[k])); });
-    Object.keys(facet).forEach(function (k) { facets[k] = toPct(mean(facet[k])); });
-    var letters = "", centered = [];
-    DIMS.forEach(function (d) {
-      var s = dims[d.key];
-      if (s === undefined) { letters += "?"; return; }
-      if (s >= 53) letters += d.a;
-      else if (s <= 47) letters += d.b;
-      else { letters += d.a; centered.push(d.cn); }
+    var out = {};
+    FUNCS.forEach(function (f) { out[f] = n[f] ? acc[f] / n[f] : 0; });
+    return out;
+  }
+
+  function computeResult(values, items) {
+    var m = profile(values, items);
+    var scores = {}, avg = 0;
+    FUNCS.forEach(function (f) { scores[f] = Math.round((m[f] + 3) / 6 * 1000) / 10; avg += scores[f]; });
+    avg = avg / 8;
+    var c = {};
+    FUNCS.forEach(function (f) { c[f] = Math.round((scores[f] - avg) * 10) / 10; });
+
+    var order = FUNCS.slice().sort(function (a, b) {
+      return (c[b] - c[a]) || (FUNCS.indexOf(a) - FUNCS.indexOf(b));
     });
-    return { dims: dims, facets: facets, letters: letters, centered: centered,
-             answered: Object.keys(state.answers).length, total: LIKERT.items.length };
-  }
+    var dom = order[0];
+    var otherIsPerc = !PERC[dom];
+    var cand = FUNCS.filter(function (f) {
+      var isPerc = !!PERC[f];
+      return (otherIsPerc ? isPerc : !isPerc) && ATT[f] !== ATT[dom];
+    }).sort(function (a, b) { return (c[b] - c[a]) || (FUNCS.indexOf(a) - FUNCS.indexOf(b)); });
+    var aux = cand[0], tert = MAP[aux], inf = MAP[dom];
 
-  /* ---------- 作答 ---------- */
-  function start(resume) {
-    if (resume && pendingResume) { state = pendingResume; pendingResume = null; }
-    else { state = { answers: {}, idx: 0 }; clearSave(); }
-    view("test"); render();
-  }
-  function render() {
-    var it = LIKERT.items[state.idx];
-    if (!it) { showResult(); return; }
-    $("qno").textContent = "第 " + (state.idx + 1) + " / " + LIKERT.items.length + " 题";
-    $("statement").textContent = it.text;
-    $("counter").textContent = (state.idx + 1) + "/" + LIKERT.items.length;
-    $("backBtn").disabled = state.idx === 0;
-    $("pbar").style.width = Math.round(state.idx / LIKERT.items.length * 100) + "%";
-    paint();
-  }
-  function paint() {
-    var v = state.answers[LIKERT.items[state.idx].id];
-    var btns = $("scale").querySelectorAll("button");
-    for (var i = 0; i < btns.length; i++) {
-      var bv = Number(btns[i].getAttribute("data-v"));
-      btns[i].className = (v === bv ? "sel" : (bv === 3 ? "mid" : ""));
-    }
-  }
-  function choose(v) {
-    state.answers[LIKERT.items[state.idx].id] = v;
-    save(); paint();
-    setTimeout(function () {
-      state.idx++; save();
-      if (state.idx >= LIKERT.items.length) showResult(); else render();
-    }, 130);
-  }
-  function back() { if (state.idx > 0) { state.idx--; save(); render(); } }
+    var ei = ATT[dom], sn, tf;
+    if (PERC[dom]) { sn = (dom === "Ne" || dom === "Ni") ? "N" : "S"; tf = (aux === "Te" || aux === "Ti") ? "T" : "F"; }
+    else { tf = (dom === "Te" || dom === "Ti") ? "T" : "F"; sn = (aux === "Ne" || aux === "Ni") ? "N" : "S"; }
+    var extFn = ATT[dom] === "E" ? dom : aux;
+    var jp = JUDG[extFn] ? "J" : "P";
+    var code = ei + sn + tf + jp;
 
-  /* ---------- 结果 ---------- */
-  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {
-    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
-
-  function showResult() {
-    var r = compute();
-    var h = [];
-    var code = r.letters.slice(0, 4), idn = r.letters.slice(4);
-    h.push('<div class="rhead"><div class="code">' + (code || "?") + "-" + (idn || "?") + '</div>');
-    h.push('<div class="name">五维倾向：' + DIMS.map(function (d) {
-      var s = r.dims[d.key];
-      if (s === undefined) return d.cn + " 未答";
-      return d.cn + " " + (s >= 53 ? d.cnA : (s <= 47 ? d.cnB : "居中"));
-    }).join(" · ") + '</div>');
-    h.push('<div class="ver">作答 ' + r.answered + ' / ' + r.total + ' 题　·　生成于 ' + nowStamp() +
-      '　·　量表版本 ' + APP_VERSION + '</div></div>');
-
-    h.push('<div class="sect"><h3>五个维度</h3>');
-    DIMS.forEach(function (d) {
-      var s = r.dims[d.key];
-      if (s === undefined) return;
-      var left = Math.min(s, 100), right = Math.max(0, 100 - s);
-      h.push('<div class="dimrow"><div class="dimtop"><b>' + d.cn + '</b><span>' + d.a + ' / ' + d.b +
-        '</span><span class="pct">' + s.toFixed(0) + '% 偏 ' + (s >= 50 ? d.cnA : d.cnB) + '</span></div>');
-      h.push('<div class="dimbar"><i style="left:0;width:' + s + '%"></i><span class="mid"></span></div>');
-      h.push('<div class="poles"><span>' + d.cnA + ' ' + d.a + '</span><span>' + d.cnB + ' ' + d.b + '</span></div>');
-      h.push('<div style="font-size:12.5px;color:var(--muted);margin-top:4px">' +
-        (s >= 50 ? d.noteA : d.noteB) + '（这一维 ' + s.toFixed(0) + ' 分，50 为中线）</div></div>');
+    var fits = [], ranked = [];
+    Object.keys(STACKS).forEach(function (t) {
+      var st = STACKS[t], v = 0;
+      for (var i = 0; i < 4; i++) v += W[i] * c[st[i]];
+      fits.push([t, Math.round(v * 100) / 100]);
     });
-    if (r.centered.length) {
-      h.push('<p style="font-size:13px;color:var(--warn)">' + r.centered.join("、") +
-        ' 这几维落在中线附近：说明你两边都用，不用硬给自己贴一个字母。</p>');
-    }
-    h.push('</div>');
+    ranked = fits.slice().sort(function (a, b) { return b[1] - a[1]; });
 
-    h.push('<div class="sect"><h3>25 个面向</h3><div class="facets">');
-    DIMS.forEach(function (d) {
-      LIKERT.items.filter(function (it) { return it.dim === d.key; })
-        .map(function (it) { return it.facet; })
-        .filter(function (v, i, a) { return a.indexOf(v) === i; })
-        .forEach(function (fc) {
-          var s = r.facets[d.key + "/" + fc];
-          if (s === undefined) return;
-          h.push('<div class="facet"><span>' + esc(fc) + '</span><span class="fb"><i style="width:' + s + '%"></i></span>' +
-            '<span class="fv">' + s.toFixed(0) + '</span></div>');
-        });
+    var half = [true, false].map(function (odd) {
+      return profile(values, items, function (i) { return (i % 2 === 0) === odd; });
     });
-    h.push('</div><p style="font-size:11.5px;color:var(--faint);margin-top:10px">' +
-      '每个面向 2 题（一正一反）。50 以上偏左端，50 以下偏右端。</p></div>');
+    var hs = half.map(function (p) {
+      var s = {};
+      FUNCS.forEach(function (f) { s[f] = (p[f] + 3) / 6 * 100; });
+      return s;
+    });
+    var r = Math.round(spearman(FUNCS.map(function (f) { return hs[0][f]; }),
+                                FUNCS.map(function (f) { return hs[1][f]; })) * 100) / 100;
+    var gap = Math.round((c[order[0]] - c[order[1]]) * 10) / 10;
+    var conf = (gap >= 6 && r >= 0.5) ? "高" : ((gap >= 3 && r >= 0.25) ? "中" : "低");
 
-    h.push('<div class="sect"><h3>把结果交给 AI 分析</h3>' +
-      '<p style="font-size:13.5px;color:var(--muted)">这段提示词已把分数、量表口径和边界写好，复制后黏到常用的 AI 里即可。</p>' +
-      '<div class="actions" style="margin:12px 0 0"><button class="primary" id="copyPromptBtn">复制 AI 分析提示词</button>' +
-      '<button id="downloadPromptBtn">下载为 .txt</button></div>' +
-      '<details><summary>展开查看提示词全文</summary><textarea class="promptBox" id="aiPrompt" spellcheck="false"></textarea>' +
-      '<p style="font-size:11.5px;color:var(--faint);margin:8px 0 0">只有分数，没有姓名。</p></details></div>');
-
-    h.push('<div class="actions"><button class="primary" id="againBtn">重新做一次</button>' +
-      '<button id="printBtn">打印 / 存为 PDF</button>' +
-      '<button id="copyBtn">复制结果摘要</button></div>');
-    h.push('<p class="disclaimer">这是自我认识工具，不是诊断。分数是"你多常这样"，不是能力高低；' +
-      '也不是类型判决——五维落在中线附近时，本来就不该硬分。' +
-      '想看荣格八维那套（功能栈判定）请到<a href="./jungian.html">另一个版本</a>。</p>');
-
-    $("result").innerHTML = h.join("");
-    view("result");
-
-    $("againBtn").onclick = function () { start(false); };
-    $("printBtn").onclick = function () { window.print(); };
-    $("copyBtn").onclick = function () { copyText(summary(r), $("copyBtn")); };
-    $("aiPrompt").value = aiPrompt(r);
-    $("copyPromptBtn").onclick = function () { copyText($("aiPrompt").value, $("copyPromptBtn")); };
-    $("downloadPromptBtn").onclick = function () {
-      downloadText("性格倾向量表-结果-AI分析提示.txt", $("aiPrompt").value);
+    return {
+      scores: scores, centered: c, order: order,
+      dominant: dom, auxiliary: aux, tertiary: tert, inferior: inf,
+      code: code, jung_code: JUNG_OF[dom][0], jung_name: JUNG_OF[dom][1],
+      cn_name: CN_NAME[code], stack: [dom, aux, tert, inf],
+      top3: ranked.slice(0, 3), gap: gap, consistency: r, confidence: conf,
+      mismatch: ranked[0][0] !== code,
+      answered: Object.keys(values).length, total: items.length
     };
   }
 
-  function summary(r) {
-    return ["性格倾向量表（中国情境版）结果 · " + APP_VERSION,
-      "四字母：" + r.letters.slice(0, 4) + "　身份：" + r.letters.slice(4),
-      DIMS.map(function (d) { return d.cn + " " + d.a + "/" + d.b + " = " + (r.dims[d.key] || 0).toFixed(0); }).join("　"),
-      "生成时间：" + nowStamp(), "", "自我认识工具，非诊断。"].join("\n");
+  return { FUNCS: FUNCS, FN_CN: FN_CN, STACKS: STACKS, CN_NAME: CN_NAME,
+           computeResult: computeResult };
+})();
+if (typeof module !== "undefined" && module.exports) module.exports = J8L;
+
+</script>
+<script>
+"use strict";
+var DATA = {"items":[{"id":"Se-01","fn":"Se","reverse":false,"text":"全家自驾途中临时改道，你马上看路牌问往哪拐。"},{"id":"Se-02","fn":"Se","reverse":false,"text":"年夜饭桌上菜还没齐，你就挽袖子现张罗起来。"},{"id":"Se-03","fn":"Se","reverse":true,"text":"全家自驾途中临时改道，你先打电话问清原来的安排。"},{"id":"Se-04","fn":"Se","reverse":false,"text":"客户当场推翻方案，你在会议室就着白板改。"},{"id":"Se-05","fn":"Se","reverse":false,"text":"仓库盘点时你一眼看出货架上有箱摆错了。"},{"id":"Se-06","fn":"Se","reverse":true,"text":"团建爬山你跟着队伍走，脚下的路交给别人看。"},{"id":"Se-07","fn":"Se","reverse":false,"text":"学游泳你不看教程，先下水扶着池边蹬腿。"},{"id":"Se-08","fn":"Se","reverse":true,"text":"学游泳前你先把教程视频看完，才肯下水。"},{"id":"Se-09","fn":"Se","reverse":false,"text":"饭局上你拿过菜单，边翻边问大家吃什么。"},{"id":"Se-10","fn":"Se","reverse":false,"text":"朋友拿出新桌游，你先抓牌试一把再听规则。"},{"id":"Se-11","fn":"Se","reverse":false,"text":"逛家电卖场你打开冰箱门，摸内壁听声音。"},{"id":"Se-12","fn":"Se","reverse":true,"text":"买冰箱前你翻参数做对比，到了卖场也没上手看。"},{"id":"Se-13","fn":"Se","reverse":false,"text":"楼上半夜还在响，你披上衣服上楼敲门当面说。"},{"id":"Se-14","fn":"Se","reverse":true,"text":"菜市场少称了，你心里记一下，回家再想办法。"},{"id":"Se-15","fn":"Se","reverse":false,"text":"做菜你靠手感撒盐，尝一口再补一点。"},{"id":"Se-16","fn":"Se","reverse":true,"text":"做菜你按菜谱称好克数，再一样一样下锅。"},{"id":"Se-17","fn":"Se","reverse":false,"text":"新手机上市，你先去店里把它拿在手上转两圈。"},{"id":"Se-18","fn":"Se","reverse":false,"text":"对方情绪不好，你不劝，拉他出门走一段。"},{"id":"Se-19","fn":"Se","reverse":false,"text":"身体不舒服，你先说清是哪儿疼、怎么个疼法。"},{"id":"Si-01","fn":"Si","reverse":false,"text":"过年走亲戚，你按往年的顺序一家一家去。"},{"id":"Si-02","fn":"Si","reverse":false,"text":"妈妈的旧菜谱，你照着上面的火候和顺序做。"},{"id":"Si-03","fn":"Si","reverse":true,"text":"家里的东西放哪儿你不太在意，找的时候再翻。"},{"id":"Si-04","fn":"Si","reverse":false,"text":"做报表你还是沿用上季度那份模板的格式。"},{"id":"Si-05","fn":"Si","reverse":false,"text":"公司流程你一步步照着走，跳一步心里不踏实。"},{"id":"Si-06","fn":"Si","reverse":true,"text":"新项目你不翻旧资料，直接从头摸一遍。"},{"id":"Si-07","fn":"Si","reverse":true,"text":"复习你不翻旧笔记，另找一套方法从头试。"},{"id":"Si-08","fn":"Si","reverse":false,"text":"考试你先按熟的那套时间分配往下答。"},{"id":"Si-09","fn":"Si","reverse":false,"text":"老朋友见面，你还是约那家去了很多年的老馆子。"},{"id":"Si-10","fn":"Si","reverse":true,"text":"饭桌上你换个新段子讲，老段子自己都想不起来。"},{"id":"Si-11","fn":"Si","reverse":false,"text":"买酱油你伸手就拿一直吃的那个牌子。"},{"id":"Si-12","fn":"Si","reverse":false,"text":"换新手机，你先去把旧手机里的设置一项项对回来。"},{"id":"Si-13","fn":"Si","reverse":false,"text":"邻里有点摩擦，你按以前那回的办法去处理。"},{"id":"Si-14","fn":"Si","reverse":true,"text":"跟同事闹别扭，你不去想上回，只谈这次的事。"},{"id":"Si-15","fn":"Si","reverse":false,"text":"跑步你顺着那条走熟的路线，心里有数。"},{"id":"Si-16","fn":"Si","reverse":true,"text":"做菜你不看量杯和计时器，随手放随手炒。"},{"id":"Si-17","fn":"Si","reverse":false,"text":"看到一条传言，你想起前几年传过的那版。"},{"id":"Si-18","fn":"Si","reverse":false,"text":"对方不吃什么、几点睡，你都记在心里。"},{"id":"Si-19","fn":"Si","reverse":false,"text":"换季时你会留意身上反应跟往年像不像。"},{"id":"Ne-01","fn":"Ne","reverse":false,"text":"装修想试混搭，北欧的墙配旧木料地板，阳台也想掺一手。"},{"id":"Ne-02","fn":"Ne","reverse":false,"text":"孩子问天为什么蓝，你从光的散射扯到海和晚霞，话还没完。"},{"id":"Ne-03","fn":"Ne","reverse":true,"text":"旧家具你就按原来的用处用，没想过改成别的样子。"},{"id":"Ne-04","fn":"Ne","reverse":false,"text":"会上你一口气抛出三个方向，还顺手补了两条别的路。"},{"id":"Ne-05","fn":"Ne","reverse":false,"text":"给产品想点子，你专挑不正经的路子试，再看哪个能成。"},{"id":"Ne-06","fn":"Ne","reverse":true,"text":"开会你只讲定好的那个方向，别的一条都不提。"},{"id":"Ne-07","fn":"Ne","reverse":false,"text":"啃一个概念，你会想到别的领域也有同一套东西在转。"},{"id":"Ne-08","fn":"Ne","reverse":true,"text":"记概念你就按书上那一章记下来，不往别的地方联。"},{"id":"Ne-09","fn":"Ne","reverse":false,"text":"聊着聊着，你从天气跳到谁家的事，再跳到新开的店。"},{"id":"Ne-10","fn":"Ne","reverse":true,"text":"聊天时你守着同一个话题往下说，不往旁边岔。"},{"id":"Ne-11","fn":"Ne","reverse":false,"text":"逛超市专看新品，看完就琢磨家里哪块地方能用上。"},{"id":"Ne-12","fn":"Ne","reverse":true,"text":"逛超市只拿清单上的，新品柜台一眼不看就走过去。"},{"id":"Ne-13","fn":"Ne","reverse":false,"text":"吵起来的时候，你提出第三条路，两边都没想过的。"},{"id":"Ne-14","fn":"Ne","reverse":false,"text":"矛盾里你会替对方想几种处境，还想过换个说法。"},{"id":"Ne-15","fn":"Ne","reverse":false,"text":"想同时学三样乐器，还给每样找了个入门的法子。"},{"id":"Ne-16","fn":"Ne","reverse":true,"text":"旅行前你把路线定成一套，路上不再琢磨别的走法。"},{"id":"Ne-17","fn":"Ne","reverse":false,"text":"看到新技术新闻，你先想它还能用在哪，能替掉哪些活。"},{"id":"Ne-18","fn":"Ne","reverse":false,"text":"计划约会你想换花样，吃完饭还能骑车、看展，再去别处。"},{"id":"Ne-19","fn":"Ne","reverse":false,"text":"身体一不舒服，你脑子里先冒出一串可能的原因。"},{"id":"Ni-01","fn":"Ni","reverse":false,"text":"看亲戚家孩子，你会想他十年后大概走成什么样。"},{"id":"Ni-02","fn":"Ni","reverse":false,"text":"家里闹矛盾，你会想根子其实在很早以前的一件小事上。"},{"id":"Ni-03","fn":"Ni","reverse":true,"text":"亲戚家的事你只看眼前这一件，不往以后想。"},{"id":"Ni-04","fn":"Ni","reverse":false,"text":"你会判断这个行业三年后大概会变成什么样。"},{"id":"Ni-05","fn":"Ni","reverse":false,"text":"项目刚立项，你就能说出它最后可能死在哪一步。"},{"id":"Ni-06","fn":"Ni","reverse":true,"text":"项目你只关心这周要做完的那部分。"},{"id":"Ni-07","fn":"Ni","reverse":false,"text":"读完一本书，你能用一句话说清它到底在讲什么。"},{"id":"Ni-08","fn":"Ni","reverse":true,"text":"复习时你按章节顺序过，不太想整门课的主线。"},{"id":"Ni-09","fn":"Ni","reverse":false,"text":"见一个人第一面，你心里就有个整体判断。"},{"id":"Ni-10","fn":"Ni","reverse":true,"text":"一群人待着时，你只顾说自己的，不太管气氛。"},{"id":"Ni-11","fn":"Ni","reverse":false,"text":"买大件时你会想这东西过几年会不会过时。"},{"id":"Ni-12","fn":"Ni","reverse":true,"text":"买东西你只看现在用不用得上。"},{"id":"Ni-13","fn":"Ni","reverse":false,"text":"争执里你能指出两边真正的分歧在哪。"},{"id":"Ni-14","fn":"Ni","reverse":true,"text":"争执里你只回应他最后说的那一句。"},{"id":"Ni-15","fn":"Ni","reverse":false,"text":"看完一部电影，你想的是它真正在讲什么。"},{"id":"Ni-16","fn":"Ni","reverse":false,"text":"听一首歌，你脑子里会浮出一个画面。"},{"id":"Ni-17","fn":"Ni","reverse":false,"text":"一条新闻你会想它背后正往哪个方向走。"},{"id":"Ni-18","fn":"Ni","reverse":false,"text":"关系里你常预感到这样下去会走到哪。"},{"id":"Ni-19","fn":"Ni","reverse":false,"text":"长期累的时候，你觉得身体在提示你什么。"},{"id":"Te-01","fn":"Te","reverse":false,"text":"搬家前你先列好时间表和分工，谁搬哪间都写清。"},{"id":"Te-02","fn":"Te","reverse":false,"text":"过年回谁家、哪天走，你排成一张表。"},{"id":"Te-03","fn":"Te","reverse":true,"text":"家里出游你到了再商量去哪，事先不定计划。"},{"id":"Te-04","fn":"Te","reverse":false,"text":"接到任务，你先拆成步骤和截止时间。"},{"id":"Te-05","fn":"Te","reverse":false,"text":"开会你负责收口：谁做、什么时候交。"},{"id":"Te-06","fn":"Te","reverse":true,"text":"项目推进你走一步看一步，不排节点。"},{"id":"Te-07","fn":"Te","reverse":false,"text":"备考你先排一张到考前的计划表。"},{"id":"Te-08","fn":"Te","reverse":true,"text":"复习你翻到哪算哪，不做进度安排。"},{"id":"Te-09","fn":"Te","reverse":false,"text":"组织同学聚会，你把时间、人数、地点定死。"},{"id":"Te-10","fn":"Te","reverse":false,"text":"群里收钱办事，你会把账目和进度贴出来。"},{"id":"Te-11","fn":"Te","reverse":false,"text":"买大件你做一张比价表，参数价格一起看。"},{"id":"Te-12","fn":"Te","reverse":true,"text":"买东西你看着顺眼就下单，不比价。"},{"id":"Te-13","fn":"Te","reverse":false,"text":"吵完你把规矩重写一遍，免得再吵。"},{"id":"Te-14","fn":"Te","reverse":true,"text":"有矛盾你等它自己过去，不另定规矩。"},{"id":"Te-15","fn":"Te","reverse":false,"text":"出去玩你先把每天的行程排出来。"},{"id":"Te-16","fn":"Te","reverse":true,"text":"组队打游戏，你等别人安排位置，自己不动手分。"},{"id":"Te-17","fn":"Te","reverse":false,"text":"看新政策你先找关键条款和执行时间。"},{"id":"Te-18","fn":"Te","reverse":false,"text":"共同开销你记账，到月底对一次。"},{"id":"Te-19","fn":"Te","reverse":false,"text":"体检你按计划安排，复查时间也先定好。"},{"id":"Ti-01","fn":"Ti","reverse":false,"text":"家里争论该不该，你先问清这个该是按谁的标准。"},{"id":"Ti-02","fn":"Ti","reverse":false,"text":"说明书上的原理你会读明白再动手。"},{"id":"Ti-03","fn":"Ti","reverse":true,"text":"亲戚说的话前后对不对得上，你不去管。"},{"id":"Ti-04","fn":"Ti","reverse":false,"text":"方案里的逻辑漏洞，你一眼就能指出来。"},{"id":"Ti-05","fn":"Ti","reverse":false,"text":"你会追问这个流程为什么非要这么设。"},{"id":"Ti-06","fn":"Ti","reverse":true,"text":"两份文档说法不一致，你按最新那份照做就行。"},{"id":"Ti-07","fn":"Ti","reverse":false,"text":"推公式你会把每一步的前提写出来。"},{"id":"Ti-08","fn":"Ti","reverse":true,"text":"教材前后矛盾，你背下来应付考试就行。"},{"id":"Ti-09","fn":"Ti","reverse":false,"text":"朋友的说法站不站得住，你心里先过一遍。"},{"id":"Ti-10","fn":"Ti","reverse":true,"text":"聊天里一个词用得不准确，你不太在意。"},{"id":"Ti-11","fn":"Ti","reverse":false,"text":"参数之间的取舍，你会先弄清原理再选。"},{"id":"Ti-12","fn":"Ti","reverse":true,"text":"保修条款你扫一眼就签，不太抠字眼。"},{"id":"Ti-13","fn":"Ti","reverse":false,"text":"争执你会拆成哪些是事实、哪些是判断。"},{"id":"Ti-14","fn":"Ti","reverse":true,"text":"谁对谁错你不细究，先把事放过去。"},{"id":"Ti-15","fn":"Ti","reverse":false,"text":"游戏或器械的规则，你会读到最细那一层。"},{"id":"Ti-16","fn":"Ti","reverse":false,"text":"玩之前你会先把规则完整读一遍。"},{"id":"Ti-17","fn":"Ti","reverse":false,"text":"一条消息你会去追它的出处和前提。"},{"id":"Ti-18","fn":"Ti","reverse":false,"text":"对方说的和你理解的是不是一回事，你会确认。"},{"id":"Ti-19","fn":"Ti","reverse":false,"text":"身体出状况，你想弄清它对应的机理。"},{"id":"Fe-01","fn":"Fe","reverse":false,"text":"饭桌上有人话赶话要吵起来，你先岔开话题。"},{"id":"Fe-02","fn":"Fe","reverse":false,"text":"长辈当众被晚辈顶了一句，你会替他找台阶。"},{"id":"Fe-03","fn":"Fe","reverse":true,"text":"亲戚之间传话，你只管带到，不管对方听了怎么想。"},{"id":"Fe-04","fn":"Fe","reverse":false,"text":"同事被领导当众批评，散会后你会私下问一句。"},{"id":"Fe-05","fn":"Fe","reverse":false,"text":"跨部门会开冷了场，你会先接话把气顺过来。"},{"id":"Fe-06","fn":"Fe","reverse":true,"text":"会议室气氛僵住，你照自己的说完就走。"},{"id":"Fe-07","fn":"Fe","reverse":false,"text":"小组作业有人跟不上，你会把节奏放慢一点。"},{"id":"Fe-08","fn":"Fe","reverse":true,"text":"老师一句话让全班不舒服，你觉得跟自己没关系。"},{"id":"Fe-09","fn":"Fe","reverse":false,"text":"敬酒你会留意顺序，别让谁被落下。"},{"id":"Fe-10","fn":"Fe","reverse":true,"text":"聚会上谁被冷落，你不去管。"},{"id":"Fe-11","fn":"Fe","reverse":false,"text":"陪人买东西，你会先想他的预算和面子。"},{"id":"Fe-12","fn":"Fe","reverse":true,"text":"送礼你挑自己喜欢的，不管对方合不合适。"},{"id":"Fe-13","fn":"Fe","reverse":false,"text":"两边都下不来台时，你会递个台阶。"},{"id":"Fe-14","fn":"Fe","reverse":true,"text":"群里吵起来你先看热闹，不掺和。"},{"id":"Fe-15","fn":"Fe","reverse":false,"text":"组织活动你会照顾到不爱说话的人。"},{"id":"Fe-16","fn":"Fe","reverse":false,"text":"唱歌时你会留意谁一直没唱。"},{"id":"Fe-17","fn":"Fe","reverse":false,"text":"转发消息前你会想，会不会让谁难堪。"},{"id":"Fe-18","fn":"Fe","reverse":false,"text":"对方不开心，你会先接住情绪再谈事。"},{"id":"Fe-19","fn":"Fe","reverse":false,"text":"家里人生病，你张罗挂号、陪床、忌口这些细节。"},{"id":"Fi-01","fn":"Fi","reverse":false,"text":"亲戚的话让你觉得违心，你会当场不太接。"},{"id":"Fi-02","fn":"Fi","reverse":false,"text":"要不要为家里改自己的选择，你心里掂量很久。"},{"id":"Fi-03","fn":"Fi","reverse":true,"text":"长辈说什么你就照做，不太问自己认不认。"},{"id":"Fi-04","fn":"Fi","reverse":false,"text":"让你做一件你不认同的事，你会先顶住。"},{"id":"Fi-05","fn":"Fi","reverse":false,"text":"方案跟你的标准冲突，你宁可慢一点也不改。"},{"id":"Fi-06","fn":"Fi","reverse":true,"text":"工作里做什么都行，只要给钱。"},{"id":"Fi-07","fn":"Fi","reverse":false,"text":"学一门自己不认同的课，你很难投入。"},{"id":"Fi-08","fn":"Fi","reverse":true,"text":"论文怎么写能过就怎么写，不管自己怎么想。"},{"id":"Fi-09","fn":"Fi","reverse":false,"text":"朋友的玩笑踩到你的线，你会直接说。"},{"id":"Fi-10","fn":"Fi","reverse":true,"text":"为了合群，你会跟着说自己也不同意的话。"},{"id":"Fi-11","fn":"Fi","reverse":false,"text":"大家抢着买的东西，你不喜欢就不买。"},{"id":"Fi-12","fn":"Fi","reverse":true,"text":"别人都买，你也跟着买一份。"},{"id":"Fi-13","fn":"Fi","reverse":false,"text":"明知会得罪人，该说的你还是要说。"},{"id":"Fi-14","fn":"Fi","reverse":false,"text":"道歉你会等自己想清楚了才开口。"},{"id":"Fi-15","fn":"Fi","reverse":false,"text":"你只做自己真喜欢的那件事，别人怎么看另说。"},{"id":"Fi-16","fn":"Fi","reverse":true,"text":"流行什么你就玩什么，自己喜不喜欢另说。"},{"id":"Fi-17","fn":"Fi","reverse":false,"text":"看到某条新闻，你心里会过不去很久。"},{"id":"Fi-18","fn":"Fi","reverse":false,"text":"关系里你会反复确认自己是不是还在做自己。"},{"id":"Fi-19","fn":"Fi","reverse":false,"text":"身体不舒服时，你会想这是不是自己不想面对什么。"}],"types":{"INTJ":{"code":"INTJ","cn_name":"远景架构者","stack":["Ni","Te","Fi","Se"],"jung_type":"内倾直觉型","oneliner":"先在脑子里把结局跑完，再回头倒排今天这一步。","core":"你的注意力默认落在“这事最后会变成什么”上。给你一堆零散信息，你会不自觉把它拧成一条线：谁在动、往哪走、拐点在哪。这是内倾直觉 Ni 在收敛，它不负责收集材料，只负责从材料里抽出那条主线。主线一出来，你就需要把它摁进现实，于是外倾思维 Te 接手：定目标、切步骤、排优先级、算谁负责哪一段。别人看你像在“管事情”，其实你是在给脑子里那条线找一个能在外部世界落地的形状。第三功能内倾情感 Fi 让你在方案里藏一条不轻易示人的“我认这个”，它平时不出声，一旦被踩到，你会突然非常倔。劣势外倾感觉 Se 是最薄的一层：当下的气味、脸色、身体信号，你常常是事后才补上。","work":"领导下班前改需求，你不会先喊难。你会先问清楚新目标是什么，然后把原来的排期拆开，重算哪几步能并行、哪几步必须往后挪。汇报时你习惯先给结论再给路径，最烦的是讲半天还在铺垫。你不太爱在会上现想，宁可会前把话在心里过完。同事觉得你难说服，其实你只是要他先把前提讲清楚——前提对了，你改得比谁都快。","family":"过年回家，亲戚问你对象和工作，你会给一个体面的答案，然后迅速把话题带到别的正事上。你在家族群里话不多，长辈转的养生文章一般不接，只在明显要花钱的时候提醒一句。爸妈劝你考公务员，你不会当场顶回去，而是过两天发一份利弊对比过去。你关心家人的方式更接近“把长远安排想好”，而不是当场嘘寒问暖。","love":"相亲坐下来，你更在意对方说话有没有内在逻辑，而不是气氛热不热。你不太会说甜话，更习惯用“帮你把这件事安排明白”来表达在意。对方抱怨你像在开会，你可以留意一下：对方可能只是想要你先接住情绪，而不是立刻拿到方案。你一旦认定，反而很稳，不轻易换人。","strength":["能在混乱里先看出主线","目标一定就能倒排步骤","长期判断不易被短期噪音带偏"],"blindspot":["当下的人和气氛常被漏掉","认定的事不容易被劝回来","心里在意的不轻易说出口"],"stress":"压力顶到某个点，你的劣势 Se 会突然反过来接管。平时不看细节的你，开始盯着眼前最刺眼的东西较劲：反复刷手机、连夜收拾房间，或者突然对某个人的表情语气过度解读。更常见的是身体先报警——失眠、胃不舒服——而你还在硬排计划。最失控的是对小事发火，比如谁动了一下你摆好的东西。","growth":"跟劣势功能和解，不是逼自己去“多感受当下”，而是给它留固定的位置：每天留一段不排计划的时间，认真吃饭、走路、听声音；做重要决定之前，先问一句身体是紧还是松。把 Se 当情报用，而不是当敌人。同时别让 Fi 一直沉默——定期写下“我到底认不认这件事”，比事后爆发省事得多。","mistype":"最容易被误判成 INTP。区别在卡住时的动作：INTP 退回自己的逻辑里反复拆概念，越拆越静；你会转去抓外部秩序，开始排计划、催进度、定规矩。另一个近邻是 INFJ：INFJ 在人际里先接住气氛再谈方向，你往往是先定方向，气氛是后来的事。"},"INTP":{"code":"INTP","cn_name":"原理拆解者","stack":["Ti","Ne","Si","Fe"],"jung_type":"内倾思维型","oneliner":"听见一个说法，先想它到底立不立得住。","core":"你遇到任何说法，第一反应不是信不信，而是“它成立吗”。内倾思维 Ti 在你脑子里建一套自己的模型：概念要定义清楚，前提要摆出来，前后不能打架。这套模型不图好看，只图内部自洽。外倾直觉 Ne 在旁边不断递新可能：换个前提会怎样、接到别的领域会怎样。所以你的思考常常发散出去再收回来，看着跳，其实在补同一个模型。你不太管结论能不能被采纳，先要它是真的。第三功能内倾感觉 Si 帮你存下大量具体例子和旧经验，作为校验的参照。劣势外倾情感 Fe 是短板：现场谁不舒服、话怎么说才得体，你经常是最后一个反应过来的，得靠别人提醒。","work":"领导下班前说要改需求，你会先问“为什么改”，问到他讲出真实原因，再开始动手。你不怕改，怕的是不知道为什么改。写方案时你容易越写越细，把边界条件一条条补上，结果交得晚。汇报时你忍不住先讲推导过程，领导打断你“说结论”，你才意识到对方要的是那句能拍板的话。改完你会顺手把连带影响也列出来，省得再返工一遍。","family":"过年饭桌上被问工资和对象，你会认真回答，但答得太实，反而让场面安静下来。家族群里那条养生文章，你会去查它说得对不对，查完想发一段纠正，最后多半删掉——你知道发了更麻烦。爸妈劝你考公务员，你会认真分析利弊，列到最后他们只想听一句“我考虑考虑”。你不是不关心家里，只是不太会用他们那种方式表达。","love":"你表达在意的方式是记住对方说过的话，然后某天突然给出一个很准的回应。相亲时你会问很多问题，对方可能觉得像面试。你不太会主动制造气氛，但会认真接住对方抛来的每一个话题。需要留意的是：对方讲一件难过的事，先别急着分析原因，先陪着。","strength":["能把概念拆到最小单位","对自相矛盾异常敏感","能设想多条替代路径"],"blindspot":["想清楚前不太愿意表态","现场情绪常被你忽略","容易陷进细节收不住"],"stress":"真被压到极限时，你的劣势 Fe 会以很别扭的方式冒出来。平时不太在意别人怎么看你，这时却突然异常在意：反复回想自己在会上那句话是不是让人不高兴；或者反过来，因为一件小事对身边人冷下脸、说话带刺。另一种样子是彻底回避，谁找你都说“都行”。这时候你不是没情绪，是不会处理情绪。","growth":"别指望自己变成会来事的人，改成给 Fe 一点小任务：开会时先问一句“大家还有别的想法吗”，散场前确认一下谁被落下了。情绪上来时先承认“我现在很不爽”，再决定说还是不说。Ti 需要一个外部检查点，找一个愿意跟你说真话的人，定期把想法讲给他听，比自己在脑子里转十遍有用。","mistype":"最容易被误判成 INTJ。区别在卡住时的动作：INTJ 会去抓外部秩序、排计划、催结果；你会退回模型里继续拆，越拆越不动。与 ISTP 也不同：ISTP 靠现场动手试，你更像在脑子里做实验；被临时叫去处理具体故障时，谁先上手谁更像 ISTP。"},"ENTJ":{"code":"ENTJ","cn_name":"目标统帅者","stack":["Te","Ni","Se","Fi"],"jung_type":"外倾思维型","oneliner":"先定目标和节点，剩下的都是资源问题。","core":"你对外部世界的默认动作是组织：定目标、切节点、分资源、定标准，让事情从一个模糊的愿望变成能推进的流程。你不喜欢事情停在“再看看”上。这是外倾思维 Te，它的判断依据在外部——做成了没有、有没有效、谁在拖。内倾直觉 Ni 在背后给你方向：你不满足于把眼前这件事做完，总要问它通向哪个更大的局。两个功能配在一起，就形成“先看终点，再倒排”的工作方式。第三功能外倾感觉 Se 让你愿意下场去试、去抓现场，也让你的节奏偏快。劣势内倾情感 Fi 是最薄的一层：你自己的好恶常常排在工作后面，等空下来才发现心里有笔账。","work":"领导改需求，你不会先抱怨，第一句是“那目标变没变”。目标不变，你就重排节点；目标变了，你会把影响范围一次讲清。你开会习惯带议程和时间，最受不了讨论半天没有结论。你对下属的要求是“有问题早说”，对上级的要求是“别让我猜”。你推进得快，也容易把别人甩在后面，事后才发现有人没跟上。被催的时候你反而更快。","family":"过年你往往是那个张罗的人：订饭店、排座次、谁去接谁，你在群里几句话就安排完。亲戚问你收入，你会大方带过，再把话题转到“表弟工作找得怎么样”。爸妈劝你考公务员，你会把两条路的收益和代价摆出来，摆完才发现他们要的其实是你多回家。你在意家人的方式是替他们把事办好，不是坐下来听他们讲委屈。","love":"相亲你会先了解对方的现实条件和对未来的打算，这不是势利，是你在评估能不能一起过日子。你表达关心的方式是解决问题：对方说不舒服，你第一反应是挂号、买药、安排时间。对方有时候只是想要被抱一下。你需要在“把事情搞定”和“陪对方待着”之间留出余地。","strength":["能迅速把混乱排成流程","目标感强，扛得住推进","敢拍板，也敢担结果"],"blindspot":["容易忽略别人的节奏","自己的感受总排最后","不耐烦没有结论的讨论"],"stress":"压力顶到头时，劣势 Fi 会用很生硬的方式反扑。平时不怎么谈感受的你，可能突然因为一句评价整个人沉下去，反复想“我这么干到底图什么”。也可能反过来变得异常敏感，觉得没人真正理解你、所有人都在用你的能干。更常见的是把火撒在最亲近的人身上，事后又说不清自己为什么发那么大脾气。","growth":"把 Fi 的账定期结一下：每周留半小时，只问自己“这件事我还认吗”“我累不累”，不列待办。做重大决定前先放一天再拍板，让心里那点说不清的东西浮上来。对身边人，练习说完“这事我来办”之后加一句“你怎么想”，效果比多干十件事好。也别把休息当成任务完成之后的奖励，那是另一套 KPI。","mistype":"最容易被误判成 ESTJ。区别在推进方式：ESTJ 更依赖已经验证过的流程和旧经验，你更愿意为一个新方向重排资源；被问理由时，你会讲未来图景，他会讲过去怎么成的。与 ENFJ 的分界在改需求时：ENFJ 先看团队谁扛不住，你先看节点保不保得住。"},"ENTP":{"code":"ENTP","cn_name":"可能性发动机","stack":["Ne","Ti","Fe","Si"],"jung_type":"外倾直觉型","oneliner":"一个点能炸出五个方向，先聊了再说。","core":"你看到任何东西，脑子里会自动弹出别的可能：这个还能怎么用、反过来会怎样、接到另一个领域会变成什么。这是外倾直觉 Ne，它的乐趣在生成而不在收口。你不太守成的另一个原因是：还没试过的路，在你看来成本更低。生成出来的东西需要检验，接手的往往是内倾思维 Ti：你会跟人辩、跟人拆，把每个可能的前提摆到桌面上，看哪个先塌。所以你聊天像打仗，但你不一定为了赢，更多是为了把想法磨得更利。第三功能外倾情感 Fe 让你其实很会读场、会调节气氛。劣势内倾感觉 Si 是短板：重复的流程、身体记忆、按部就班，你很难长期守住。","work":"领导下班前改需求，你第一反应是“那我们能不能换个更好的做法”，然后拉着人讨论到很晚。你不怕改，怕的是无聊。开会时你是那个不断抛选项的人，但容易开太多头，收尾要靠别人。你更愿意先做一版草的，拿去碰反馈。写周报你最痛苦，因为事情还没定型。你对流程的态度是“能绕就绕”，直到绕出问题才回头补规矩。","family":"过年被亲戚围问，你会用玩笑把问题挡回去，还能顺手把气氛带热。家族群里长辈转的养生文，你很可能当众挑出几个漏洞，说完才意识到长辈下不来台。你觉得较真是对事不对人。爸妈劝你考公务员，你能跟他们辩一小时，辩到最后大家都忘了原本要说什么。你不是不孝，只是忍不住把那句话里的逻辑问题指出来。","love":"相亲时你话题很多，气氛不会冷，但对方可能摸不清你到底认不认真。你表达喜欢的方式是逗对方、跟对方抬杠、把好玩的事第一时间发给对方。你容易在关系里留后路，不是不爱，是怕被固定住。你需要关系里有空间，也需要对方能跟上你的跳。对方需要明确回应的时候，别用玩笑糊过去。","strength":["选项多，能跳出旧框架","吵架能把问题吵清楚","学新东西上手快"],"blindspot":["开头多，收尾少","话说得快，容易伤到人","不愿守重复的规矩"],"stress":"被压到极限时，劣势 Si 会以两种相反的样子出来。一种是身体先垮：作息乱掉、胃疼、失眠，或者突然对某个细节钻牛角尖，反复检查同一件事。另一种是缩回最保守的壳里，什么新东西都不想碰，只按旧习惯重复，连平时最爱的聊天都懒得接。这时候你的机灵不见了，只剩烦躁。","growth":"给 Ne 装一个收口的动作：每次冒出五个想法，挑一个写下来，定一个能交付的最小结果。不用逼自己变成有计划的人，但要有一件能长期重复的事，比如固定运动、固定记账，让 Si 有地方站。跟人争论前先问一句“你是想听我挑问题，还是想让我帮你想”，能省掉很多误会。","mistype":"最容易被误判成 INTP。区别在能量方向：INTP 把想法收回自己的模型里慢慢磨，你是把想法扔到桌上跟人碰。被问“你到底想干嘛”，INTP 给你一整套原理，你先给三个方向。与 ENFP 的分界在争论：ENFP 先看有没有伤人，你先掰逻辑。"},"INFJ":{"code":"INFJ","cn_name":"深察引路者","stack":["Ni","Fe","Ti","Se"],"jung_type":"内倾直觉型","oneliner":"先感到这屋里有点不对，再慢慢说清是什么。","core":"你对人和事的默认读法不是看表面，而是找底下那条线：他为什么这么说、这件事最后会往哪走。这是内倾直觉 Ni，它要的是整体和走向，不是清单。你不常下判断，因为一个判断往往要把好几个人的处境一起装进去，装不下的时候你宁可不说。读到的这些，你需要落到人身上，于是外倾情感 Fe 接手：把话说到对方能接住的位置，让在场的人不至于难堪。所以你常常知道真相，却要选怎么说。第三功能内倾思维 Ti 让你在安静时反复检视自己的判断站不站得住。劣势外倾感觉 Se 是短板：当下的具体、身体的信号、眼前的现实，你容易漏。","work":"领导改需求，你会先看他真正焦虑的是什么——是上面压了指标，还是怕交不出来。看准了你才动，动的往往不只是方案，还有他的情绪。你在会上话不多，但常在散会后单独找关键的人说两句。你不喜欢在群里当面纠正别人，更愿意私下说。你不喜欢冲突，可一旦认定方向错了，会用很柔的方式一直磨，磨到对方自己改口。","family":"过年回家，你比谁都先察觉饭桌上的暗流：谁跟谁不对付、哪句话戳到了谁。你会不动声色地把话题岔开。亲戚催婚，你笑着接住，回头自己消化很久。家族群里那条养生文章，你多半私聊长辈，不在群里驳。你怕他们担心，也怕自己说漏。爸妈劝你考公务员，你会认真听，然后说“我再想想”——你其实早想清楚了，只是不想让他们难受。","love":"你进入关系前会观察很久，对方一句无心的话你能琢磨半天。你表达在意的方式是记得细节：对方哪天说过怕冷、哪次提到家里的事，你都放在心里。你需要对方能接住你的深度，也需要独处的时间。要留意的是：你常常替对方想好了，却没问对方到底怎么想。","strength":["能读出话背后的东西","把话说到人能接住","看长期走向，不易被眼前带偏"],"blindspot":["想得太多，说得太晚","容易替别人做决定","忽略身体和现实细节"],"stress":"压力积到一定程度，劣势 Se 会突然翻上来。平时克制、体面的你，可能某天为一件很小的事爆发：东西没放回原位、有人迟到十分钟，你话说得又直又重，把在场的人吓一跳。也可能反过来，用最直接的方式麻醉自己——暴食、熬夜刷剧、冲动消费，第二天更空。身体往往先报警，而你还在硬撑。","growth":"给 Se 留一个低强度的出口：走路、做饭、动手收拾，让注意力回到手边的东西上，而不是一直在人心里打转。判断完一件事，试着把它说出来，别等对方自己领悟。照顾别人之前，先确认自己还有电。还有一条：别人的情绪不必都由你负责，你可以关心，但不用替他们消化。","mistype":"最容易被误判成 INFP。区别在冲突里的第一反应：INFP 先守住自己心里那条线，宁可关系僵一阵；你会先看怎么把场面圆过去，再想办法表达立场。与 INTJ 的分界在给建议时：INTJ 直接给方案，你会先接住对方的情绪，再拐着弯把方向递过去。"},"INFP":{"code":"INFP","cn_name":"价值守火者","stack":["Fi","Ne","Si","Te"],"jung_type":"内倾情感型","oneliner":"先问这事对不对得起自己，再想别的。","core":"你判断一件事，先冒出来的不是“有没有用”，而是“这违不违心”。内倾情感 Fi 在你心里立着一套不外显的标准：什么是真的、什么不能碰、什么是你认的。它不靠辩论维持，靠的是你心里那点过不去。外倾直觉 Ne 在旁边不停展开：这事还有别的可能、那个人也许不是你以为的那样。所以你对人有天然的宽容，因为你能看到他的处境。你不喜欢把关系当成资源来算，也不喜欢被人用“你人好”来安排。第三功能内倾感觉 Si 帮你记住那些具体、带温度的旧事，它们是你价值的证据。劣势外倾思维 Te 是短板：定流程、卡节点、算效率，你容易拖。","work":"领导改需求，你的第一反应是这事对用户、对同事公不公平，其次才轮到排期。你不擅长在会上抢话，常常散会后才想起该怎么说。如果一件事跟你的标准冲突，你会拖，用拖来表达不同意。你讨厌被催，被催急了会硬着头皮交，但心里会记很久。你做事靠认同感驱动，认同了能熬夜，不认同就怎么都提不起劲。","family":"过年被亲戚问对象和工资，你会老实答，答完自己难受半天。家族群里那条养生文，你不太会当众反驳，怕长辈难堪，但会私下提醒一句。爸妈劝你考公务员，你嘴上说好，心里在算这算不算把自己交出去。你不太会当场顶嘴，回房间才想起该怎么回。你记得家里每个人的生日和喜好，也用这些小事表达在意。","love":"你在关系里最在意的是“被真正看见”，而不是被照顾得多好。相亲时你能很快感到这个人对不对，但说不上来为什么。你更愿意用一起做点什么来代替说。你不轻易开始，一旦投入就很深。要留意的是：你常常把不满咽下去，攒够了才一次性说出来，对方会觉得突然。","strength":["对违心的事极敏感","能理解别人的处境","认定价值之后很能扛"],"blindspot":["不满憋着不说","现实事务容易拖","把理想标准套在人身上"],"stress":"压力大到顶不住时，劣势 Te 会以很失控的样子冲出来。平时温和、不争的你，可能突然变得刻薄，抓住别人的效率、条理、责任心一条条数落，语气像换了个人。也可能走到另一头：彻底瘫住，什么计划都不做，任由事情烂掉，再用“反正没意义”把自己盖过去。事后你会为那阵刻薄自责很久。","growth":"别把 Te 当敌人，它只是没被练过。从小事开始：把要做的事写成三条，定个时间做完；不满意的时候，当场说一句“这个我不太舒服”，而不是攒着。把“我不想”说成一句完整的话，别等它变成“我受够了”。你的 Fi 需要被保护，但也需要外部世界给它一个能落地的形状，否则它只能在你心里烧。","mistype":"最容易被误判成 INFJ。区别在冲突里的落点：INFJ 会先照顾场面、想办法让关系不断；你会先守住自己那条线，哪怕关系僵一阵。与 ISFP 的分界在想法上：ISFP 更贴着当下的感受和具体的事，你脑子里常同时开着好几种可能。"},"ENFJ":{"code":"ENFJ","cn_name":"人心凝聚者","stack":["Fe","Ni","Se","Ti"],"jung_type":"外倾情感型","oneliner":"进门先看谁不自在，再想办法让大家都好过。","core":"你走进一个场合，注意力自动落在人身上：谁被冷落了、谁脸色不对、气氛卡在哪。你不太需要别人先开口，就能知道这场合缺什么。这是外倾情感 Fe，它的判断依据在外部——大家是否舒服、关系顺不顺、话说得合不合场合。读到的这些你不只是看见，还会动手调节：递话、圆场、把两个人重新接上。内倾直觉 Ni 在背后给你一个方向：你不只想让这一顿饭吃得舒服，还想让这群人往一个更好的地方走。第三功能外倾感觉 Se 让你在场、有行动力、能带动气氛。劣势内倾思维 Ti 是短板：被追问“你这套到底站不站得住”，你会卡。","work":"领导改需求，你会先评估团队扛不扛得住，再想怎么把话传下去不伤人。你是天然的协调者，谁跟谁有摩擦你最先知道，也最早去处理。你在会上擅长把不同意见拢成一个大家都能接受的版本。被推着表态时，你会先替对方找台阶。你的难处是：为了照顾人，方案容易被改得没棱角，最后活都压在自己身上。","family":"过年你是那个把一家人拢住的人：谁跟谁有旧怨，你提前打招呼；座位怎么排，你心里有数。亲戚催婚，你会笑着挡回去，还能让对方觉得被尊重。你不爱在群里说难听的话，怕谁看了不舒服。家族群里你常是那个接话、发红包、活跃气氛的人。爸妈有心事，最先找的也是你。你照顾所有人的情绪，自己的累常常最后才说。","love":"你在关系里很主动：安排见面、记住对方家人的事、把两个人的生活往一处拢。你需要被需要，也容易过度付出。相亲时你会让对方很舒服，但可能忽略自己到底喜不喜欢。你也希望对方记得问你今天累不累，这一点你不太主动说。要留意的是：别把“我为你好”变成替对方做决定。","strength":["能读气氛并及时调节","把不同的人拢到一起","带动人往一个方向走"],"blindspot":["太在意别人怎么想","为了和气牺牲立场","把活都揽到自己身上"],"stress":"压力积到临界点，劣势 Ti 会以很别扭的方式冒出来。平时顾全大局的你，可能突然变得异常较真，抓住别人一句话里的逻辑漏洞反复追问，把场面搞僵；也可能反过来，在心里给自己编一套“他们其实都怎样”的分析，越想越偏。更常见的是突然冷淡、谁都不理，让周围人莫名其妙。","growth":"偶尔停下来问自己“我到底怎么想”，别急着替所有人回答。做决定前，允许自己说一次“我不同意”，不用马上给理由。你需要一段只对自己负责的时间，这不算自私。你的 Fe 很会照顾人，但要记得：长期的照顾靠的是边界，不是无限透支。心里有账的时候，早说比晚说省事。","mistype":"最容易被误判成 ESFJ。区别在关注点：ESFJ 更在意具体的规矩、人情往来和当下安排，你更在意这群人往哪走、有没有变得更好。与 ENFP 的分界在冲突里：ENFP 第一反应是这符不符合自己的价值，你会先看怎么把场面接住。"},"ENFP":{"code":"ENFP","cn_name":"火花点燃者","stack":["Ne","Fi","Te","Si"],"jung_type":"外倾直觉型","oneliner":"对什么都来劲，对什么都能看见另一种可能。","core":"你的世界是一串刚点着的火苗：看见一个东西，脑子里立刻冒出它还能变成什么、能跟什么连起来。这是外倾直觉 Ne，它的动力来自可能性本身，不来自完成。你不喜欢被问“这件事有什么用”，因为你要先做出来才知道。这种筛法很慢，但筛出来的东西你认。火苗要不要留，靠内倾情感 Fi 来判断：这件事对不对你的味、符不符合你认的东西。所以你看起来随性，其实筛得很严——只是筛的标准在你自己心里，不在外面。第三功能外倾思维 Te 帮你在来劲的时候把事推一推、排一排。劣势内倾感觉 Si 是短板：重复、细节、身体作息，你很难长期守住。","work":"领导改需求，你会先兴奋一下：这说不定能做成更好玩的版本。然后你开始抛点子，抛到一半发现时间不够，才想起排期。你不怕难，怕重复。你更愿意先跟人聊一圈，把想法聊热了再动手。被要求按模板填表时，你会拖到最晚。你的强项是把一件沉闷的事讲出花来，让团队重新来劲；弱项是收尾和填表，常常拖到最后一刻。","family":"过年回家，你是气氛担当：跟长辈贫、逗小孩、把冷场救回来。亲戚问对象，你能笑着挡，也能反问回去。你不爱在饭桌上被比较，会想法子把话题岔开；也记得给每个人带点小东西。家族群里你爱发好玩的东西，长辈转发养生文你不较真。爸妈劝你考公务员，你表面答应，心里已经开始想别的路。你爱家人，但受不了被安排。","love":"你喜欢一个人会很明显：主动找话题、分享日常、制造见面机会。你需要关系里有新鲜感和被理解的感觉。你不喜欢被查岗，也不喜欢对方冷着。相亲时你能让对方放松，但容易先热后冷。要留意的是：真正撑住一段关系的，往往是那些不刺激的日常，别一觉得平淡就想跑。","strength":["点子多，能带活气氛","对新可能保持开放","能让沉闷的事重新有意思"],"blindspot":["开始多，收尾难","热度过去就想换","细节和作息守不住"],"stress":"压力顶到头时，劣势 Si 会反扑。一种样子是注意力突然锁死在细节上：反复检查同一件事、担心身体出问题、对一点小毛病疑神疑鬼。另一种是整个人塌下来，什么都不想干，只想躺着刷手机，连平时爱聊的人都懒得回。还可能出现突然的怀旧，翻旧照片、想很久以前的事，越翻越沉。","growth":"给你的火苗配一个容器：同时只留两三个在烧，其余的记下来放着。找一件小而固定的事长期做——晨跑、记账、每周给一个人打电话，让 Si 有地方落地。热度退了不代表这件事错了，先分清是“不喜欢了”还是“只是走到了难的部分”，再决定走不走。别把“没劲了”当成结论。","mistype":"最容易被误判成 ENTP。区别在争论里：ENTP 享受把逻辑掰开，你会先在意这话有没有伤到人，你不太能接受为了赢把人得罪光。与 INFP 的分界在行动上：INFP 想清楚了才动，你常常先动起来，再在过程里确认这是不是自己真要的。"},"ISTJ":{"code":"ISTJ","cn_name":"秩序守护者","stack":["Si","Te","Fi","Ne"],"jung_type":"内倾感觉型","oneliner":"你把做过的事存成一套能复用的路数，靠它把日子过稳。","core":"你的主导是内倾感觉（Si）：碰到新情况，你先在心里翻出以前碰过的同类事，当时怎么做、哪里出过岔子、谁提醒过你什么，再拿眼前这套去比对，一样的地方照着走，不一样的地方停下来核。辅助的外倾思维（Te）把比完的结果接到外部：谁负责、几步能完、按什么标准算做完，你会讲清楚，也按说好的执行。第三的内倾情感（Fi）让你有一套不外露的分寸，什么做了心里不舒服，你自己知道，只是不常讲。劣势的外倾直觉（Ne）最生，几个可能性一起冒出来时，你容易觉得吵。所以你处理信息是先对旧账再排流程，判断靠可核对的经验和说得通的标准。","work":"领导下班前改需求，你先问清新版和旧版差在哪几处、明早要交的是哪几页，再把改动拆成今晚能做完的顺序。汇报按上次那套讲：做了什么、卡在哪、下一步谁接。同事临时加活，你先看它和原定的事撞不撞，撞了就直说要挪哪一件。你不是不接受改，是要有个“哪一版算数”的说法，定下来的口径你会记下来，下次不再问一遍。","family":"过年回家，你提前把车票、给谁带什么、哪天去谁家排好，到点按表走。长辈在饭桌上问你对象的事，你不躲也不顶，只说“先看着”，顺手把茶续上。家里要办事，你是那个会去确认几点、在哪儿、带不带证件的人。亲戚群里转来历不明的消息，你一般先不回，等有人问起，才说一句“这个我查过，不是那么回事”。该带的东西你会多备一份，怕临时要用。","love":"相亲时你会问具体的：住哪、上班几点、家里老人身体怎么样、以后想在哪座城市。你关心人的方式是把事办掉——对方说胃不好，下次见面你会带一份温的粥，而不是讲很多话。你不擅长临时起意的浪漫，但约好的事基本不爽约。对方情绪上来，你先想怎么解决，过后才想起当时该多陪一会儿。","strength":["答应的事落在具体哪一天，不拖","能把复杂的事拆成可照做的步子","标准说在前面，不来回改口"],"blindspot":["新可能性一冒头就被当成麻烦","对方要安慰，你递过去的是方案","不太会说“我先缓一缓”"],"stress":"压力顶上来时，劣势的外倾直觉（Ne）会以最坏的方式冒头。排好的事被临时推翻、一下冒出好几个变数，你会往坏处想：领导是不是对你有意见、明年会不会更糟。手上反而抓得更紧，同一份清单核第三遍，反复追问哪一版算数。你话变短、语气变硬，谁劝你想开点，你更想证明自己担心的有道理。","growth":"和劣势功能和解，不是逼自己变成爱冒险的人，而是给它留一小块地方。周末可以不排路线，出门看情况；新东西先花十分钟试试，不急着判它靠不靠谱。练的是“有个可能没算到”也能待得住。等你见惯了方案被改、事情没按计划走而天没塌，那些原本像噪音的可能性，会慢慢变成能用的信息。","mistype":"最容易判成 ISFJ，两者都靠 Si 打底。区别在帮人时：ISFJ 先看在场的人难不难受，会为照顾情绪改说法；你先看这事按标准该怎么处理，安慰排在把事办掉之后。也可能判成 ESTJ——他们在会上抢着定规矩、当场派人，你要等比完旧例才开口。"},"ISFJ":{"code":"ISFJ","cn_name":"细致托底者","stack":["Si","Fe","Ti","Ne"],"jung_type":"内倾感觉型","oneliner":"你记得住具体的人和事，靠这些细节把人接住。","core":"你的主导是内倾感觉（Si）：你记得住很多具体的东西，谁哪年住过院、哪句话当时让人变了脸、上次办这类事踩过哪个坑。新情况一来，你先把它放进这些旧记录里对一遍，有先例就照旧，没先例就先找最像的那一件。辅助的外倾情感（Fe）把这些细节用到人身上：谁今天不太说话、谁被落下了、这句话说出去会不会让人下不来台，你比当事人还早察觉。第三的内倾思维（Ti）让你事后会琢磨：刚才那句话到底哪里不合适，哪一步没说通。劣势的外倾直觉（Ne）最弱，一堆没有先例的可能摆在你面前时，你会先觉得不安。","work":"领导改需求，你先问什么时候要、会牵连到谁，再把手上的顺序重排一遍，尽量不让别人跟着加班。开会时你常替没来的人说一句“这块是他负责的，要不要先问他”。被当众批评，你当场点头，回来把那句话在脑子里过很多遍，找自己哪一步确实没做好。你不太在会上抢话，但散会后会私下找相关的人把细节对齐。","family":"过年你是那个记得谁不吃辣、哪位长辈血压高的人，菜和座位会先想到。亲戚问你对象的事，你笑着岔开，转头去厨房帮忙。家里老人住院，你会把陪护、缴费、谁送饭列清楚，还惦记着别让某一个人太累。家庭群里有人拌嘴，你多半不站队，私下各劝一句，尽量让这个年过得下去。家里的药箱、证件、缴费单放在哪，你都清楚。","love":"你喜欢一个人，先做的是记细节：他随口说想吃哪家的东西，你过两天就带过来。相亲时你会照顾场面，问对方方便说的，也留意他杯子空没空。你表达需要很绕，常先说“都行”，心里其实有答案。对方冷淡几天，你会先反省自己哪里做错了，而不是直接问。","strength":["记得住具体的人和事，不用人重复","能把关系和事情都照顾到","答应的事悄悄做掉，不声张"],"blindspot":["先顾别人，自己的需要排在最后","被一句拒绝就反复回想很久","遇上没先例的事容易先慌"],"stress":"压力堆到某个点，劣势的外倾直觉（Ne）会反过来压你。连着照顾人很久、又被一句话否定，你会忽然想最坏的一串：是不是大家其实都不满意、这事会不会彻底办砸。你在夜里把没发生的事一个个过一遍，越想越具体，第二天照常把该做的做完，谁问都说没事。这时你格外怕变数，别人临时改计划，你会先僵住。","growth":"对付劣势功能，不是压住那些联想，而是给它们一个落地的出口。你可以把担心写下来，分成“现在能查证的”和“纯属往后推的”两堆，前者去问一句，后者先放一边。也可以在照顾人的事上留一点说不的余地，说一次“这回我来不了”，看看关系是不是真会散。练多了，涌上来的坏可能就不至于全压在心上。","mistype":"常被当成 ISTJ。分辨看两处：别人难受时你先干什么——先安顿人再谈事的是你，先按规矩处理的是 ISTJ；被批评之后，你反复想那句话，ISTJ 更关心标准有没有说清楚。也可能跟 ESFJ 混，区别是你要先在熟悉的圈子里站住，才愿意开口。"},"ESTJ":{"code":"ESTJ","cn_name":"事务操盘者","stack":["Te","Si","Ne","Fi"],"jung_type":"外倾思维型","oneliner":"你把乱的事排成能推进的顺序，然后盯着它走完。","core":"你的主导是外倾思维（Te）：事情一进来，你先把它变成能执行的样子——目标是什么、拆成几步、谁在什么时候交、做到什么程度算完。你不绕，也不喜欢会停在“再讨论讨论”。辅助的内倾感觉（Si）让你手里有一批现成的做法：这件事以前是怎么成的、哪些环节容易出错、哪个合作方不能碰，你会直接摆到方案里。第三的外倾直觉（Ne）让你卡住时能想出一两个备选，但不以它为主。劣势的内倾情感（Fi）最生：你不太主动谈自己的感受，也不太接得住别人细的情绪。所以你处理信息是先定框架再填细节，判断依据是能不能推进、有没有标准。","work":"被改需求，你会先要一份明确的验收标准，然后当场把影响说清楚：这么改要多几天、哪一环节得往后挪、谁要加班。汇报时你喜欢先给结论再给数据，不喜欢绕。有人拖进度，你会把事摆到桌面上点名，也愿意替他把拆不开的活重新分一遍。酒桌上别人绕圈敬酒，你会把事两句话说清，然后该走就走。你对“感觉不太对”这种理由没耐心，但被说服过一次，你会改。","family":"过年家里的安排多半由你张罗：谁去接站、几点的饭、红包怎么分。亲戚托你办事，你会问清截止时间，能办就办，办不了直说。长辈催婚，你会讲道理、列条件、说自己的时间表，讲不通就换个话头，很少当场翻脸。装修、搬家、老人挂号，你是那个把流程和责任人定下来的人。家里要送礼、要请人，你会先把名单和标准定下来。","love":"你的关心偏事务：天冷了直接买好东西寄过去，对方说累，你先问是哪件事压着、要不要帮你处理。相亲时你会问对方的工作规划、家里情况、以后想住哪，问题具体，容易被当成在面试。你不太说软话，也不习惯被追问“你到底爱不爱我”。一旦把关系当成要经营的事，你会认真排时间、做计划。","strength":["能把乱局排成能执行的顺序","标准清楚，话说在前面","扛事，出了问题不躲"],"blindspot":["接不住别人细的情绪","容易替别人把事定好","被质疑时先防守，后明白"],"stress":"压力大又被人当面否掉的时候，劣势的内倾情感（Fi）会以别扭的方式冒出来。你会忽然特别在意有没有人念我的好：我为这个家、这个组做了这么多，你们凭什么这么说。情绪来得又急又不像平时的你，可能甩一句狠话——“行，那就照你们说的办”，然后谁都不理，或者翻出很久以前的事证明自己没错。","growth":"和劣势功能相处，可以从不急着评价感受开始。有人跟你讲他难受，先别问“那你想怎么解决”，陪他把话说完；每天留一句给自己：今天哪件事让我心里别扭。不是为了变成敏感的人，而是让你那套推进系统知道，做决定的人里还有你自己的好恶。久了你会发现，说清楚“我不愿意”比忍着照做更省事。","mistype":"常被认成 ENTJ。区别在遇到新方案时：ENTJ 先问还剩哪几种可能，你先问以前做过没有、谁有经验、风险在哪。也可能被当成 ESFJ——他们靠场面和人推动事，你靠规则和责任人；被顶撞时，ESFJ 先想怎么下台，你先想这事按什么办。"},"ESFJ":{"code":"ESFJ","cn_name":"场面照拂者","stack":["Fe","Si","Ne","Ti"],"jung_type":"外倾情感型","oneliner":"你一进门就知道这个场子缺什么，然后动手补上。","core":"你的主导是外倾情感（Fe）：进门先扫一眼，谁脸色不对、谁被冷落、这顿饭现在是什么气氛，你几乎不用想就知道，并且会动手去调——递句话、换个话题、把两个不熟的人介绍到一块。辅助的内倾感觉（Si）给你一整套人情上的旧例：这种场合该说什么、份子该随多少、长辈喜欢什么，你按这些办才踏实。第三的外倾直觉（Ne）让你提前想到几种可能：这话说出去别人会怎么接，所以你会先铺一层。劣势的内倾思维（Ti）最弱，你不喜欢把事情拆成条条框框，也不太在意一句话在逻辑上严不严。所以你处理信息是先看人再看事，判断的依据是这个做法能不能让人待得住。","work":"领导临时改需求，你先问这次改会不会牵连别的组、要不要跟大家同步一声，然后挨个打招呼，把可能被波及的人先安抚好。汇报时你会照顾在场每个人的位置，把功劳说清楚。有人心里不痛快，你不用他开口就能看出来，散会后会单独问一句。你不太在会上辩论逻辑，但你是那个让会开完大家还能好好处的人。","family":"过年你是全家的调度：谁坐哪、谁不吃什么、给长辈的红包怎么给、哪句话别当众说。亲戚催婚，你先接住场面，笑着说“有消息第一个告诉您”，再把话题引到别人身上。家庭群里有火药味，你会私聊两边各说一句。老人不舒服，你既跑医院，也记得谁情绪不对。谁家里刚添了人、谁最近手头紧，你都记在心里。","love":"你表达喜欢的方式是照顾：记住对方爱吃什么、跟他身边的人处好、把他的事当自己的事安排。相亲时你很会破冰，问得让人舒服，也会留意介绍人的面子。你怕冷淡，对方回消息慢，你会先想是不是自己哪句话说得不对。你希望关系里大家都舒服，因此常先说对方想听的那句，回家再自己消化。","strength":["一进门就知道场子缺什么","记得住每个人的人情细节","能让一群人待得住、处得下去"],"blindspot":["为了顾场面，话说得比真心软","别人不高兴，你先怪自己","不喜欢被追问逻辑和依据"],"stress":"忙到极限又被人当众挑理时，劣势的内倾思维（Ti）会冒出来。平时不在意的逻辑，这时你忽然较真：你凭什么这么说、依据呢、这话前后对不对得上，越说越尖，把忍下的事一件件摆出来对质。也可能相反，你被一句“你到底想说什么”问懵，回家反复拆那场对话，想找出自己哪句话站不住，想到很晚。","growth":"练劣势功能，可以从“先问一句为什么”开始。别人提要求，先弄清楚他要的是哪一步，而不是立刻答应下来再说；心里不痛快时，试着直接说“这件事我不太愿意”，不用绕成玩笑。你不需要变得爱辩论，只要让自己的判断在场面之外也有一块站得住的地方。这样你照顾人时，就不是拿委屈自己换来的。","mistype":"容易被当成 ENFJ。区别在时间感：ENFJ 先谈“我们以后要往哪走”，你先谈“这周怎么安排、谁会来”。也可能和 ISFJ 混：ISFJ 要有个熟人圈子才放得开，你进了陌生饭局也能找到自己该站的位置。被质疑逻辑时，你先解释关系，不是补论据。"},"ISTP":{"code":"ISTP","cn_name":"现场解题者","stack":["Ti","Se","Ni","Fe"],"jung_type":"内倾思维型","oneliner":"东西到你手上，你先拆开看它怎么转，再动手。","core":"你的主导是内倾思维（Ti）：一件事到你手上，你先把它拆开，弄清它到底怎么运转——哪儿是前提、哪儿是接口、卡住的原因在哪一层。你不急着表态，往往先在心里把结构过一遍，觉得说得通才动手。辅助的外倾感觉（Se）让你贴着现场走：东西在手里是什么手感、机器响的声音对不对、现在的数据是多少，你会直接上手试。第三的内倾直觉（Ni）偶尔给你一句“这事最后大概会怎么走”，但你不常拿出来讲。劣势的外倾情感（Fe）最生，人情场上的规矩你常常慢半拍。所以你的强项不是背结论，而是碰上没见过的问题时，能凭手上的信息和结构直觉找出路。","work":"被改需求，你先看改动落在哪一块、会不会让原来的结构塌掉，然后找个安静的时段自己重写，不太开会。遇到故障，你话不多，一边问一边上手拆，别人还在讨论方案，你已经把临时办法试出来了。汇报时你容易讲得太细或者太省，领导常追问“所以结论是什么”。同事把活推过来，你要么直接拒绝，要么闷头做完，很少当场把账算清楚。","family":"过年你能回家就回，不太主动安排，被叫去搬东西、修电器、连网，你倒很利索。长辈问你的打算，你会给一句短的，不爱展开。亲戚吵架，你一般不掺和，出去站一会儿或者低头看手机，等他们说完。家里人觉得你冷，其实你是不知道这种场合该说什么，也不太会主动问人的近况。被问工资，你会说个大概，然后去阳台待一会儿。","love":"你表达喜欢靠做事：对方电脑卡了、搬家用车、半夜不舒服，你出现得很快。但你很少主动说想他，也不太会哄。合租过的人都知道，你会把厨房收得干净，但从不说自己做了这些。对方需要你多说两句的时候，你常卡住，最后变成一句“我这不是来了嘛”。你需要独处的时间，被连着追问会想躲。","strength":["上手快，坏在哪能摸出来","不慌，越乱越能抓住关键","不夸大，能做多少说多少"],"blindspot":["该说的话到嘴边又省掉了","情绪上的事反应慢半拍","被追问感受时容易退场"],"stress":"被逼到墙角时，劣势的外倾情感（Fe）会以你最不习惯的样子发作。被人反复说“你根本不在乎”时，你会忽然发慌：他们是不是都这么看我、我是不是哪里做错了。你可能忽然对一个人特别好，也可能一句话炸出来，说完就走，把关系晾在那儿。更多时候你干脆消失：消息不回、班照上、人不见，等它自己过去。","growth":"跟劣势功能和解，不用变成会说话的人。可以先练一件小的：把心里那句评价说出来，别全吞回去——“这个我不同意”“今天我不想聚”。也试着在别人难受时先不解决问题，陪他坐十分钟。你的在乎是有的，只是常年不出口；把它说成一句能被听见的话，关系就不用全靠你自己硬扛。","mistype":"常被当成 INTP。区别在要不要动手：INTP 能把一个道理想很久不落地，你要把手伸到实物上才算想明白。也可能和 ESTP 混：ESTP 在人多时先冲上去试，你先在旁边把结构看清再上。被指责冷淡时，你解释的是自己做了什么，不是自己的感受。"},"ISFP":{"code":"ISFP","cn_name":"感受力行家","stack":["Fi","Se","Ni","Te"],"jung_type":"内倾情感型","oneliner":"你凭“对不对味”做选择，用手上的活把它做出来。","core":"你的主导是内倾情感（Fi）：你心里有一把自己的量尺，什么东西是真的、什么做法脏了手，你不太说出来，但一碰就知道。你不容易被道理说服，打动你的常常是一个具体的瞬间。辅助的外倾感觉（Se）给这把量尺一个出口：颜色、触感、声音、身体舒不舒服，你靠这些具体的感受判断喜不喜欢，也靠动手做东西把它表达出来。第三的内倾直觉（Ni）让你偶尔看清一段关系会往哪走，但你不常讲。劣势的外倾思维（Te）最弱，排流程、定指标、催进度这些事你不喜欢，做起来也别扭。所以你不太用道理说服人，也不容易被道理说服；你先看这件事在手上、在心里过不过得去。","work":"你不太争，交给你的活会按自己的节奏做到自己满意，但不喜欢被赶。领导改需求，你先感觉这件事做出来对不对味，再回去调细节。被当众否定，你当场不辩，回去闷很久，第二天可能只是把活改好，什么都不说。你不擅长在会上抢资源，也不喜欢把工作说成一堆指标。真碰上你要守住的东西，比如让你做违心的方案，你会很硬。","family":"过年你愿意回去，但受不了被安排着表演：让敬酒就敬酒，让说话反而说不出。亲戚问你工作，你答一句然后帮忙干活。家里谁情绪不对，你能感觉到，会悄悄去洗碗、倒水，或者陪人在阳台站一会儿。催婚逼得紧，你不吵，可能提前买好回程票。你对家里的老照片、旧物有感情，会一个人翻很久。饭桌上你话不多，但谁添饭、谁没动筷子你看得见。","love":"你喜欢一个人，是从细节开始的：他说话的样子、手上那个动作、走路快不快。你不擅长说，会记住对方随口的一句话，隔很久忽然兑现。相亲时你话少，但对方怎么样，你心里很快有数。你怕被管，也怕自己的情绪压到别人，所以常常先退一步。一旦认定，你其实很能扛，只是不太会讲出来。","strength":["对“对不对味”有准头","把人当人看，不把人当角色","认定了就安静地扛住"],"blindspot":["不愿被推着走，容易拖到最后","不舒服也不说，自己闷着","被要求当场给结论时会卡住"],"stress":"压力积到某个点，劣势的外倾思维（Te）会翻上来。平时最烦流程的你，开始抓顺序、抓时间、要明确说法：谁定、什么时候做完、凭什么总让我改。你说话变冲、变得挑剔，甚至替别人排计划，可对方一不配合，你又很快撑不住。更常见的是反过来：事情堆着，你什么也排不动，越拖越烦，干脆关掉手机。","growth":"和劣势功能相处，可以从给感受配一个具体动作开始。心里不痛快，先说“我不太想这样”，别等到忍不了才整个退开；手上的事，试着排一个看得见的小目标，比如今晚就做完这一件，给自己一点秩序感。你不需要变成会管人的人，但让那把量尺偶尔配合一下现实的时间表，你的东西才做得出来、留得下来。","mistype":"容易判成 INFP。区别在要不要碰：INFP 靠想和写把内心铺开，你要靠手、靠身体、靠现场感受才确定。也可能和 ISTP 混：ISTP 先拆结构再谈喜好，你先凭对不对味决定值不值得拆。被推着走时，你的反应是先僵住或者躲开，而不是当场争辩。"},"ESTP":{"code":"ESTP","cn_name":"临场破局者","stack":["Se","Ti","Fe","Ni"],"jung_type":"外倾感觉型","oneliner":"你到现场就上手，边试边弄清它到底怎么回事。","core":"你的主导是外倾感觉（Se）：信息对你是具体的、眼前的——现场什么情况、谁站在哪、气氛往哪走、这东西现在什么反应。你先动，再想；别人还在论证，你已经试了一遍。辅助的内倾思维（Ti）让你试完能马上总结：刚才那招为什么管用、这个局面真正的关键在哪，所以你的出手看着凭感觉，其实里面有道理。第三的外倾情感（Fe）让你在人群里很会看脸色，能把场面炒热。劣势的内倾直觉（Ni）最弱，长线的东西你不太愿意等，也不太信没有根据的预感。所以你不太信推演，更信试出来的结果；一段话讲再久，不如让你上手五分钟。","work":"被改需求，你会先问最晚几点要，然后当天就动手做一版能看的东西出来，边做边调。汇报你喜欢讲现场：当时什么情况、我怎么处理的、结果怎么样。出了问题你不推，先上手救，救完再回头说责任在谁。会开得太久你会烦，可能直接打断问结论是什么。你不擅长做半年的规划，但短时间打硬仗，你在场最稳。","family":"过年你是家里那个张罗起来的人：开车接人、带小孩去放炮、饭桌上把酒倒上。长辈问你收入，你不避讳也不细说，两句就带过去。亲戚之间有心结，你能当没看见，先把这顿饭吃热闹。你不喜欢在饭桌上被讲道理，也不擅长陪人长时间说心事。家里真出事要跑腿、要找人，你是第一反应最靠得住的那个。","love":"你的好感来得直接：约、见面、一起去干点什么。对方不开心，你带他出去兜一圈、吃顿好的，比讲道理管用。相亲时你话多，能把冷场救回来，但不太会细问太久。你怕被管，也怕关系变成每天报备。你真在意一个人时，会为他跑很远；但对方要的是慢慢聊、慢慢懂，你常常等不及。","strength":["当场就能判断和出手","能救人也能救场，不怕事","把气氛带起来不费力"],"blindspot":["长线的事容易被搁着","一急就跳过解释直接干","听人慢慢讲心事会坐不住"],"stress":"压力拖得太久、又没有能马上动手的地方，劣势的内倾直觉（Ni）会反过来咬你。你会忽然想到最坏的结局：这事是不是要完、他是不是压根不想跟我处。这时你开始猜别人的动机，越想越真，甚至赌气把话挑明。另一种样子是更猛地下注：一次投入更多，用行动把那点不安盖过去，结果常收不回来。","growth":"和劣势功能打交道，不用强迫自己变得深沉。可以把“然后呢”多问一遍：这么干，三个月后大概会怎样，谁会因此更难受。也可以让一件事在你手上多放一天再决定，看看急的那股劲过去后，你想要的还是不是那个。你的判断力在场上很准，值得给它配一个稍微长一点的镜头。","mistype":"常被认成 ESFP。区别在动手的动机：ESFP 先看这件事好不好玩、对不对自己的味，你先看这局面能不能破、关键在哪。也可能和 ENTP 混：ENTP 先在嘴上把可能性试一遍，你直接上手试。要干等的时候，你会找点事做，不太坐得住。"},"ESFP":{"code":"ESFP","cn_name":"即兴享乐者","stack":["Se","Fi","Te","Ni"],"jung_type":"外倾感觉型","oneliner":"你把眼前这一刻过出滋味，也让人跟着松下来。","core":"你的主导是外倾感觉（Se）：你对眼前的东西特别有反应——这菜什么味、这衣服上身怎么样、这人在不在状态、这屋子气氛闷不闷。你的注意力贴着当下走，反应快，也容易被眼前的东西打动。辅助的内倾情感（Fi）让你在这之上有一把私人的尺：什么让你真心舒服、什么让你觉得脏、什么人你不想再处，你心里清楚，只是不常组织成话说出来。第三的外倾思维（Te）会在需要时冒出来张罗事情。劣势的内倾直觉（Ni）最弱，远的、抽象的、说不清的，你不愿意多耗。所以你更信此刻真实的反应，而不是事先设想出来的应该，也不愿意为没影的事提前发愁。","work":"临时改需求，你嘴上抱怨两句，动手并不慢，往往能照着新的要求做出一个讨喜的版本。你在要跟人打交道的场合很吃得开，客户、前台、跨部门，几句话就热起来。你受不了长时间的表格和重复流程，做久了会走神。被批评时你当场有点挂不住，回头更在意的是“他们是不是不喜欢我了”，而不是指标差多少。","family":"过年你是把气氛带起来的那一个：组局、拍照、带小孩玩、把冷场接住。长辈问什么你答什么，不太顶，也不往心里去。亲戚之间有不愉快，你能装作没察觉，先把好的那面过下去。催婚催得凶，你会撒娇、会开玩笑，真烦了也会找个借口出门。家里的老规矩你不太记得住，但谁喜欢什么，你心里有数。散场了你会挨个问一句到家没有。","love":"你喜欢就表现出来：发消息、送东西、带对方去你发现的好地方。你表达在乎的方式是让当下变好，让他今天开心。相亲时你自然、热络，容易让人放松，也很在意对方是不是看得上自己。你不喜欢关系里长时间的沉重和盘问，对方要谈很久以后的规划，你会先想把这周过好。被冷落你会很受伤，但不太直说。","strength":["能把当下过出滋味","待人热络，让人放松","真碰到事反应快、不推"],"blindspot":["远的事总往后放","被人不喜欢会先慌","重复的流程耗不住"],"stress":"被压太久、被追问“以后怎么办”的时候，劣势的内倾直觉（Ni）会浮上来。平时不想远事的你，会突然觉得一切没意思：这工作做下去有什么结果。你也可能开始乱猜：他这个态度是不是要走了、这事是不是早有安排。另一种是干脆把脑子关掉——刷手机、出门、找人热闹，用即时刺激把那点沉下来的东西盖住。","growth":"和劣势功能相处，不必逼自己变成规划型。可以试着在开心的时候问一句：这个我明年还想要吗。给一件在乎的事留个半年后的样子，不用写计划，只在心里放个大概。你本来就靠真实的感觉活着，这份感觉如果偶尔往前照一照，你选的人和工作会更经得住时间。","mistype":"常被当成 ESTP。区别在判断依据：ESTP 看这局面能不能破，你先看这符不符合我的感受、我喜不喜欢。也可能和 ENFP 混：ENFP 兴奋在“还有别的可能”，你兴奋在“现在就试试”。要你长时间讨论抽象问题时，你会走神，或者把话题换轻松点。"}},"jung":{"ET":{"code":"ET","name":"外倾思维型","fn":"Te","essence":"这一型的力比多朝外走，落在客体上：世界是一堆待处理的事务，判断依据在外部——做成了没有、有没有效、谁该负责。荣格意义上的外倾思维型，把外部事实和公认标准放在最高处：先立规则，再让现实去符合规则。这种思维不是向内建构概念，而是向外组织材料，所以它天然带着“推进”和“安排”的味道。代价是，凡不能被外部标准衡量的东西——自己的好恶、别人的犹豫——都会排到很后面。","aux_a":"辅助走内倾感觉 Si 时，你会拿过去做成过的事当依据：这套流程以前管用，就接着用；遇到新情况先对照旧经验，再决定改不改。这种搭配做事稳、可预期，对细节和旧规矩有耐心，但碰上没有先例的东西会本能地犹豫。","aux_b":"辅助走内倾直觉 Ni 时，你组织的不只是眼前的事，而是通向某个远期图景的一整条路。你会先看终点在哪，再倒排今天的资源，愿意为一个还没成形的方向承担风险，也容易因为看得太远而不耐烦眼前的琐碎。","everyday":"开会时你先问议程和结论，散会前一定要落到谁、什么时候。在家里你习惯安排：过年的行程、老人的体检、孩子的补习，都在你的表上。朋友找你，多半是遇到要拿主意的事。消费上你算得清，贵的可以买，但要说得清值在哪。你不太会陪人闲聊，别人抱怨的时候，你的第一反应常常是给方案。你不擅长安慰人，但会替人把事办了。","blind":"未分化的劣势功能是内倾情感 Fi。你不容易说清自己到底喜欢什么、介意什么，长期按“该做什么”过日子。压力大时，这份被压住的价值感会突然翻上来：为一句评价失眠，或者对最亲近的人莫名发火，事后自己也讲不清缘由。","mistype":"与 ESTJ 的分界在于：ESTJ 依赖已经验证过的流程，你更愿意为远期图景重排资源。同是外倾思维型，辅助偏内倾感觉的更守成，偏内倾直觉的更敢赌，也更不耐烦具体事务。"},"IT":{"code":"IT","name":"内倾思维型","fn":"Ti","essence":"这一型的力比多朝内走，落在自己的思维结构上：外部世界要先过你的概念筛子。荣格意义上的内倾思维型，追求的是观念之间的内在一致，不是能不能被外部接受。你先在心里建一套模型，再拿现实去对照；模型不通，事实再热闹也进不来。这种思维深、准，但表达出来常常让人跟不上，因为它跳过了很多你以为不言自明的步骤。代价是，你容易活在自己的逻辑里，跟现场的人和气氛隔着一层。","aux_a":"辅助走外倾感觉 Se 时，你的思考要贴着具体的东西才落得下：拆机器、看数据、动手试，用手上的反馈校验脑子里的模型。这种搭配务实、精确，遇到实际问题能立刻上手，但不太耐烦纯理论的空转，动手总比争论快。","aux_b":"辅助走外倾直觉 Ne 时，你的模型不断向外接新可能：这个原理还能解释什么、换到别的领域成不成立。你兴趣广、设想多，容易同时开好几个题目，也容易因为可能性太多而迟迟不收口，说着说着就跑远了。","everyday":"开会时你话不多，但一问就问在关键处，常常让原本顺下去的事卡住。在家里你不太主动张罗，但电器坏了、合同有坑，找你准没错。朋友争论一件事，你会认真把两边的逻辑拆开，不一定站在谁那边。消费上你会研究很久，参数、评测、对比表都要看完。别人跟你讲心事，你容易先分析原因，忘了先接住情绪。","blind":"未分化的劣势功能是外倾情感 Fe。你不太会读场，也不擅长在气氛僵住时救场，常常事后才想起刚才该说句什么。压力大时，这份短板会以两种方式冒出来：突然极度在意别人怎么看你，或者干脆切断联系、谁都不想见。","mistype":"与 INTJ 的分界：INTJ 卡住时去抓外部秩序、排计划，你退回模型里继续拆。与 ISTP 的分界：ISTP 靠现场动手试，你更像在脑子里做实验，动手前要先把原理弄明白，说不清不动手。"},"EF":{"code":"EF","name":"外倾情感型","fn":"Fe","essence":"这一型的力比多朝外走，落在人与人之间：世界是一张关系网，判断依据在外部——大家是否舒服、关系顺不顺、话合不合场合。荣格意义上的外倾情感型，把公认的价值和场合的分寸当作准则，会主动去调节气氛、促成共识。你的情感不是向内守着一套私人好恶，而是向外流动、对着在场的人随时校准。代价是，你容易把别人的需要放在自己的判断前面，久了会说不清自己到底想要什么。","aux_a":"辅助走内倾感觉 Si 时，你的照顾落在具体的事和旧例上：谁的口味、哪年的规矩、该带什么礼，你记得清清楚楚。这种搭配让人踏实、周到，但也容易被人情往来的旧账绑住，不太敢破例，也总怕欠着谁的人情。","aux_b":"辅助走内倾直觉 Ni 时，你不只让当下这顿饭吃得舒服，还想把一群人往一个更好的方向带。你擅长看见每个人身上的可能，愿意花力气去成全，也容易因为看得太远而替别人把路都想好；不过你愿意让人慢慢来。","everyday":"开会时你先看谁还没说话，会主动把话递过去。在家里，你是那个记得所有人喜好、把关系拢住的人。朋友之间有了矛盾，第一个找的往往是你。消费上你会考虑别人的感受：这东西送出去合不合适、会不会让人有压力。你不擅长拒绝别人，答应了又后悔。别人一开口，你常常先答应下来，再自己想办法圆。","blind":"未分化的劣势功能是内倾思维 Ti。你不太习惯把一件事拆到前提层面去较真，被追问“你这套逻辑站不站得住”时容易卡住。压力大时，这份短板会突然发作：变得异常苛刻，抓住别人话里的漏洞不放，或者在心里反复推演别人是不是别有用心。","mistype":"与 ESFJ 的分界：ESFJ 更在意具体的规矩和人情往来，你更在意这群人往哪走。同是外倾情感型，辅助偏内倾感觉的更守成，偏内倾直觉的更带方向；被追问时你习惯绕开，而不是反驳。"},"IF":{"code":"IF","name":"内倾情感型","fn":"Fi","essence":"这一型的力比多朝内走，落在自己心里那套价值上：什么是对的、什么是真的、什么不能让，你心里有一杆不轻易示人的秤。荣格意义上的内倾情感型，判断依据不在外部标准，而在“这符不符合你是谁”。你的情感深、稳，但很少外露，别人常常低估你的坚持。你不争，可一旦被逼着做违心的事，会退得很远。代价是，你容易活在自己的标准里，跟现实的流程、效率、责任隔着那么一层。","aux_a":"辅助走外倾感觉 Se 时，你的价值感要落在具体的人和事上才踏实：亲手做的东西、当下的感受、看得见的照顾。这种搭配温和、务实，愿意用行动而不是言语表达在意，但不太擅长处理抽象的规划，话不多但手上有活。","aux_b":"辅助走外倾直觉 Ne 时，你的内心世界被可能性打开：你能在一个人身上看到他可能成为的样子，也容易被新的意义吸引。这种搭配想象力丰富、对人宽容，但容易在众多可能里迟迟不落定，还常被“如果当初”绊住。","everyday":"开会时你话不多，但真触到你的底线，你会很坚持，而且不解释太多。在家里，你记得每个人的口味和忌讳，用小事表达在意。朋友找你，多半是想被理解，不是想被给建议。消费上你愿意为“喜欢”和“对”花钱，不太看性价比。你的喜欢和不喜欢都很明确，只是不说。你不太会当面提出不同意见，回房间才慢慢想清。","blind":"未分化的劣势功能是外倾思维 Te。你不太擅长定流程、卡节点、把混乱排成步骤，遇到要催人、要算账的场合会本能地退。压力大时，这份短板会突然反转：变得刻薄，抓效率、数落别人不负责任，语气像换了个人，事后又深深自责。","mistype":"与 INFJ 的分界：INFJ 先照顾场面、想办法让关系不断，你先守住自己那条线。与 ISFP 的分界：ISFP 更贴当下的感受，你脑子里常同时开着好几种可能；被催着表态时，你会先退开。"},"ES":{"code":"ES","name":"外倾感觉型","fn":"Se","essence":"荣格笔下的外倾感觉型，力比多朝向客体，判断让位给当下的具体感受。你不太追问事物的来由和去向，先要它此刻是什么样：温度、声音、颜色、手感、现场的气氛。现实感很强，遇事先反应再解释，对没亲身碰过的东西不太服气。强度与新鲜本身就有吸引力，同一件事重复到腻，你的兴趣就往下掉。你不太爱在概念上绕，抽象的推演在你看来往往是空的。","aux_a":"辅助是内倾思维时，你动手之外还有自己的一套道理：这东西为什么这么响、这一局为什么卡住，摸清结构才安心。表现出来是拆东西、试办法、一句短话点到要害，不爱在纸上推演，能当场验就别争，能动手就别开会。","aux_b":"辅助是内倾情感时，你靠好恶筛掉大部分选择：这颜色对不对、这个人我合不合、这件事做起来有没有意思。你不太争，心里那条线却很硬，碰上就不去，也不解释，宁愿自己多绕两步路，也不当面说穿，说了你也不改。","everyday":"开会时你多半在看现场：谁带了本子、哪个环节大家开始看手机，你会提议“先别讨论，试一版再说”。家里有事你上手最快，搬、修、跑腿都不含糊。朋友聚会你是把气氛点着的人，去哪儿、吃什么，你当场就能定。消费上你信实物：得摸一摸、试一试，参数看着再好，手里不顺就是不行，也不会因为别人说一句好就改主意。","blind":"劣势的内倾直觉（Ni）在你不熟的地方。长远的东西你容易含糊，别人问你三年后想怎样，你会绕开。压力大时，它会以猜忌和宿命感的模样冒头：忽然觉得这事早有安排、这人不怀好意，而这些判断往往没证据，你却又很难放下。","mistype":"容易跟 ESTP、ESFP 混，都被说成“活在当下”。差别在动手之后的下一步：会不会停下来总结一套道理，是 Ti 的线索；会不会反复掂量自己喜不喜欢，是 Fi 的线索。"},"IS":{"code":"IS","name":"内倾感觉型","fn":"Si","essence":"荣格说的内倾感觉型，感觉不对准客体，而对准客体在你心里留下的印象。同一件事，别人看到的是事件，你看到的是它和过去某件事长得像：那次也是这个季节、也是这种语气，后来出了什么。你对细节的留存很牢，对没经历过的判断很谨慎。外部的热闹进不来多少，你在自己的经验库里走，稳，也慢。","aux_a":"辅助是外倾思维时，你会把经验变成能执行的秩序：先后顺序、责任人、标准，说清楚才动手。旁人觉得你办事有章法、不好糊弄，也容易觉得你认死理，你不争，只把事办成给人看，办成了就没人再说，认的就是这个理。","aux_b":"辅助是外倾情感时，你的经验用在人身上：谁哪年帮过你、话说到多轻多重合适，你记得清楚。表现出来是周到、念旧、不让人难堪，也会为了不撕破脸而自己忍着，回家再自己消化，第二天照旧笑着招呼人，像没这回事。","everyday":"开会前你会先翻一遍上次的纪要和数字，别人说“这个以前不是这么定的”，你立刻能报出当时的情况。家里你留着老物件、旧照片、固定的年节做法，换个方式过你会不自在。朋友之间你不太主动组局，但答应的事最稳。消费上你信任用过的那几个牌子，换新的要有理由，坏了先想着修，而不是马上换新的。","blind":"劣势的外倾直觉（Ne）是你最不熟的地方。别人一开口就谈各种可能，你会先觉得不踏实，更愿意先有一条确定的路。压力下它会以慌和猜坏消息的样子出现：万一出事了呢、会不会一下子全变了，然后你抓紧旧办法，不肯松手。","mistype":"容易和 ISTJ 混。区分看辅助：把事情排成制度、爱定标准的偏 Te，把人照顾好、在意气氛的偏 Fe。也常被当成不擅表达的内倾思维型，区别在于你先信经验，不先信逻辑推演。"},"EN":{"code":"EN","name":"外倾直觉型","fn":"Ne","essence":"荣格的外倾直觉型，力比多追着可能性跑。客体对你不是终点，是出发点：看到一个东西，你立刻想到它还能变成什么、和什么能接上。你不太停在已有的成果上，一件事成了定局，兴趣就往下掉。你的判断常常晚于灵感，所以容易被说成想法多、落地少，但你真正的长处也在这里：别人还盯着现状时，你已经看见另一条路。","aux_a":"辅助是内倾思维时，你的点子里会带一套结构：这个想法的前提站不站得住、逻辑断在哪。表现出来是爱抬杠、爱把新点子拆开验一遍，讲起来条理清楚，很难被空话糊弄过去，也不吃“以后再想想”这一套。","aux_b":"辅助是内倾情感时，你用一个很私人的标准筛可能性：这个对不对、像不像我。表现出来是挑事挑人、对不真诚敏感，一旦认出是自己要的，就替它说话，别人怎么说都拦不住，撞了墙才肯回头，回头也未必认错。","everyday":"开会你常是那个把话题扯向“那我们能不能换个做法”的人，一屋子人被带到一个新方向。家里装修、出门玩，你先想的是有没有更有意思的方案，细节后补。朋友找你聊烦恼，你会给他好几个角度，未必都做得到。消费你容易被“新”吸引，也会买回来就放下。出游你到地方才决定去哪儿，见什么玩什么，很少按攻略走。","blind":"劣势的内倾感觉（Si）在你身上很生。身体的信号你常忽略，累了也不知道停；已经有的东西容易被你抛在后面。压力大时它会反过来：你忽然疑心身体出了毛病、反复检查同一件事，或者被一点旧日的不适勾住，怎么都放不下。","mistype":"常被当成 ENTP 或 ENFP。看辅助：论证真假、拆逻辑的偏 Ti，先问对不对得起自己的偏 Fi。也容易被看作外倾感觉型，区别在你要的是“还能变成什么”，不是“此刻是什么样”。"},"IN":{"code":"IN","name":"内倾直觉型","fn":"Ni","essence":"荣格的内倾直觉型，直觉朝内走，处理的是意象与走势。你接收的不是一件事，而是这件事后面的脉络：它像什么、往哪去、最后会成什么形状。你说话常跳过中间，别人听不懂，你自己觉得已经说完了。你对一件事的味道敏感，对人的动机常有一套不成文的判断。现实层面的细节你不擅长，也不太愿意在上面花时间。","aux_a":"辅助是外倾思维时，你把直觉接成能执行的方案：先做哪一步、谁来推、三个月看什么结果。表现出来是看得远又敢定事，别人还没跟上，你已经把事推下去了，也不解释过程，只把结果摆出来给人看，不铺垫。","aux_b":"辅助是外倾情感时，你把直觉用在人身上：这屋子里的关系在往哪走、谁迟早要走，你比当事人先知道。表现出来是能劝人，也会为了维持局面委屈自己，事后又觉得自己不该那样扛，可回头还是这样。","everyday":"开会时你能听出这个方案往下会卡在哪，不一定说得清依据，容易被当成唱反调。家里的事你常提前想到某个隐患，提醒了没人听，事后又确实发生。朋友找你，你能听懂他话里没说的那层，但给的建议往往太大、太远。消费上你不太比价，看准了就直接买。饭局上你到得晚，坐一会儿就能听出这桌人最近谁跟谁不对付。","blind":"劣势的外倾感觉（Se）是你最薄的地方。现场的具体信息你常漏掉：几点、在哪、东西放哪，事情到了眼前才反应。压力下它会失控：你可能突然暴食、猛买东西、非要把身体折腾到累，用强烈的感官刺激把脑子里的那团东西压下去。","mistype":"容易和 INFJ 混。看辅助：偏方案、指标、推进的偏 Te，偏关系、气氛、照顾人的偏 Fe。也常被当成内倾思维型，区别在于你不是先拆逻辑，而是先得到结论，再回头找理由。"}}};
+var APP_VERSION = "v3.0";
+var ITEMS = DATA.items;
+var LABELS = ["强烈不同意", "不同意", "有点不同意", "中立", "有点同意", "同意", "强烈同意"];
+var SAVE = "jung8-likert-v1";
+var state = { values: {}, idx: 0 };
+var pendingResume = null;
+function $(id) { return document.getElementById(id); }
+function view(n) { ["intro", "test", "result"].forEach(function (v) { $(v).classList.toggle("hidden", v !== n); }); window.scrollTo(0, 0); }
+function save() { try { localStorage.setItem(SAVE, JSON.stringify(state)); } catch (e) {} }
+function clearSave() { try { localStorage.removeItem(SAVE); } catch (e) {} }
+function nowStamp() {
+  var d = new Date(), p2 = function (n) { return ("0" + n).slice(-2); };
+  return d.getFullYear() + "-" + p2(d.getMonth() + 1) + "-" + p2(d.getDate()) + " " + p2(d.getHours()) + ":" + p2(d.getMinutes());
+}
+function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {
+  return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+
+function start(resume) {
+  if (resume && pendingResume) { state = pendingResume; pendingResume = null; }
+  else { state = { values: {}, idx: 0 }; clearSave(); }
+  view("test"); render();
+}
+function render() {
+  var it = ITEMS[state.idx];
+  if (!it) { showResult(); return; }
+  $("qno").textContent = "第 " + (state.idx + 1) + " / " + ITEMS.length + " 题";
+  $("statement").textContent = it.text;
+  $("counter").textContent = (state.idx + 1) + "/" + ITEMS.length;
+  $("backBtn").disabled = state.idx === 0;
+  $("pbar").style.width = Math.round(state.idx / ITEMS.length * 100) + "%";
+  paint();
+}
+function paint() {
+  var v = state.values[ITEMS[state.idx].id];
+  var btns = $("scale").querySelectorAll("button");
+  for (var i = 0; i < btns.length; i++) {
+    var bv = Number(btns[i].getAttribute("data-v"));
+    btns[i].className = (v === bv ? "sel" : (bv === 3 ? "mid" : ""));
+  }
+}
+function choose(v) {
+  state.values[ITEMS[state.idx].id] = v;
+  save(); paint();
+  setTimeout(function () {
+    state.idx++; save();
+    if (state.idx >= ITEMS.length) showResult(); else render();
+  }, 120);
+}
+function back() { if (state.idx > 0) { state.idx--; save(); render(); } }
+
+function summary(r) {
+  return ["荣格八维人格测验（7 点量表版）· " + APP_VERSION,
+    r.code + "｜" + r.cn_name + "｜荣格归属：" + r.jung_name,
+    "功能栈：" + r.stack.join("-"),
+    "置信度：" + r.confidence + "（分差 " + r.gap + "，一致性 " + r.consistency + "）",
+    "八维：" + r.order.map(function (f) { return f + " " + r.scores[f].toFixed(0); }).join("　"),
+    "生成时间：" + nowStamp(), "", "自我认识工具，非诊断。"].join("\n");
+}
+
+function aiPrompt(r) {
+  var L = [];
+  L.push("你是熟悉荣格分析心理学（《心理类型》，1921）的类型学分析者。下面是我做一份 7 点同意度量表的完整结果，请据此分析。");
+  L.push("");
+  L.push("【我的结果】");
+  L.push("四字母：" + r.code + "（" + r.cn_name + "）");
+  L.push("荣格类型：" + r.jung_name + "（" + r.dominant + " 主导）");
+  L.push("功能栈：" + r.stack[0] + " 主导 · " + r.stack[1] + " 辅助 · " + r.stack[2] + " 第三 · " + r.stack[3] + " 劣势");
+  L.push("置信度：" + r.confidence + "（八维领先幅度 " + r.gap + " 分，奇偶一致性 " + r.consistency + "）");
+  L.push("八维强度（0–100）：" + r.order.map(function (f) { return f + " " + r.scores[f].toFixed(0); }).join(" / "));
+  L.push("候选类型前三：" + r.top3.map(function (kv) { return kv[0] + " " + kv[1]; }).join("，"));
+  L.push("");
+  L.push("【怎么算的】152 句陈述，每句 7 点（-3 到 +3），每个功能 19 题、其中 6 题反向；功能分是该功能 19 题均值线性映射到 0–100，八个功能题数相同所以可直接比；主导取「个人内中心化后」最高的那个，辅助在「另一类功能 × 相反态度」两个候选里取高者，第三/劣势按结构推出（同类、功能对立、态度相反）。");
+  L.push("注意：这是自评量表，社会赞许偏差会让高分整体抬高；反向题只减少不消除这个偏差。");
+  L.push("");
+  L.push("【请按顺序回答】");
+  L.push("1. 用三句话概括这个组合在日常里最明显的样子。");
+  L.push("2. 指出除了主导功能之外，哪一个功能性分数最值得注意，为什么。");
+  L.push("3. 职场、家庭、亲密关系各给 3 条具体描述 + 1 条可操作建议。");
+  L.push("4. 分析劣势功能（" + r.inferior + "）被触发时的失控方式，以及爆发前可识别信号。");
+  L.push("5. 给未来 6 个月两件可验证的具体行动。");
+  L.push("6. 反问我 3 个能修正这个结论的问题。");
+  L.push("");
+  L.push("【约束】不做诊断、不编数据、不下「你就是这种人」的判决；信息不足就说需要更多信息；中文、少术语。");
+  return L.join("\n");
+}
+
+function showResult() {
+  var r = J8L.computeResult(state.values, ITEMS);
+  var t = DATA.types[r.code] || {}, j = DATA.jung[r.jung_code] || {}, st = r.stack;
+  var h = [];
+
+  h.push('<div class="rhead"><div class="code">' + r.code + '</div>');
+  h.push('<div class="name">' + esc(t.cn_name || r.cn_name) +
+    '<span class="badge' + (r.confidence === "低" ? " low" : "") + '">置信度 ' + r.confidence + '</span></div>');
+  h.push('<div class="jung">荣格归属：' + esc(r.jung_name) + '（主导 ' + r.dominant + '）</div>');
+  h.push('<div class="ver">功能栈 ' + st.join('-') + '　·　作答 ' + r.answered + '/' + r.total +
+    ' 题　·　生成于 ' + nowStamp() + '　·　量表版本 ' + APP_VERSION + '</div></div>');
+
+  h.push('<div class="sect"><h3>功能栈</h3><div class="stackline">');
+  ["主导", "辅助", "第三", "劣势"].forEach(function (lab, i) {
+    h.push('<div><small>' + lab + '</small><b>' + st[i] + '</b><span>' + J8L.FN_CN[st[i]] + '</span></div>');
+  });
+  h.push('</div>');
+  if (t.core) h.push('<p style="margin-top:14px">' + esc(t.core) + '</p>');
+  h.push('</div>');
+
+  h.push('<div class="sect"><h3>八维强度</h3>');
+  var roles = { "主导": "dom", "辅助": "aux", "第三": "ter", "劣势": "inf" };
+  var names = ["主导", "辅助", "第三", "劣势"];
+  r.order.forEach(function (f) {
+    var i = st.indexOf(f), role = i >= 0 ? names[i] : null;
+    h.push('<div class="barrow' + (role ? " role-" + roles[role] : "") + '">' +
+      '<span class="bn">' + f + '</span><span class="bc">' + J8L.FN_CN[f] + '</span>' +
+      '<span class="bar"><i style="width:' + Math.max(2, r.scores[f]) + '%"></i></span>' +
+      '<span class="bv">' + r.scores[f].toFixed(0) + '</span></div>' +
+      (role ? '<div style="margin:-6px 0 6px 52px"><span class="rolebadge">' + role + '</span></div>' : ''));
+  });
+  h.push('<p style="font-size:11.5px;color:var(--faint);margin-top:10px">0–100 是绝对强度（题数等权，可直接互比）。' +
+    '主导的判定用的是「个人内中心化」，避免整体爱打高分的人被误判。</p>');
+  h.push('<details><summary>中心化后（判类型用的相对分）</summary><p style="font-size:12.5px;color:var(--muted)">' +
+    r.order.map(function (f) { return f + " " + (r.centered[f] >= 0 ? "+" : "") + r.centered[f].toFixed(1); }).join("　") +
+    '</p></details></div>');
+
+  h.push('<div class="sect"><h3>候选类型</h3><div class="fits">');
+  r.top3.forEach(function (kv) {
+    h.push('<span class="fit' + (kv[0] === r.code ? " cur" : "") + '">' + kv[0] + ' <b>' + kv[1].toFixed(2) + '</b></span>');
+  });
+  h.push('</div>');
+  h.push('<p style="font-size:13px;margin-top:12px;color:var(--muted)">' +
+    (r.mismatch ? '主判与吻合度排序不一致：你的答案在两种方式之间有拉扯，建议隔一周重做或用另一种答法对照。'
+                : '主判与吻合度排序一致。领先幅度 ' + r.gap + ' 分、奇偶一致性 ' + r.consistency + '。') + '</p></div>');
+
+  h.push('<div class="sect profile"><h3>' + r.code + ' · ' + esc(t.cn_name || "") + '</h3>');
+  [["work", "职场"], ["family", "家庭与亲戚"], ["love", "亲密关系"]].forEach(function (s) {
+    if (t[s[0]]) h.push('<p><b class="lbl">' + s[1] + '。</b>' + esc(t[s[0]]) + '</p>');
+  });
+  if (t.strength && t.strength.length) h.push('<p><b class="lbl">优势。</b>' + t.strength.map(esc).join("；") + '。</p>');
+  if (t.blindspot && t.blindspot.length) h.push('<p><b class="lbl">盲区。</b>' + t.blindspot.map(esc).join("；") + '。</p>');
+  if (t.stress) h.push('<p><b class="lbl">压力下的样子。</b>' + esc(t.stress) + '</p>');
+  if (t.growth) h.push('<p><b class="lbl">可以怎么长。</b>' + esc(t.growth) + '</p>');
+  if (t.mistype) h.push('<p><b class="lbl">容易和谁混。</b>' + esc(t.mistype) + '</p>');
+  h.push('</div>');
+
+  if (j.essence) {
+    h.push('<div class="sect profile"><h3>你所属的荣格类型：' + esc(r.jung_name) + '</h3>');
+    h.push('<p>' + esc(j.essence) + '</p>');
+    if (j.everyday) h.push('<p><b class="lbl">日常里的样子。</b>' + esc(j.everyday) + '</p>');
+    if (j.blind) h.push('<p><b class="lbl">盲区与压力。</b>' + esc(j.blind) + '</p>');
+    h.push('</div>');
   }
 
-  function aiPrompt(r) {
-    var L = [];
-    L.push("你是熟悉人格倾向量表（五维：心力 E/I、能量 N/S、本性 T/F、对策 J/P、身份 A/T）的分析者。下面是我的自测结果，请据此和我一起分析。");
-    L.push("");
-    L.push("【我的结果】");
-    L.push("四字母：" + r.letters.slice(0, 4) + "　身份：" + r.letters.slice(4));
-    DIMS.forEach(function (d) {
-      var s = r.dims[d.key];
-      if (s !== undefined) L.push(d.cn + "（" + d.a + "/" + d.b + "）：" + s.toFixed(0) + "（50 为中线，越高越偏 " + d.a + "）");
-    });
-    L.push("");
-    L.push("【面向细分】");
-    DIMS.forEach(function (d) {
-      LIKERT.items.filter(function (it) { return it.dim === d.key; })
-        .map(function (it) { return it.facet; })
-        .filter(function (v, i, a) { return a.indexOf(v) === i; })
-        .forEach(function (fc) {
-          var s = r.facets[d.key + "/" + fc];
-          if (s !== undefined) L.push("  " + d.cn + "/" + fc + "：" + s.toFixed(0));
-        });
-    });
-    L.push("");
-    L.push("【怎么算的】每题 7 点（-3 到 +3），每个面向 2 题、一正一反；面向分与维度分都是均值线性映射到 0–100；50 是中线。");
-    L.push("这不是类型学，只是倾向强弱；50 附近说明两边都用。");
-    L.push("");
-    L.push("【请按顺序回答】");
-    L.push("1. 用三句话概括这个组合在日常里最明显的样子。");
-    L.push("2. 指出哪两三个面向的分数组合最值得注意（不必是最高分），并说明为什么。");
-    L.push("3. 分别就职场、家庭、亲密关系各给 3 条具体描述 + 1 条可操作建议。");
-    L.push("4. 指出我可能高估或低估的部分，并说明量表本身容易在哪里失真。");
-    L.push("5. 给未来 6 个月两件可验证的具体行动，不要空话。");
-    L.push("6. 反问我 3 个能修正结论的问题。");
-    L.push("");
-    L.push("【约束】不做诊断、不编数据、不下\"你就是这种人\"的判决；信息不足就说需要更多信息；用中文、少术语。");
-    return L.join("\n");
-  }
+  h.push('<div class="sect"><h3>把结果交给 AI 分析</h3>' +
+    '<p style="font-size:13.5px;color:var(--muted)">这段提示词已把分数、计分口径和边界写好，复制后黏到常用的 AI 里即可。</p>' +
+    '<div class="actions" style="margin:12px 0 0"><button class="primary" id="copyPromptBtn">复制 AI 分析提示词</button>' +
+    '<button id="downloadPromptBtn">下载为 .txt</button></div>' +
+    '<details><summary>展开查看提示词全文</summary><textarea class="promptBox" id="aiPrompt" spellcheck="false"></textarea>' +
+    '<p style="font-size:11.5px;color:var(--faint);margin:8px 0 0">只有分数，没有姓名。</p></details></div>');
 
-  function copyText(text, btn) {
-    var done = function () { flash(btn, "已复制"); };
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(done, function () { fallbackCopy(text); done(); });
-    } else { fallbackCopy(text); done(); }
-  }
-  function fallbackCopy(text) {
-    var ta = document.createElement("textarea");
-    ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
-    document.body.appendChild(ta); ta.select();
-    try { document.execCommand("copy"); } catch (e) {}
-    document.body.removeChild(ta);
-  }
-  function downloadText(name, text) {
-    try {
-      var blob = new Blob([text], { type: "text/plain;charset=utf-8" });
-      var url = URL.createObjectURL(blob), a = document.createElement("a");
-      a.href = url; a.download = name; document.body.appendChild(a);
-      if (a.click) a.click();
-      document.body.removeChild(a);
-      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
-    } catch (e) { fallbackCopy(text); }
-  }
-  function flash(btn, msg) { var old = btn.textContent; btn.textContent = msg; setTimeout(function () { btn.textContent = old; }, 1400); }
+  h.push('<div class="actions"><button class="primary" id="againBtn">重新做一次</button>' +
+    '<button id="printBtn">打印 / 存为 PDF</button>' +
+    '<button id="copyBtn">复制结果摘要</button></div>');
+  h.push('<p class="disclaimer">这是自我认识工具，不是诊断，也不该拿来筛选别人。' +
+    '分数是「你多常这样」，不是能力高低；类型是假设，不是判决。</p>');
 
-  /* ---------- 初始化 ---------- */
-  (function buildScale() {
-    var box = $("scale"), html = "";
-    LABELS.forEach(function (lab, i) {
-      html += '<button data-v="' + i + '"><b>' + (i === 3 ? "—" : (i < 3 ? (i - 3) : ("+" + (i - 3)))) + '</b>' + lab + '</button>';
-    });
-    box.innerHTML = html;
-    var btns = box.querySelectorAll("button");
-    for (var i = 0; i < btns.length; i++) {
-      btns[i].addEventListener("click", function () { choose(Number(this.getAttribute("data-v"))); });
-    }
-  })();
+  $("result").innerHTML = h.join("");
+  view("result");
+  $("againBtn").onclick = function () { start(false); };
+  $("printBtn").onclick = function () { window.print(); };
+  $("copyBtn").onclick = function () { copyText(summary(r), $("copyBtn")); };
+  $("aiPrompt").value = aiPrompt(r);
+  $("copyPromptBtn").onclick = function () { copyText($("aiPrompt").value, $("copyPromptBtn")); };
+  $("downloadPromptBtn").onclick = function () { downloadText("八维量表-结果-AI分析提示.txt", $("aiPrompt").value); };
+}
 
-  var pendingResume = null;
+function copyText(text, btn) {
+  var done = function () { flash(btn, "已复制"); };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done, function () { fallbackCopy(text); done(); });
+  } else { fallbackCopy(text); done(); }
+}
+function fallbackCopy(text) {
+  var ta = document.createElement("textarea");
+  ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand("copy"); } catch (e) {}
+  document.body.removeChild(ta);
+}
+function downloadText(name, text) {
+  try {
+    var blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+    var url = URL.createObjectURL(blob), a = document.createElement("a");
+    a.href = url; a.download = name; document.body.appendChild(a);
+    if (a.click) a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  } catch (e) { fallbackCopy(text); }
+}
+function flash(btn, msg) { var old = btn.textContent; btn.textContent = msg; setTimeout(function () { btn.textContent = old; }, 1400); }
+
+(function buildScale() {
+  var html = "";
+  LABELS.forEach(function (lab, i) {
+    html += '<button data-v="' + i + '"><b>' + (i === 3 ? "—" : (i < 3 ? (i - 3) : ("+" + (i - 3)))) + '</b>' + lab + '</button>';
+  });
+  $("scale").innerHTML = html;
+  var btns = $("scale").querySelectorAll("button");
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].addEventListener("click", function () { choose(Number(this.getAttribute("data-v"))); });
+  }
+})();
+
+$("backBtn").addEventListener("click", back);
+document.addEventListener("keydown", function (e) {
+  if ($("test").classList.contains("hidden")) return;
+  if (/^[1-7]$/.test(e.key)) { e.preventDefault(); choose(Number(e.key) - 1); }
+  else if (e.key === "ArrowLeft" || e.key === "Backspace") { e.preventDefault(); back(); }
+});
+
+(function resumeCheck() {
   var saved = null;
   try { saved = JSON.parse(localStorage.getItem(SAVE) || "null"); } catch (e) {}
-  if (saved && saved.answers && Object.keys(saved.answers).length && saved.idx < LIKERT.items.length) {
+  if (saved && saved.values && Object.keys(saved.values).length && saved.idx < ITEMS.length) {
     pendingResume = saved;
-    $("startBtn").innerHTML = "<b>继续上次</b><span>已答 " + Object.keys(saved.answers).length + " / " + LIKERT.items.length + " 题</span>";
+    $("startBtn").innerHTML = "<b>继续上次</b><span>已答 " + Object.keys(saved.values).length + " / " + ITEMS.length + " 题</span>";
   }
-  $("startBtn").addEventListener("click", function () { start(!!pendingResume); });
-
-  /* 供自动化测试调用的最小钩子（不影响正常使用） */
-  if (typeof window !== "undefined") {
-    window.__LIKERT_DEBUG = { start: function () { start(false); }, choose: choose, compute: compute,
-      answered: function () { return Object.keys(state.answers).length; } };
-  }
-  $("backBtn").addEventListener("click", back);
-  document.addEventListener("keydown", function (e) {
-    if ($("test").classList.contains("hidden")) return;
-    if (/^[1-7]$/.test(e.key)) { e.preventDefault(); choose(Number(e.key) - 1); }
-    else if (e.key === "ArrowLeft" || e.key === "Backspace") { e.preventDefault(); back(); }
-  });
-
 })();
+$("startBtn").addEventListener("click", function () { start(!!pendingResume); });
+
+if (typeof window !== "undefined") {
+  window.__J8L_DEBUG = { start: function () { start(false); }, choose: choose,
+    answered: function () { return Object.keys(state.values).length; } };
+}
 </script>
 </body>
 </html>
