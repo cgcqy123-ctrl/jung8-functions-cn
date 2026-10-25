@@ -2,51 +2,51 @@
   "fn": "Ni",
   "items": [
     {"id": "Ni-01", "fn": "Ni", "reverse": false, "domain": "家庭亲戚",
-     "text": "看亲戚家孩子，你会想他十年后大概走成什么样。"},
+     "text": "看亲戚家孩子，你会猜他十年后什么样。"},
     {"id": "Ni-02", "fn": "Ni", "reverse": false, "domain": "家庭亲戚",
-     "text": "家里闹矛盾，你会想根子其实在很早以前的一件小事上。"},
+     "text": "家里闹矛盾，你觉得根子在很早以前。"},
     {"id": "Ni-03", "fn": "Ni", "reverse": true, "domain": "家庭亲戚",
-     "text": "亲戚家的事你只看眼前这一件，不往以后想。"},
+     "text": "亲戚家的事，你只看眼前这一件。"},
 
     {"id": "Ni-04", "fn": "Ni", "reverse": false, "domain": "职场办公",
-     "text": "你会判断这个行业三年后大概会变成什么样。"},
+     "text": "你能判断这个行业三年后往哪走。"},
     {"id": "Ni-05", "fn": "Ni", "reverse": false, "domain": "职场办公",
-     "text": "项目刚立项，你就能说出它最后可能死在哪一步。"},
+     "text": "项目刚立项，你就说出它可能死在哪一步。"},
     {"id": "Ni-06", "fn": "Ni", "reverse": true, "domain": "职场办公",
-     "text": "项目你只关心这周要做完的那部分。"},
+     "text": "项目你只关心这周要交的那部分。"},
 
     {"id": "Ni-07", "fn": "Ni", "reverse": false, "domain": "学习考试",
-     "text": "读完一本书，你能用一句话说清它到底在讲什么。"},
+     "text": "一本书读完，你能用一句话说清它讲什么。"},
     {"id": "Ni-08", "fn": "Ni", "reverse": true, "domain": "学习考试",
-     "text": "复习时你按章节顺序过，不太想整门课的主线。"},
+     "text": "复习你按章节过，不太想整门课的主线。"},
 
     {"id": "Ni-09", "fn": "Ni", "reverse": false, "domain": "社交人情",
      "text": "见一个人第一面，你心里就有个整体判断。"},
     {"id": "Ni-10", "fn": "Ni", "reverse": true, "domain": "社交人情",
-     "text": "一群人待着时，你只顾说自己的，不太管气氛。"},
+     "text": "一群人待着，你只顾说自己的。"},
 
     {"id": "Ni-11", "fn": "Ni", "reverse": false, "domain": "消费生活",
-     "text": "买大件时你会想这东西过几年会不会过时。"},
+     "text": "买大件你会想它过几年会不会过时。"},
     {"id": "Ni-12", "fn": "Ni", "reverse": true, "domain": "消费生活",
      "text": "买东西你只看现在用不用得上。"},
 
     {"id": "Ni-13", "fn": "Ni", "reverse": false, "domain": "冲突矛盾",
      "text": "争执里你能指出两边真正的分歧在哪。"},
     {"id": "Ni-14", "fn": "Ni", "reverse": true, "domain": "冲突矛盾",
-     "text": "争执里你只回应他最后说的那一句。"},
+     "text": "争执里你只回他最后说的那一句。"},
 
     {"id": "Ni-15", "fn": "Ni", "reverse": false, "domain": "兴趣娱乐",
-     "text": "看完一部电影，你想的是它真正在讲什么。"},
+     "text": "看完电影，你想的是它真正在讲什么。"},
     {"id": "Ni-16", "fn": "Ni", "reverse": false, "domain": "兴趣娱乐",
      "text": "听一首歌，你脑子里会浮出一个画面。"},
 
     {"id": "Ni-17", "fn": "Ni", "reverse": false, "domain": "信息媒体",
-     "text": "一条新闻你会想它背后正往哪个方向走。"},
+     "text": "一条新闻，你会想它背后往哪走。"},
 
     {"id": "Ni-18", "fn": "Ni", "reverse": false, "domain": "亲密关系",
-     "text": "关系里你常预感到这样下去会走到哪。"},
+     "text": "关系里你常预感到这样下去会怎样。"},
 
     {"id": "Ni-19", "fn": "Ni", "reverse": false, "domain": "身体健康",
-     "text": "长期累的时候，你觉得身体在提示你什么。"}
+     "text": "长期累，你觉得身体在提示你什么。"}
   ]
 }

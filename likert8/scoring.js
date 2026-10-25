@@ -129,7 +129,42 @@ var J8L = (function () {
     };
   }
 
+  /* ---------- 出题顺序：随机 + 同功能不相邻 ---------- */
+  function shuffled(a, rand) {
+    var out = a.slice();
+    for (var i = out.length - 1; i > 0; i--) {
+      var j = Math.floor(rand() * (i + 1));
+      var t = out[i]; out[i] = out[j]; out[j] = t;
+    }
+    return out;
+  }
+  function interleave(items, rand) {
+    rand = rand || Math.random;
+    var groups = {}, keys = [];
+    items.forEach(function (it) {
+      if (!groups[it.fn]) { groups[it.fn] = []; keys.push(it.fn); }
+      groups[it.fn].push(it);
+    });
+    keys.forEach(function (k) { groups[k] = shuffled(groups[k], rand); });
+
+    var out = [], last = null, lastDom = null;
+    while (out.length < items.length) {
+      var cands = keys.filter(function (k) { return groups[k].length && k !== last; });
+      if (!cands.length) cands = keys.filter(function (k) { return groups[k].length; });
+      var best = cands[0], bestScore = -1;
+      cands.forEach(function (k) {
+        var score = groups[k].length * 10 + (groups[k][0].domain !== lastDom ? 3 : 0) + rand();
+        if (score > bestScore) { bestScore = score; best = k; }
+      });
+      var it = groups[best].shift();
+      out.push(it);
+      last = best;
+      lastDom = it.domain;
+    }
+    return out;
+  }
+
   return { FUNCS: FUNCS, FN_CN: FN_CN, STACKS: STACKS, CN_NAME: CN_NAME,
-           computeResult: computeResult };
+           computeResult: computeResult, interleave: interleave, shuffled: shuffled };
 })();
 if (typeof module !== "undefined" && module.exports) module.exports = J8L;

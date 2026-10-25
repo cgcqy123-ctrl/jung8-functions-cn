@@ -2,42 +2,51 @@
   "fn": "Si",
   "items": [
     {"id": "Si-01", "fn": "Si", "reverse": false, "domain": "家庭亲戚",
-     "text": "过年走亲戚，你按往年的顺序一家一家去。"},
+     "text": "过年走亲戚，你按往年的顺序来才顺。"},
     {"id": "Si-02", "fn": "Si", "reverse": false, "domain": "家庭亲戚",
-     "text": "妈妈的旧菜谱，你照着上面的火候和顺序做。"},
+     "text": "妈妈的旧菜谱，你照着上面的量做。"},
     {"id": "Si-03", "fn": "Si", "reverse": true, "domain": "家庭亲戚",
-     "text": "家里的东西放哪儿你不太在意，找的时候再翻。"},
+     "text": "家里的东西放哪儿，你从来不记。"},
+
     {"id": "Si-04", "fn": "Si", "reverse": false, "domain": "职场办公",
-     "text": "做报表你还是沿用上季度那份模板的格式。"},
+     "text": "做报表你沿用上季度那套模板。"},
     {"id": "Si-05", "fn": "Si", "reverse": false, "domain": "职场办公",
-     "text": "公司流程你一步步照着走，跳一步心里不踏实。"},
+     "text": "公司的流程你一步一步走，不跳步。"},
     {"id": "Si-06", "fn": "Si", "reverse": true, "domain": "职场办公",
-     "text": "新项目你不翻旧资料，直接从头摸一遍。"},
-    {"id": "Si-07", "fn": "Si", "reverse": true, "domain": "学习考试",
-     "text": "复习你不翻旧笔记，另找一套方法从头试。"},
-    {"id": "Si-08", "fn": "Si", "reverse": false, "domain": "学习考试",
-     "text": "考试你先按熟的那套时间分配往下答。"},
+     "text": "新项目你不翻旧资料，从头摸一遍。"},
+
+    {"id": "Si-07", "fn": "Si", "reverse": false, "domain": "学习考试",
+     "text": "复习还是那套笔记法，换了不顺手。"},
+    {"id": "Si-08", "fn": "Si", "reverse": true, "domain": "学习考试",
+     "text": "复习你每次换新方法，旧的不用。"},
+
     {"id": "Si-09", "fn": "Si", "reverse": false, "domain": "社交人情",
-     "text": "老朋友见面，你还是约那家去了很多年的老馆子。"},
-    {"id": "Si-10", "fn": "Si", "reverse": true, "domain": "社交人情",
-     "text": "饭桌上你换个新段子讲，老段子自己都想不起来。"},
+     "text": "老朋友见面，还是去那家老馆子。"},
+    {"id": "Si-10", "fn": "Si", "reverse": false, "domain": "社交人情",
+     "text": "饭桌上那段子你讲了好几遍。"},
+
     {"id": "Si-11", "fn": "Si", "reverse": false, "domain": "消费生活",
-     "text": "买酱油你伸手就拿一直吃的那个牌子。"},
-    {"id": "Si-12", "fn": "Si", "reverse": false, "domain": "消费生活",
-     "text": "换新手机，你先去把旧手机里的设置一项项对回来。"},
+     "text": "酱油一直买同一个牌子。"},
+    {"id": "Si-12", "fn": "Si", "reverse": true, "domain": "消费生活",
+     "text": "换新手机，你懒得把旧设置搬过来。"},
+
     {"id": "Si-13", "fn": "Si", "reverse": false, "domain": "冲突矛盾",
-     "text": "邻里有点摩擦，你按以前那回的办法去处理。"},
+     "text": "邻里这点事，按以前的办法处理就行。"},
     {"id": "Si-14", "fn": "Si", "reverse": true, "domain": "冲突矛盾",
-     "text": "跟同事闹别扭，你不去想上回，只谈这次的事。"},
+     "text": "跟同事闹别扭，你不去想上回怎么解决的。"},
+
     {"id": "Si-15", "fn": "Si", "reverse": false, "domain": "兴趣娱乐",
-     "text": "跑步你顺着那条走熟的路线，心里有数。"},
+     "text": "跑步你走熟的那条路线。"},
     {"id": "Si-16", "fn": "Si", "reverse": true, "domain": "兴趣娱乐",
-     "text": "做菜你不看量杯和计时器，随手放随手炒。"},
+     "text": "做菜你不看量杯，也不掐表。"},
+
     {"id": "Si-17", "fn": "Si", "reverse": false, "domain": "信息媒体",
-     "text": "看到一条传言，你想起前几年传过的那版。"},
+     "text": "看到传言，你想起前几年传过的那一版。"},
+
     {"id": "Si-18", "fn": "Si", "reverse": false, "domain": "亲密关系",
-     "text": "对方不吃什么、几点睡，你都记在心里。"},
+     "text": "你记得对方不吃什么、几点睡。"},
+
     {"id": "Si-19", "fn": "Si", "reverse": false, "domain": "身体健康",
-     "text": "换季时你会留意身上反应跟往年像不像。"}
+     "text": "换季了，你留意身上反应和往年像不像。"}
   ]
 }

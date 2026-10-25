@@ -254,7 +254,7 @@ def build_cover(doc):
     set_font(p.add_run("使用手册"), cn=SANS, size=13, color=GRAY)
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    set_font(p.add_run("v3.1　·　2026-10-26"), cn=SANS, size=11, color=GRAY)
+    set_font(p.add_run("v3.2　·　2026-10-26"), cn=SANS, size=11, color=GRAY)
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p.paragraph_format.space_before = Pt(80)

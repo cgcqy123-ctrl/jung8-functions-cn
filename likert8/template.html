@@ -110,6 +110,7 @@ details summary{cursor:pointer;font-size:13px;color:var(--muted)}
         <li>想<b>平时的你</b>，不要想你希望成为的样子。</li>
         <li>凭第一反应，每题十秒内；中间那档「中立」能不用就不用。</li>
         <li>152 题，可以分三次做完，进度自动存在这台设备上。</li>
+        <li>题目顺序每次重新开始都会打乱，同一功能的题不会连着出现。</li>
       </ul>
       <button class="mode" id="startBtn"><b>开始</b><span>152 题 · 约 25 分钟</span></button>
     </div>
@@ -144,7 +145,10 @@ var APP_VERSION = /*__VERSION__*/;
 var ITEMS = DATA.items;
 var LABELS = ["强烈不同意", "不同意", "有点不同意", "中立", "有点同意", "同意", "强烈同意"];
 var SAVE = "jung8-likert-v1";
-var state = { values: {}, idx: 0 };
+var state = { values: {}, idx: 0, order: [] };
+var byId = {};
+ITEMS.forEach(function (it) { byId[it.id] = it; });
+function newOrder() { return J8L.interleave(ITEMS).map(function (it) { return it.id; }); }
 var pendingResume = null;
 function $(id) { return document.getElementById(id); }
 function view(n) { ["intro", "test", "result"].forEach(function (v) { $(v).classList.toggle("hidden", v !== n); }); window.scrollTo(0, 0); }
@@ -158,12 +162,16 @@ function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function 
   return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
 
 function start(resume) {
-  if (resume && pendingResume) { state = pendingResume; pendingResume = null; }
-  else { state = { values: {}, idx: 0 }; clearSave(); }
+  if (resume && pendingResume) {
+    state = pendingResume;
+    if (!state.order || state.order.length !== ITEMS.length) state.order = newOrder();
+    pendingResume = null;
+  }
+  else { state = { values: {}, idx: 0, order: newOrder() }; clearSave(); }
   view("test"); render();
 }
 function render() {
-  var it = ITEMS[state.idx];
+  var it = byId[state.order[state.idx]];
   if (!it) { showResult(); return; }
   $("qno").textContent = "第 " + (state.idx + 1) + " / " + ITEMS.length + " 题";
   $("statement").textContent = it.text;
@@ -173,7 +181,7 @@ function render() {
   paint();
 }
 function paint() {
-  var v = state.values[ITEMS[state.idx].id];
+  var v = state.values[state.order[state.idx]];
   var btns = $("scale").querySelectorAll("button");
   for (var i = 0; i < btns.length; i++) {
     var bv = Number(btns[i].getAttribute("data-v"));
@@ -181,7 +189,7 @@ function paint() {
   }
 }
 function choose(v) {
-  state.values[ITEMS[state.idx].id] = v;
+  state.values[state.order[state.idx]] = v;
   save(); paint();
   setTimeout(function () {
     state.idx++; save();
@@ -228,7 +236,8 @@ function aiPrompt(r) {
 }
 
 function showResult() {
-  var r = J8L.computeResult(state.values, ITEMS);
+  var presented = state.order.map(function (id) { return byId[id]; }).filter(Boolean);
+  var r = J8L.computeResult(state.values, presented);
   var t = DATA.types[r.code] || {}, j = DATA.jung[r.jung_code] || {}, st = r.stack;
   var h = [];
 
@@ -384,7 +393,8 @@ $("startBtn").addEventListener("click", function () { start(!!pendingResume); })
 
 if (typeof window !== "undefined") {
   window.__J8L_DEBUG = { start: function () { start(false); }, choose: choose,
-    answered: function () { return Object.keys(state.values).length; } };
+    answered: function () { return Object.keys(state.values).length; },
+    order: function () { return state.order.slice(); } };
 }
 </script>
 </body>

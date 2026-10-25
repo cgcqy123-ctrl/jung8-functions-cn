@@ -76,8 +76,21 @@ const allMid = Object.keys(r3.scores).every((f) => Math.abs(r3.scores[f] - 50) <
 ok(allMid, "全中立 → 八维都是 50 分");
 ok(r3.confidence === "低", "全中立 → 置信度低：" + r3.confidence);
 
+// 随机顺序：是排列、且相邻不同功能
+for (let t = 0; t < 6; t++) {
+  const seq = J.interleave(DATA.items);
+  const ids = seq.map((x) => x.id).sort().join(",");
+  const want = DATA.items.map((x) => x.id).sort().join(",");
+  ok(ids === want, `第 ${t + 1} 次打乱仍是完整排列（${seq.length} 题）`);
+  let adj = 0;
+  for (let i = 1; i < seq.length; i++) if (seq[i].fn === seq[i - 1].fn) adj++;
+  ok(adj === 0, `第 ${t + 1} 次打乱无相邻同功能（相邻重复 ${adj} 处）`);
+}
+
 // 走一遍 UI 流程
 D.start();
+ok(D.order().length === 152, "作答顺序覆盖 152 题：" + D.order().length);
+ok(new Set(D.order()).size === 152, "作答顺序无重复题");
 ok(!get("test").classList.contains("hidden"), "进入答题页");
 ok(get("statement").textContent.length > 5, "题干非空：" + get("statement").textContent.slice(0, 12) + "…");
 for (let i = 0; i < 152; i++) D.choose(i % 7);

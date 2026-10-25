@@ -11,7 +11,7 @@ import sys
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HERE = os.path.join(BASE, "likert8")
 OUT = os.path.join(BASE, "index.html")
-VERSION = "v3.0"
+VERSION = "v3.2"
 
 
 def load(name):

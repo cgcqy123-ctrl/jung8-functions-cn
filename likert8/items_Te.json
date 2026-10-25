@@ -2,31 +2,31 @@
   "fn": "Te",
   "items": [
     {"id": "Te-01", "fn": "Te", "reverse": false, "domain": "家庭亲戚",
-     "text": "搬家前你先列好时间表和分工，谁搬哪间都写清。"},
+     "text": "搬家你先列时间表，谁搬哪间写清楚。"},
     {"id": "Te-02", "fn": "Te", "reverse": false, "domain": "家庭亲戚",
      "text": "过年回谁家、哪天走，你排成一张表。"},
     {"id": "Te-03", "fn": "Te", "reverse": true, "domain": "家庭亲戚",
-     "text": "家里出游你到了再商量去哪，事先不定计划。"},
+     "text": "家里出游到了再商量，事先不定计划。"},
 
     {"id": "Te-04", "fn": "Te", "reverse": false, "domain": "职场办公",
-     "text": "接到任务，你先拆成步骤和截止时间。"},
+     "text": "接到任务，你先拆步骤、定截止时间。"},
     {"id": "Te-05", "fn": "Te", "reverse": false, "domain": "职场办公",
-     "text": "开会你负责收口：谁做、什么时候交。"},
+     "text": "开会到最后，你说清谁做、什么时候交。"},
     {"id": "Te-06", "fn": "Te", "reverse": true, "domain": "职场办公",
-     "text": "项目推进你走一步看一步，不排节点。"},
+     "text": "项目走一步看一步，你不排节点。"},
 
     {"id": "Te-07", "fn": "Te", "reverse": false, "domain": "学习考试",
-     "text": "备考你先排一张到考前的计划表。"},
+     "text": "备考你先排一张到考前的表。"},
     {"id": "Te-08", "fn": "Te", "reverse": true, "domain": "学习考试",
-     "text": "复习你翻到哪算哪，不做进度安排。"},
+     "text": "复习你翻到哪算哪，不做安排。"},
 
     {"id": "Te-09", "fn": "Te", "reverse": false, "domain": "社交人情",
-     "text": "组织同学聚会，你把时间、人数、地点定死。"},
+     "text": "组织聚会，你把时间、人数、地点定死。"},
     {"id": "Te-10", "fn": "Te", "reverse": false, "domain": "社交人情",
-     "text": "群里收钱办事，你会把账目和进度贴出来。"},
+     "text": "群里收钱，你把账目和进度贴出来。"},
 
     {"id": "Te-11", "fn": "Te", "reverse": false, "domain": "消费生活",
-     "text": "买大件你做一张比价表，参数价格一起看。"},
+     "text": "买大件你做张比价表，参数一起看。"},
     {"id": "Te-12", "fn": "Te", "reverse": true, "domain": "消费生活",
      "text": "买东西你看着顺眼就下单，不比价。"},
 
@@ -38,15 +38,15 @@
     {"id": "Te-15", "fn": "Te", "reverse": false, "domain": "兴趣娱乐",
      "text": "出去玩你先把每天的行程排出来。"},
     {"id": "Te-16", "fn": "Te", "reverse": true, "domain": "兴趣娱乐",
-     "text": "组队打游戏，你等别人安排位置，自己不动手分。"},
+     "text": "组队打游戏，你等别人分位置。"},
 
     {"id": "Te-17", "fn": "Te", "reverse": false, "domain": "信息媒体",
-     "text": "看新政策你先找关键条款和执行时间。"},
+     "text": "看新政策，你先找关键条款和执行时间。"},
 
     {"id": "Te-18", "fn": "Te", "reverse": false, "domain": "亲密关系",
      "text": "共同开销你记账，到月底对一次。"},
 
     {"id": "Te-19", "fn": "Te", "reverse": false, "domain": "身体健康",
-     "text": "体检你按计划安排，复查时间也先定好。"}
+     "text": "体检你按计划安排，复查时间也定好。"}
   ]
 }

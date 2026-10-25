@@ -1,43 +1,138 @@
 {
   "fn": "Ne",
   "items": [
-    {"id": "Ne-01", "fn": "Ne", "reverse": false, "domain": "家庭亲戚",
-     "text": "装修想试混搭，北欧的墙配旧木料地板，阳台也想掺一手。"},
-    {"id": "Ne-02", "fn": "Ne", "reverse": false, "domain": "家庭亲戚",
-     "text": "孩子问天为什么蓝，你从光的散射扯到海和晚霞，话还没完。"},
-    {"id": "Ne-03", "fn": "Ne", "reverse": true, "domain": "家庭亲戚",
-     "text": "旧家具你就按原来的用处用，没想过改成别的样子。"},
-    {"id": "Ne-04", "fn": "Ne", "reverse": false, "domain": "职场办公",
-     "text": "会上你一口气抛出三个方向，还顺手补了两条别的路。"},
-    {"id": "Ne-05", "fn": "Ne", "reverse": false, "domain": "职场办公",
-     "text": "给产品想点子，你专挑不正经的路子试，再看哪个能成。"},
-    {"id": "Ne-06", "fn": "Ne", "reverse": true, "domain": "职场办公",
-     "text": "开会你只讲定好的那个方向，别的一条都不提。"},
-    {"id": "Ne-07", "fn": "Ne", "reverse": false, "domain": "学习考试",
-     "text": "啃一个概念，你会想到别的领域也有同一套东西在转。"},
-    {"id": "Ne-08", "fn": "Ne", "reverse": true, "domain": "学习考试",
-     "text": "记概念你就按书上那一章记下来，不往别的地方联。"},
-    {"id": "Ne-09", "fn": "Ne", "reverse": false, "domain": "社交人情",
-     "text": "聊着聊着，你从天气跳到谁家的事，再跳到新开的店。"},
-    {"id": "Ne-10", "fn": "Ne", "reverse": true, "domain": "社交人情",
-     "text": "聊天时你守着同一个话题往下说，不往旁边岔。"},
-    {"id": "Ne-11", "fn": "Ne", "reverse": false, "domain": "消费生活",
-     "text": "逛超市专看新品，看完就琢磨家里哪块地方能用上。"},
-    {"id": "Ne-12", "fn": "Ne", "reverse": true, "domain": "消费生活",
-     "text": "逛超市只拿清单上的，新品柜台一眼不看就走过去。"},
-    {"id": "Ne-13", "fn": "Ne", "reverse": false, "domain": "冲突矛盾",
-     "text": "吵起来的时候，你提出第三条路，两边都没想过的。"},
-    {"id": "Ne-14", "fn": "Ne", "reverse": false, "domain": "冲突矛盾",
-     "text": "矛盾里你会替对方想几种处境，还想过换个说法。"},
-    {"id": "Ne-15", "fn": "Ne", "reverse": false, "domain": "兴趣娱乐",
-     "text": "想同时学三样乐器，还给每样找了个入门的法子。"},
-    {"id": "Ne-16", "fn": "Ne", "reverse": true, "domain": "兴趣娱乐",
-     "text": "旅行前你把路线定成一套，路上不再琢磨别的走法。"},
-    {"id": "Ne-17", "fn": "Ne", "reverse": false, "domain": "信息媒体",
-     "text": "看到新技术新闻，你先想它还能用在哪，能替掉哪些活。"},
-    {"id": "Ne-18", "fn": "Ne", "reverse": false, "domain": "亲密关系",
-     "text": "计划约会你想换花样，吃完饭还能骑车、看展，再去别处。"},
-    {"id": "Ne-19", "fn": "Ne", "reverse": false, "domain": "身体健康",
-     "text": "身体一不舒服，你脑子里先冒出一串可能的原因。"}
+    {
+      "id": "Ne-01",
+      "fn": "Ne",
+      "reverse": false,
+      "domain": "家庭亲戚",
+      "text": "装修时你想把两种不搭的风格放一起试试。"
+    },
+    {
+      "id": "Ne-02",
+      "fn": "Ne",
+      "reverse": false,
+      "domain": "家庭亲戚",
+      "text": "孩子问一句为什么，你能扯出一串别的。"
+    },
+    {
+      "id": "Ne-03",
+      "fn": "Ne",
+      "reverse": true,
+      "domain": "家庭亲戚",
+      "text": "家里换家具，你按原来那套再买一份。"
+    },
+    {
+      "id": "Ne-04",
+      "fn": "Ne",
+      "reverse": false,
+      "domain": "职场办公",
+      "text": "讨论新方向，你先抛三个点子，哪怕还很粗。"
+    },
+    {
+      "id": "Ne-05",
+      "fn": "Ne",
+      "reverse": false,
+      "domain": "职场办公",
+      "text": "两个不搭的业务，你会想能不能凑成一个。"
+    },
+    {
+      "id": "Ne-06",
+      "fn": "Ne",
+      "reverse": true,
+      "domain": "职场办公",
+      "text": "讨论方案，你只谈眼前这一种做法。"
+    },
+    {
+      "id": "Ne-07",
+      "fn": "Ne",
+      "reverse": false,
+      "domain": "学习考试",
+      "text": "学一个新概念，你会想它还能用在哪。"
+    },
+    {
+      "id": "Ne-08",
+      "fn": "Ne",
+      "reverse": true,
+      "domain": "学习考试",
+      "text": "学东西你按老师给的步骤走，不想别的用法。"
+    },
+    {
+      "id": "Ne-09",
+      "fn": "Ne",
+      "reverse": false,
+      "domain": "社交人情",
+      "text": "聊天你容易跳题，朋友说你跳得有点快。"
+    },
+    {
+      "id": "Ne-10",
+      "fn": "Ne",
+      "reverse": true,
+      "domain": "社交人情",
+      "text": "聊天你希望一直停在同一个话题上。"
+    },
+    {
+      "id": "Ne-11",
+      "fn": "Ne",
+      "reverse": false,
+      "domain": "消费生活",
+      "text": "逛超市你专挑没见过的牌子试。"
+    },
+    {
+      "id": "Ne-12",
+      "fn": "Ne",
+      "reverse": true,
+      "domain": "消费生活",
+      "text": "逛超市你只买用过的那几个牌子。"
+    },
+    {
+      "id": "Ne-13",
+      "fn": "Ne",
+      "reverse": false,
+      "domain": "冲突矛盾",
+      "text": "吵起来你会提第三条路，两边都没想过。"
+    },
+    {
+      "id": "Ne-14",
+      "fn": "Ne",
+      "reverse": true,
+      "domain": "冲突矛盾",
+      "text": "吵起来你只想把眼前这件事说清。"
+    },
+    {
+      "id": "Ne-15",
+      "fn": "Ne",
+      "reverse": false,
+      "domain": "兴趣娱乐",
+      "text": "你想同时学三样乐器，哪个都放不下。"
+    },
+    {
+      "id": "Ne-16",
+      "fn": "Ne",
+      "reverse": false,
+      "domain": "兴趣娱乐",
+      "text": "出去玩你想把几个方案拼在一起。"
+    },
+    {
+      "id": "Ne-17",
+      "fn": "Ne",
+      "reverse": false,
+      "domain": "信息媒体",
+      "text": "看到新技术的新闻，你先想它还能用在哪。"
+    },
+    {
+      "id": "Ne-18",
+      "fn": "Ne",
+      "reverse": false,
+      "domain": "亲密关系",
+      "text": "约会你想换个没试过的花样。"
+    },
+    {
+      "id": "Ne-19",
+      "fn": "Ne",
+      "reverse": false,
+      "domain": "身体健康",
+      "text": "身体不舒服，你会想到好几种可能的原因。"
+    }
   ]
 }
