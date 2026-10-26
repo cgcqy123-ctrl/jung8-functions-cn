@@ -101,7 +101,7 @@ details summary{cursor:pointer;font-size:13px;color:var(--muted)}
       <p class="eyebrow">荣格八维 · 7 点同意度 · 152 句中国日常</p>
       <h1>荣格八维人格测验</h1>
       <p class="sub">量 表 版</p>
-      <p class="lede">152 句话 · 每句选一个同意程度 · 约 25 分钟</p>
+      <p class="lede" id="lede">152 句话 · 每句选一个同意程度 · 约 25 分钟</p>
     </div>
     <div class="panel">
       <h2>怎么答</h2>
@@ -109,12 +109,13 @@ details summary{cursor:pointer;font-size:13px;color:var(--muted)}
         <li>每题一句话，按「<b>这有多像我</b>」选程度，从「强烈不同意」到「强烈同意」。</li>
         <li>想<b>平时的你</b>，不要想你希望成为的样子。</li>
         <li>凭第一反应，每题十秒内；中间那档「中立」能不用就不用。</li>
-        <li>152 题，可以分三次做完，进度自动存在这台设备上。</li>
+        <li id="batches">152 题，可以分三次做完，进度自动存在这台设备上。</li>
         <li>题目顺序每次重新开始都会打乱，同一功能的题不会连着出现。</li>
       </ul>
       <button class="mode" id="startBtn"><b>开始</b><span>152 题 · 约 25 分钟</span></button>
     </div>
-    <p class="disclaimer">八个维度每题数相同（各 19 题、其中 6 题反向），所以分数之间可以直接比。
+    <p style="font-size:13px;color:var(--muted);margin-top:16px"><span id="altNote"></span><a href="./lite.html" id="altLink" style="color:var(--accent)">做精简版</a><span id="altTime"></span></p>
+    <p class="disclaimer" id="note">八个维度每题数相同（各 19 题、其中 6 题反向），所以分数之间可以直接比。
       这是自我认识工具，不是诊断。</p>
   </section>
 
@@ -372,6 +373,20 @@ function flash(btn, msg) { var old = btn.textContent; btn.textContent = msg; set
   for (var i = 0; i < btns.length; i++) {
     btns[i].addEventListener("click", function () { choose(Number(this.getAttribute("data-v"))); });
   }
+})();
+
+(function applyMeta() {
+  var m = DATA.meta || {};
+  if (m.title) document.title = m.title;
+  if (m.lede) $("lede").textContent = m.lede;
+  if (m.batches) $("batches").textContent = m.batches;
+  if (m.note) $("note").innerHTML = m.note;
+  if (m.altUrl) $("altLink").setAttribute("href", m.altUrl);
+  if (m.altLabel) $("altLink").textContent = m.altLabel;
+  if (m.altNote) $("altNote").textContent = m.altNote;
+  if (m.altTime) $("altTime").textContent = m.altTime;
+  $("startBtn").innerHTML = "<b>开始</b><span>" + ITEMS.length + " 题 · 约 " +
+    (m.minutes || Math.round(ITEMS.length * 0.17)) + " 分钟</span>";
 })();
 
 $("backBtn").addEventListener("click", back);
