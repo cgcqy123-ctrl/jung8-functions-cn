@@ -9,6 +9,9 @@ import json
 import os
 import sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from version import VERSION  # noqa: E402
+
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HERE = os.path.join(BASE, "likert8")
 FUNCS = ["Se", "Si", "Ne", "Ni", "Te", "Ti", "Fe", "Fi"]
@@ -72,7 +75,7 @@ def main() -> int:
     if len(lite) != 80:
         raise SystemExit(f"精简版题数 {len(lite)}，应为 80")
 
-    out = {"meta": {"version": "v3.3-lite", "scale": 7, "items": len(lite),
+    out = {"meta": {"version": VERSION + "-lite", "scale": 7, "items": len(lite),
                     "source": "由 items.json 抽取：每功能 10 题、十域各 1 题、3 题反向",
                     "plan": "8 个功能 × 10 题（full 版的一半）"},
            "items": [{"id": x["id"], "fn": x["fn"], "reverse": x["reverse"],

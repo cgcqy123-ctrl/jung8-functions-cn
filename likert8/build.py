@@ -9,9 +9,11 @@ import json
 import os
 import sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from version import VERSION  # noqa: E402  唯一的版本号来源
+
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HERE = os.path.join(BASE, "likert8")
-VERSION = "v3.3"
 
 PAGES = [
     {

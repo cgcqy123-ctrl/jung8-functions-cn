@@ -37,8 +37,10 @@ function runPage(file, expectN, expectMode) {
     getElementById: get, querySelectorAll: () => [], addEventListener() {},
     createElement: (t) => makeEl(t), body: makeEl("body"), execCommand() {}, title: ""
   };
+  const store = { _d: {}, getItem(k) { return this._d[k] === undefined ? null : this._d[k]; },
+    setItem(k, v) { this._d[k] = String(v); }, removeItem(k) { delete this._d[k]; } };
   const ctx = { document, window: { scrollTo() {}, print() {} },
-    localStorage: { getItem: () => null, setItem() {}, removeItem() {} },
+    localStorage: store,
     navigator: { clipboard: null }, setTimeout: (fn) => fn(), console };
   ctx.globalThis = ctx;
   vm.createContext(ctx);
@@ -51,6 +53,7 @@ function runPage(file, expectN, expectMode) {
   ok(Object.keys(DATA.types).length === 16, "16 型画像");
   ok(Object.keys(DATA.jung).length === 8, "8 个荣格类型");
   ok((get("scale")._html.match(/<button/g) || []).length === 7, "7 档按钮");
+  ok(String(D.saveKey).indexOf(expectMode) > 0, `存档 key 按版本隔离：${D.saveKey}`);
 
   // 随机顺序：是排列、相邻不同功能（跑 20 次）
   let permBad = 0, adjBad = 0;
@@ -73,11 +76,22 @@ function runPage(file, expectN, expectMode) {
   ok(r1.stack.join("-") === "Se-Ti-Fe-Ni", "功能栈 Se-Ti-Fe-Ni：" + r1.stack.join("-"));
   ok(r1.code === "ESTP", "四字母 ESTP：" + r1.code);
 
-  // 反向题方向
-  const only2 = {};
-  DATA.items.forEach((it) => { only2[it.id] = 0; });
-  const r2 = J.computeResult(only2, DATA.items);
-  ok(r2.dominant === "Se" || r2.dominant === "Si", "反向题方向没写反（主导落在感觉上）：" + r2.dominant);
+  // 反向题方向：只对 Se 的反向题给「强烈同意」（＝否认 Se），Se 应被压到八维最低
+  const reverseSe = {};
+  DATA.items.forEach((it) => { reverseSe[it.id] = 3; });                       // 全部中立
+  DATA.items.filter((it) => it.fn === "Se" && it.reverse).forEach((it) => { reverseSe[it.id] = 6; });
+  const r2 = J.computeResult(reverseSe, DATA.items);
+  ok(r2.scores.Se < 50, "同意 Se 反向题会压低 Se 分：" + r2.scores.Se);
+  ok(r2.order[r2.order.length - 1] === "Se", "Se 落到八维末位：" + r2.order.join("-"));
+
+  // 存档校验：题序不属于本版本题库的存档必须拒绝续答（两版曾共用 key 导致串档）
+  const badOrder = { values: { [DATA.items[0].id]: 3 }, order: [DATA.items[0].id], idx: 0 };
+  ok(D.resume(badOrder) === null, "题序不完整的存档被拒绝");
+  const badIds = { values: { "XX-01": 3 }, order: DATA.items.map((x) => x.id), idx: 1 };
+  badIds.order[0] = "XX-01";
+  ok(D.resume(badIds) === null, "含未知题号的存档被拒绝");
+  const goodSave = { values: { [DATA.items[0].id]: 3 }, order: DATA.items.map((x) => x.id), idx: 1 };
+  ok(!!D.resume(goodSave), "本版本题序的存档可以续答");
 
   // 全中立
   const mid = {};

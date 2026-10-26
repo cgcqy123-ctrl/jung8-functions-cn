@@ -9,6 +9,9 @@ import json
 import os
 import sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from version import VERSION  # noqa: E402
+
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HERE = os.path.join(BASE, "likert8")
 ORDER = ["Se", "Si", "Ne", "Ni", "Te", "Ti", "Fe", "Fi"]
@@ -34,7 +37,7 @@ def main() -> int:
         print(f"[题数异常] {len(items)}，应为 152")
         return 1
 
-    out = {"meta": {"version": "v3.0", "scale": 7, "items": len(items),
+    out = {"meta": {"version": VERSION, "scale": 7, "items": len(items),
                     "plan": "8 个功能 × 19 题；每题 7 点同意度；每功能 6 题反向"},
            "items": items}
     with io.open(os.path.join(HERE, "items.json"), "w", encoding="utf-8", newline="\n") as f:

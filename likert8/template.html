@@ -144,7 +144,8 @@ var DATA = /*__DATA__*/;
 var APP_VERSION = /*__VERSION__*/;
 var ITEMS = DATA.items;
 var LABELS = ["强烈不同意", "不同意", "有点不同意", "中立", "有点同意", "同意", "强烈同意"];
-var SAVE = "jung8-likert-v1";
+/* 存档 key 按版本分开：完整版与精简版题库不同，共用 key 会把两版答案混在一起 */
+var SAVE = "jung8-likert-v1-" + ((DATA.meta && DATA.meta.mode) || "full");
 var state = { values: {}, idx: 0, order: [] };
 var byId = {};
 ITEMS.forEach(function (it) { byId[it.id] = it; });
@@ -161,13 +162,32 @@ function nowStamp() {
 function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {
   return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
 
+/* 校验存档：题序必须是本版本题库的完整排列，否则视为无效（防止旧版/串档存档被续答） */
+function sanitizeResume(saved) {
+  if (!saved || !saved.values || !Array.isArray(saved.order)) return null;
+  var known = {}, seen = {}, ok = true, n = 0;
+  ITEMS.forEach(function (it) { known[it.id] = 1; });
+  if (saved.order.length !== ITEMS.length) return null;
+  saved.order.forEach(function (id) {
+    if (!known[id] || seen[id]) ok = false;
+    seen[id] = 1;
+  });
+  if (!ok) return null;
+  var vals = {};
+  Object.keys(saved.values).forEach(function (id) {
+    if (known[id] && typeof saved.values[id] === "number") { vals[id] = saved.values[id]; n++; }
+  });
+  if (!n) return null;
+  var idx = typeof saved.idx === "number" ? Math.floor(saved.idx) : n;
+  if (idx < 0 || idx >= ITEMS.length) return null;
+  return { values: vals, idx: idx, order: saved.order.slice() };
+}
+
 function start(resume) {
-  if (resume && pendingResume) {
-    state = pendingResume;
-    if (!state.order || state.order.length !== ITEMS.length) state.order = newOrder();
-    pendingResume = null;
-  }
+  var restored = resume && pendingResume ? sanitizeResume(pendingResume) : null;
+  if (restored) { state = restored; }
   else { state = { values: {}, idx: 0, order: newOrder() }; clearSave(); }
+  pendingResume = null;
   view("test"); render();
 }
 function render() {
@@ -199,7 +219,7 @@ function choose(v) {
 function back() { if (state.idx > 0) { state.idx--; save(); render(); } }
 
 function summary(r) {
-  return ["荣格八维人格测验（7 点量表版）· " + APP_VERSION,
+  return ["荣格八维人格测验（7 点量表版 · " + ITEMS.length + " 题）· " + APP_VERSION,
     r.code + "｜" + r.cn_name + "｜荣格归属：" + r.jung_name,
     "功能栈：" + r.stack.join("-"),
     "置信度：" + r.confidence + "（分差 " + r.gap + "，一致性 " + r.consistency + "）",
@@ -207,7 +227,15 @@ function summary(r) {
     "生成时间：" + nowStamp(), "", "自我认识工具，非诊断。"].join("\n");
 }
 
+/* 提示词里的题量口径必须跟着当前题库走（完整版 152 题/19 题/6 反向，精简版 80 题/10 题/3 反向） */
+function itemStats() {
+  var n = ITEMS.length, rev = 0, per = n / J8L.FUNCS.length;
+  ITEMS.forEach(function (it) { if (it.reverse) rev++; });
+  return { n: n, per: per, revPer: Math.round(rev / J8L.FUNCS.length * 100) / 100 };
+}
+
 function aiPrompt(r) {
+  var st = itemStats();
   var L = [];
   L.push("你是熟悉荣格分析心理学（《心理类型》，1921）的类型学分析者。下面是我做一份 7 点同意度量表的完整结果，请据此分析。");
   L.push("");
@@ -219,7 +247,12 @@ function aiPrompt(r) {
   L.push("八维强度（0–100）：" + r.order.map(function (f) { return f + " " + r.scores[f].toFixed(0); }).join(" / "));
   L.push("候选类型前三：" + r.top3.map(function (kv) { return kv[0] + " " + kv[1]; }).join("，"));
   L.push("");
-  L.push("【怎么算的】152 句陈述，每句 7 点（-3 到 +3），每个功能 19 题、其中 6 题反向；功能分是该功能 19 题均值线性映射到 0–100，八个功能题数相同所以可直接比；主导取「个人内中心化后」最高的那个，辅助在「另一类功能 × 相反态度」两个候选里取高者，第三/劣势按结构推出（同类、功能对立、态度相反）。");
+  L.push("【怎么算的】" + st.n + " 句陈述，每句 7 点（-3 到 +3），每个功能 " + st.per + " 题、其中 " +
+    st.revPer + " 题反向；功能分是该功能 " + st.per + " 题均值线性映射到 0–100，八个功能题数相同所以可直接比；" +
+    "主导取「个人内中心化后」最高的那个，辅助在「另一类功能 × 相反态度」两个候选里取高者，第三/劣势按结构推出（同类、功能对立、态度相反）。");
+  if (st.n !== 152) {
+    L.push("注意：这份结果来自精简版（" + st.n + " 题，题量是完整版的一半），判定的稳定性低于完整版；置信度为「中」或「低」时不要当结论。");
+  }
   L.push("注意：这是自评量表，社会赞许偏差会让高分整体抬高；反向题只减少不消除这个偏差。");
   L.push("");
   L.push("【请按顺序回答】");
@@ -398,9 +431,9 @@ document.addEventListener("keydown", function (e) {
 (function resumeCheck() {
   var saved = null;
   try { saved = JSON.parse(localStorage.getItem(SAVE) || "null"); } catch (e) {}
-  if (saved && saved.values && Object.keys(saved.values).length && saved.idx < ITEMS.length) {
-    pendingResume = saved;
-    $("startBtn").innerHTML = "<b>继续上次</b><span>已答 " + Object.keys(saved.values).length + " / " + ITEMS.length + " 题</span>";
+  pendingResume = sanitizeResume(saved);
+  if (pendingResume) {
+    $("startBtn").innerHTML = "<b>继续上次</b><span>已答 " + Object.keys(pendingResume.values).length + " / " + ITEMS.length + " 题</span>";
   }
 })();
 $("startBtn").addEventListener("click", function () { start(!!pendingResume); });
@@ -408,7 +441,9 @@ $("startBtn").addEventListener("click", function () { start(!!pendingResume); })
 if (typeof window !== "undefined") {
   window.__J8L_DEBUG = { start: function () { start(false); }, choose: choose,
     answered: function () { return Object.keys(state.values).length; },
-    order: function () { return state.order.slice(); } };
+    order: function () { return state.order.slice(); },
+    saveKey: SAVE, items: ITEMS,
+    resume: function (saved) { return sanitizeResume(saved); } };
 }
 </script>
 </body>

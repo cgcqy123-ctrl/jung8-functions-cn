@@ -1,6 +1,6 @@
 {
   "meta": {
-    "version": "v3.3-lite",
+    "version": "v3.4-lite",
     "scale": 7,
     "items": 80,
     "source": "由 items.json 抽取：每功能 10 题、十域各 1 题、3 题反向",

@@ -31,7 +31,7 @@ def main() -> int:
         d = json.load(f)
     fn = d.get("fn")
     items = d.get("items") or []
-    errors, warns = [], []
+    errors = []
 
     if fn not in FNS:
         errors.append(f"fn 非法：{fn}")
@@ -67,16 +67,11 @@ def main() -> int:
     for dname, need in DOMAINS.items():
         got = dom[dname]
         if got != need:
-            msg = f"域「{dname}」有 {got} 题，应为 {need}"
-            (warns if abs(got - need) == 0 else errors).append(msg)
+            errors.append(f"域「{dname}」有 {got} 题，应为 {need}")
 
     print(f"=== {os.path.basename(path)} ===")
     print(f"题数 {len(items)}；反向 {rev} 道")
     print("域分布：" + "  ".join(f"{k}={dom[k]}" for k in DOMAINS if dom[k]))
-    if warns:
-        print("--- 提醒 ---")
-        for w in warns:
-            print("  ! " + w)
     if errors:
         print("--- 错误 ---")
         for e in errors:
